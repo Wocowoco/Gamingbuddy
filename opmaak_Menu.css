@@ -1,0 +1,52 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    height: 100%;
+    width: 100%;
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: green;
+   
+}
+.zijkantL{
+    height: 100%; 
+    width: 20%; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0;
+    background-color: red; 
+    padding-top: 60px; /* Place content 60px from the top */
+}
+.zijkantR{
+    height: 100%; 
+    width: 20%; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    right:0;
+    background-color: red; 
+    padding-top: 60px; /* Place content 60px from the top */
+}
+
+  .horizontaal{
+    display: inline-block;
+    width: 20%;
+    white-space: nowrap; 
+    width: 20%;
+    overflow: hidden;
+  text-overflow: clip; 
+}
+div{
+    margin:30px;
+    padding: 0px;
+    border: 0px;
+}
