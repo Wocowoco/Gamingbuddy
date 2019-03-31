@@ -168,6 +168,7 @@ session_start();
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object>
         <div id="main">
+            <p>Test</p>
         </div>
     </body>
 </html>
