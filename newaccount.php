@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>Gamingbuddy: Account aanmaken</title>
-        <link href="" rel="stylesheet"/>
+        <link href="opmaak_site.css" rel="stylesheet" />
         <script>
 
             function verify()
@@ -121,37 +121,42 @@
         </script>
     </head>
     <body> 
-        <form id="accountData" method="post" action="adduser.php">
-            <p>
-                <label for="name">Naam: </label>
-                <input type="text" id="name" name="name" required>
-            </p>    
-            <p>
-                <label for="lastName">Achternaam: </label>
-                <input type="text" id="lastName" name="lastName" required>
-            </p>
-            <p>
-                <label for="username">Gebruikersnaam: </label>
-                <input type="text" id="username" name="username" required>
-                
-            </p>
-            <p>
-                <label for="password">Wachtwoord: </label>
-                <input type="password" id="password" name="password" required> 
-            </p>
-            <p> 
-                <label for="verifypassword">Herhaal wachtwoord: </label>
-                <input type="password" id="verifypassword" name="verifypassword" required>
-            </p>
-            <p>     
-                <input type="checkbox" id="addgame" name="addgame" required>
-                <label for="addgame">Ik wens een game toe te voegen aan mijn account. </label>
-            </p>
-            <p>
-                <input type="button" type="submit" value="Account Aanmaken" onclick="verify();"/>
-            </p>
-           
-        </form>
+        <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
+        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
+        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
+        <div class="wvg">
+            <form id="accountData" method="post" action="adduser.php">
+                <p>
+                    <label for="name">Naam: </label>
+                    <input type="text" id="name" name="name" required>
+                </p>    
+                <p>
+                    <label for="lastName">Achternaam: </label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </p>
+                <p>
+                    <label for="username">Gebruikersnaam: </label>
+                    <input type="text" id="username" name="username" required>
+                    
+                </p>
+                <p>
+                    <label for="password">Wachtwoord: </label>
+                    <input type="password" id="password" name="password" required> 
+                </p>
+                <p> 
+                    <label for="verifypassword">Herhaal wachtwoord: </label>
+                    <input type="password" id="verifypassword" name="verifypassword" required>
+                </p>
+                <p>     
+                    <input type="checkbox" id="addgame" name="addgame" required>
+                    <label for="addgame">Ik wens een game toe te voegen aan mijn account. </label>
+                </p>
+                <p>
+                    <input type="button" type="submit" value="Account Aanmaken" onclick="verify();"/>
+                </p>
+            
+            </form>
+        </div>
         <p id="nameError" hidden></p>
         <p id="usernameError" hidden></p>
         <p id="passwordError" hidden></p>

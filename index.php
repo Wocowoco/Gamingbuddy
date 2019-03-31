@@ -6,6 +6,7 @@ session_start();
     <head>
         <meta charset="utf-8"/>
         <title>Gamingbuddy</title>
+        <link href="opmaak_site.css" rel="stylesheet" />
         <script>    
 
 
@@ -167,7 +168,7 @@ session_start();
         <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object>
-        <div id="main">
+        <div id="main" class="wvg">
         </div>
     </body>
 </html>

@@ -12,6 +12,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>Gamingbuddy: Game toevoegen</title>
+        <link href="opmaak_site.css" rel="stylesheet" />
         <script>
 
             var selectedGame; 
@@ -491,8 +492,11 @@
    
         </script>
     </head>
-    <body onload="init();">    
-        <div>
+    <body onload="init();">   
+        <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
+        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
+        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
+        <div class="wvg">
             <p>
                 <label for="gameName">Selecteer het spel dat je wil toevoegen aan je account: </label>
                 <select onchange="checkGame();" id="gameName">
@@ -503,7 +507,7 @@
             </p>
         </div>
 
-        <div>
+        <div class="wvg">
             <form id="gameDetails" method="post">
 
             </form>
