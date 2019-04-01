@@ -156,10 +156,10 @@
                 </p>
             
             </form>
-        </div>
+        
         <p id="nameError" hidden></p>
         <p id="usernameError" hidden></p>
         <p id="passwordError" hidden></p>
-
+        </div>
     </body>
 </html>
