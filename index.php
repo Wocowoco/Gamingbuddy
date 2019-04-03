@@ -13,6 +13,7 @@ session_start();
             function init(){
                 //Check if a user is logged in or not
                 var isLoggedIn = false;
+
                 <?php
                     if(isset($_SESSION["id"]))
                     {
@@ -94,7 +95,10 @@ session_start();
                 //IF LOGGED IN
                 //-----------------
                 else{
+                    //Voeg de 3 balken toe
+                    document.getElementById("test").innerHTML += "<object class=\"boven\"  name=\"menu\" type=\"text/html\" data=\"Menu.html\"> </object><object class= \"links\"  name=\"games\" type=\"text/html\" data=\"games.html\"> </object><object class=\"rechts\"  name=\"chat\" type=\"text/html\" data=\"chat.html\"> </object>";
                     //Welkom message
+
                     var main = document.getElementById("main");
                     var p = document.createElement("p");
                     <?php
@@ -176,10 +180,7 @@ session_start();
             }
         </script>
     </head>
-    <body onLoad="init();"> 
-        <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
-        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
-        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object>
+    <body id="test" onLoad="init();"> 
         <div id="main" class="wvg">
         </div>
     </body>
