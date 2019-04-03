@@ -23,13 +23,8 @@
     {
         $id = 0;
     }
-
-    $username = filter_input(INPUT_POST,'summonerName');
-    $username = filter_input(INPUT_POST,'summonerName');
-    $region = filter_input(INPUT_POST,'region');
-    $rank = filter_input(INPUT_POST,'rank');
-    $division = filter_input(INPUT_POST,'division');
-    $rank += $division;
+;
+    $username = filter_input(INPUT_POST,'originName');
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
 
@@ -37,7 +32,7 @@
     $dbusername = "root";
     $dbpassword = "";
     $dbname = "gamingbuddy";
-
+    
     $conn = new mysqli ($host,$dbusername,$dbpassword,$dbname);
 
     if(mysqli_connect_error()){
@@ -46,8 +41,8 @@
         . mysqli_connect_error());
     }
     else{
-        $sql = "INSERT INTO gb_loldata (accountID, SummonerName, RankID, PrefRole1, PrefRole2, Zone)
-        VALUES ('$id','$username','$rank','$prefrole1','$prefrole2','$region')";
+        $sql = "INSERT INTO gb_apexData (AccountID, OriginName, PrefRole1, PrefRole2)
+        VALUES ('$id','$username','$prefrole1','$prefrole2')";
         if($conn->query($sql)){
             echo "New record is created succesfully";
         }

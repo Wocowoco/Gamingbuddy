@@ -56,9 +56,174 @@
             //-------------------------
             function createApexForm()
             {
-                var txt = document.createElement("p");
-                txt.innerHTML = "Not yet implemented"
+                gameDetails.setAttribute("action","php_addapexdb.php")
+                
+                
+                //ORIGIN NAME
+                var txt = document.createElement("LABEL");
+                txt.setAttribute("for", "originName");
+                txt.innerHTML = "Orgin accountnaam: "
                 gameDetails.appendChild(txt);
+
+                var field = document.createElement("INPUT");
+                field.setAttribute("type", "textfield");
+                field.setAttribute("id", "originName");
+                field.setAttribute("name", "originName");
+                gameDetails.appendChild(field);
+                txt = document.createElement("br");
+                gameDetails.appendChild(txt);
+
+
+                //ROLE1
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "role1");
+                txt.innerHTML = "Favoriete Legend:"
+                gameDetails.appendChild(txt);
+
+                field = document.createElement("SELECT");
+                field.setAttribute("id", "role1");
+                field.setAttribute("name", "role1");
+                gameDetails.appendChild(field);
+                txt = document.createElement("br");
+                gameDetails.appendChild(txt);
+
+                    //Add options
+                    var option = document.createElement("option");
+                    option.value = "invalid";
+                    option.text = "";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "1";
+                    option.text = "Bangalore";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "2";
+                    option.text = "Bloodhound";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "3";
+                    option.text = "Caustic";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "4";
+                    option.text = "Gibraltar";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "5";
+                    option.text = "Lifeline";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "6";
+                    option.text = "Mirage";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "7";
+                    option.text = "Octane";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "8";
+                    option.text = "Pathfinder";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "9";
+                    option.text = "Wraith";
+                    field.appendChild(option);
+
+                //ROLE2
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "role2");
+                txt.innerHTML = "Back-up Legend:"
+                gameDetails.appendChild(txt);
+
+                field = document.createElement("SELECT");
+                field.setAttribute("id", "role2");
+                field.setAttribute("name", "role2");
+                gameDetails.appendChild(field);
+                txt = document.createElement("br");
+                gameDetails.appendChild(txt);
+
+                    //Add options
+                    var option = document.createElement("option");
+                    option.value = "invalid";
+                    option.text = "";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "1";
+                    option.text = "Bangalore";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "2";
+                    option.text = "Bloodhound";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "3";
+                    option.text = "Caustic";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "4";
+                    option.text = "Gibraltar";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "5";
+                    option.text = "Lifeline";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "6";
+                    option.text = "Mirage";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "7";
+                    option.text = "Octane";
+                    field.appendChild(option);
+                    
+                    option = document.createElement("option");
+                    option.value = "8";
+                    option.text = "Pathfinder";
+                    field.appendChild(option);
+
+                    option = document.createElement("option");
+                    option.value = "9";
+                    option.text = "Wraith";
+                    field.appendChild(option);
+
+                //ERRORMESSAGES
+                var field = document.createElement("p");
+                field.setAttribute("id", "apexError");
+                field.setAttribute("hidden", "");
+                gameDetails.appendChild(field);
+                txt = document.createElement("br");
+                gameDetails.appendChild(txt);
+
+                //Voeg game to aan account 
+                var field = document.createElement("INPUT");
+                field.setAttribute("type", "button");
+                field.setAttribute("value", "Game toevoegen");
+                field.setAttribute("id", "lolsubmit");
+                field.setAttribute("onclick", "verifyApexForm();");
+                gameDetails.appendChild(field);
+                txt = document.createElement("br");
+                gameDetails.appendChild(txt);
+            }
+
+            function verifyApexForm()
+            {
+                document.getElementById("gameDetails").submit(); 
             }
 
             //-------------------------
