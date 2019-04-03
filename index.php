@@ -35,7 +35,7 @@ session_start();
                     var form = document.createElement("FORM");
                     form.setAttribute("id", "login");
                     form.setAttribute("method", "POST");
-                    form.setAttribute("action", "login.php");
+                    form.setAttribute("action", "php_login.php");
                     document.getElementById("main").appendChild(form);
 
                     //Username
@@ -78,7 +78,7 @@ session_start();
                     document.getElementById("main").appendChild(p);
                     
                     item = document.createElement("a");
-                    item.setAttribute("href", "newaccount.php");
+                    item.setAttribute("href", "addaccount.php");
                     item.innerHTML = "Geen account? Maak hier een aan!"
                     p.appendChild(item);
 
@@ -139,7 +139,7 @@ session_start();
                     p = document.createElement("p");
                     main.appendChild(p);
                     form = document.createElement("FORM");
-                    form.setAttribute("action","logout.php");
+                    form.setAttribute("action","php_logout.php");
                     p.appendChild(form);
 
                     item = document.createElement("INPUT");

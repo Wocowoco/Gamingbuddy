@@ -125,7 +125,7 @@
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
-            <form id="accountData" method="post" action="adduser.php">
+            <form id="accountData" method="post" action="php_adduser.php">
                 <p>
                     <label for="name">Naam: </label>
                     <input type="text" id="name" name="name" required>

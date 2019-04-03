@@ -66,7 +66,7 @@
             //-------------------------
             function createLeagueOfLegendsForm()
             {
-                gameDetails.setAttribute("action","addloldb.php")
+                gameDetails.setAttribute("action","php_addloldb.php")
                 //Region
                 var txt = document.createElement("LABEL");
                 txt.setAttribute("for", "region");
