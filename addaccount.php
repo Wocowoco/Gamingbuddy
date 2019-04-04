@@ -129,6 +129,7 @@
                 <p>
                     <label for="name">Naam: </label>
                     <input type="text" id="name" name="name" required>
+                    <p id="nameError" hidden></p>
                 </p>    
                 <p>
                     <label for="lastName">Achternaam: </label>
@@ -137,11 +138,13 @@
                 <p>
                     <label for="username">Gebruikersnaam: </label>
                     <input type="text" id="username" name="username" required>
+                    <p id="usernameError" hidden></p>
                     
                 </p>
                 <p>
                     <label for="password">Wachtwoord: </label>
                     <input type="password" id="password" name="password" required> 
+                    <p id="passwordError" hidden></p>
                 </p>
                 <p> 
                     <label for="verifypassword">Herhaal wachtwoord: </label>
@@ -157,9 +160,7 @@
             
             </form>
         
-        <p id="nameError" hidden></p>
-        <p id="usernameError" hidden></p>
-        <p id="passwordError" hidden></p>
+
         </div>
     </body>
 </html>
