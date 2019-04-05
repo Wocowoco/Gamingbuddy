@@ -117,3 +117,20 @@ object{
     margin-top: 100px;
     margin-right: 100px; 
 }
+
+
+/* OPMAAK VOOR FORMS*/
+
+.formError{
+    margin-bottom: 0px;
+}
+
+.formNoError{
+    margin-bottom: 16px;
+}
+
+.redErrorText{
+    margin-top: 0px;
+    color: red;
+}
+

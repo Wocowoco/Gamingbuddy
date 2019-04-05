@@ -22,17 +22,46 @@
                 {   
                     document.getElementById("nameError").removeAttribute("hidden");
                     document.getElementById("nameError").innerHTML = "Gelieve je naam in te vullen.";
+                    document.getElementById("nameP").setAttribute("class","formError");
                     error = true;
                 }
-                else if(lastname.length == 0)
-                {
-                    document.getElementById("nameError").removeAttribute("hidden");
-                    document.getElementById("nameError").innerHTML = "Gelieve je naam in te vullen.";
-                    error = true;   
-                }
+                //If there's no errors with the names, hide error (if any)
                 else
                 {
                     document.getElementById("nameError").setAttribute("hidden","");
+                    document.getElementById("nameP").removeAttribute("class");
+                }
+
+                //Check lastname
+                if(lastname.length == 0)
+                {
+                    document.getElementById("lastnameError").removeAttribute("hidden");
+                    document.getElementById("lastnameError").innerHTML = "Gelieve je achternaam in te vullen.";
+                    document.getElementById("lastnameP").setAttribute("class","formError");
+                    error = true;   
+                }
+
+                //If there's no errors with the names, hide error (if any)
+                else
+                {
+                    document.getElementById("lastnameError").setAttribute("hidden","");
+                    document.getElementById("lastnameP").removeAttribute("class");
+                }
+
+                //Check username 
+                if(username.length == 0)
+                {
+                    document.getElementById("usernameError").removeAttribute("hidden");
+                    document.getElementById("usernameError").innerHTML = "Gelieve je gebruikersnaam in te vullen.";
+                    document.getElementById("usernameP").setAttribute("class","formError");
+                    error = true;      
+                }
+            
+                //If there's no errors with the names, hide error (if any)
+                else
+                {
+                    document.getElementById("usernameError").setAttribute("hidden","");
+                    document.getElementById("usernameP").removeAttribute("class");
                 }
 
                 //Check if username is already taken
@@ -42,6 +71,7 @@
                     {
                         document.getElementById("usernameError").removeAttribute("hidden");
                         document.getElementById("usernameError").innerHTML = "De gebruikersnaam <b>"+username+"</b> is al reeds in gebruik.";
+                        document.getElementById("usernameP").setAttribute("class","formError");
                         error = true;
                     }
                 }
@@ -50,6 +80,7 @@
                 if(error == false)
                 {
                     document.getElementById("usernameError").setAttribute("hidden","");
+                    document.getElementById("usernameP").removeAttribute("class");
                 }
 
 
@@ -58,6 +89,7 @@
                 {
                     document.getElementById("passwordError").removeAttribute("hidden");
                     document.getElementById("passwordError").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
+                    document.getElementById("passwordP").setAttribute("class","formError");
                     error = true;
                 }
                 //Check password length
@@ -65,11 +97,14 @@
                 {
                     document.getElementById("passwordError").removeAttribute("hidden");
                     document.getElementById("passwordError").innerHTML = "Het ingegeven wachtwoord is te kort. (Minimaal 6 karakters)";
+                    document.getElementById("passwordP").setAttribute("class","formError");
                     error = true;
                 }
+                //Hide the error if the password has no problems
                 else
                 {
                     document.getElementById("passwordError").setAttribute("hidden","");
+                    document.getElementById("passwordP").removeAttribute("class");
                 }
 
                 //If there's no errors with the data, send it to database
@@ -126,25 +161,26 @@
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
             <form id="accountData" method="post" action="php_adduser.php">
-                <p>
+                <p id="nameP">
                     <label for="name">Naam: </label>
                     <input type="text" id="name" name="name" required>
-                    <p id="nameError" hidden></p>
+                    <p id="nameError" class="redErrorText" hidden></p>
                 </p>    
-                <p>
+                <p id="lastnameP"> 
                     <label for="lastName">Achternaam: </label>
                     <input type="text" id="lastName" name="lastName" required>
+                    <p id="lastnameError" class="redErrorText" hidden></p>
                 </p>
-                <p>
+                <p id="usernameP">
                     <label for="username">Gebruikersnaam: </label>
                     <input type="text" id="username" name="username" required>
-                    <p id="usernameError" hidden></p>
+                    <p id="usernameError" class="redErrorText" hidden></p>
                     
                 </p>
-                <p>
+                <p id="passwordP">  
                     <label for="password">Wachtwoord: </label>
                     <input type="password" id="password" name="password" required> 
-                    <p id="passwordError" hidden></p>
+                    <p id="passwordError" class="redErrorText" hidden></p>
                 </p>
                 <p> 
                     <label for="verifypassword">Herhaal wachtwoord: </label>
