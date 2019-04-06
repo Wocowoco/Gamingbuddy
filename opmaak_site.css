@@ -118,8 +118,13 @@ object{
     margin-right: 100px; 
 }
 
+.wvgleft{
+    margin-left: 200px;
+    margin-right: 100px; 
+}
 
-/* OPMAAK VOOR FORMS*/
+
+/* FORMS STYLES */
 
 .formError{
     margin-bottom: 0px;

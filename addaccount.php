@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    //If already logged in, return to mainpage, preventing from making an account
+    if(isset($_SESSION["id"]))
+    {
+        header("Location: index.php");
+        exit;  
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +15,6 @@
         <title>Gamingbuddy: Account aanmaken</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script>
-
             function verify()
             {
                 var takenNames = getUsernames();
