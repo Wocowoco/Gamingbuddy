@@ -139,3 +139,22 @@ object{
     color: red;
 }
 
+.formborder{
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(194, 194, 194);
+    margin: 5px;
+}
+
+
+/* SEARCH STYLES */
+.searchdiv{
+    max-width: 300px;
+    border: 2px;
+    border-style: solid;
+    border-color: gray;
+    background-color: lightgray;
+    margin: 2px;
+}
+
