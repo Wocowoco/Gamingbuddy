@@ -68,7 +68,7 @@ session_start();
 
                         //Add options
                         var option = document.createElement("option");
-                        option.value = "invalid";
+                        option.value = "none";
                         option.text = "";
                         select.appendChild(option);
 
@@ -119,7 +119,7 @@ session_start();
 
                         option = document.createElement("option");
                         option.value = "OCE";
-                        option.text = "RU - Republic of Korea";
+                        option.text = "OCE - Oceania";
                         select.appendChild(option);
 
                         option = document.createElement("option");
@@ -143,31 +143,31 @@ session_start();
                     formDiv.appendChild(p);
                     var input = document.createElement("INPUT");
                     input.setAttribute("type","checkbox");
-                    input.setAttribute("name","top");
+                    input.setAttribute("name","lolRoleTop");
                     input.setAttribute("value","true");
                     p.appendChild(input);
                     p.innerHTML += "Top<br>";
                     var input = document.createElement("INPUT");
                     input.setAttribute("type","checkbox");
-                    input.setAttribute("name","jungler");
+                    input.setAttribute("name","lolRoleJungler");
                     input.setAttribute("value","true");
                     p.appendChild(input);
                     p.innerHTML += "Jungler<br>";
                     var input = document.createElement("INPUT");
                     input.setAttribute("type","checkbox");
-                    input.setAttribute("name","mid");
+                    input.setAttribute("name","lolRoleMid");
                     input.setAttribute("value","true");
                     p.appendChild(input);
                     p.innerHTML += "Mid<br>";
                     var input = document.createElement("INPUT");
                     input.setAttribute("type","checkbox");
-                    input.setAttribute("name","bot");
+                    input.setAttribute("name","lolRoleBot");
                     input.setAttribute("value","true");
                     p.appendChild(input);
                     p.innerHTML += "Bot<br>";
                     var input = document.createElement("INPUT");
                     input.setAttribute("type","checkbox");
-                    input.setAttribute("name","support");
+                    input.setAttribute("name","lolRoleSupport");
                     input.setAttribute("value","true");
                     p.appendChild(input);
                     p.innerHTML += "Support<br>";
@@ -209,7 +209,7 @@ session_start();
                     {
                         echo "amountOfLoldata = 0;";
                     }
-                    
+
                 ?>
             
                 //Print all the lol data
@@ -245,6 +245,12 @@ session_start();
                     div.appendChild(p);
                 }        
             }
+
+            //Reset all search variables
+            <?php
+            unset($_SESSION['loldata']);
+            unset($_SESSION['loldataAmount']);
+            ?>
 
         </script>
     </head>

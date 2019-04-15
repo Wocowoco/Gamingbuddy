@@ -306,7 +306,7 @@
 
                     option = document.createElement("option");
                     option.value = "OCE";
-                    option.text = "RU - Republic of Korea";
+                    option.text = "OCE - Oceania";
                     field.appendChild(option);
 
                     option = document.createElement("option");
