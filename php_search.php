@@ -29,6 +29,7 @@ session_start();
             $lolRole2 = "";
             //Reset variables
             unset($_SESSION["loldata"]);
+            unset($_SESSION["loldataAmount"]);
             //Get variables 
             $name = filter_input(INPUT_POST,'name');
 

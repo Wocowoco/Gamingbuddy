@@ -188,23 +188,32 @@ session_start();
                 var loldataArray = new Array();
 
                 //Get all the loldata
-
                 <?php 
                     //Set amount of data
-                    echo "amountOfLoldata = " . $_SESSION['loldataAmount'] . ";";
-
-                    //Loop through all the data
-                    for($i = 0; $i < $_SESSION['loldataAmount']; $i++)
+                    if(isset($_SESSION['loldataAmount']))
                     {
-                        echo "loldataArray.push([\"" . $_SESSION['loldata'][$i][0] . "\",\"" 
-                        . $_SESSION['loldata'][$i][1] . "\",\"" 
-                        . $_SESSION['loldata'][$i][2] . "\",\"" 
-                        . $_SESSION['loldata'][$i][3] . "\",\"" 
-                        . $_SESSION['loldata'][$i][4] . "\"]);";
+                         echo "amountOfLoldata = " . $_SESSION['loldataAmount'] . ";";
+
+
+                        //Loop through all the lol data
+                        for($i = 0; $i < $_SESSION['loldataAmount']; $i++)
+                        {
+                            echo "loldataArray.push([\"" . $_SESSION['loldata'][$i][0] . "\",\"" 
+                            . $_SESSION['loldata'][$i][1] . "\",\"" 
+                            . $_SESSION['loldata'][$i][2] . "\",\"" 
+                            . $_SESSION['loldata'][$i][3] . "\",\"" 
+                            . $_SESSION['loldata'][$i][4] . "\"]);";
+                        }
                     }
+                    else
+                    {
+                        echo "amountOfLoldata = 0;";
+                    }
+                    
                 ?>
             
-        
+                //Print all the lol data
+                lolDiv.innerHTML += " - "+ amountOfLoldata + " resultaten gevonden.";
                 for(i = 0; i < amountOfLoldata; i++)
                 {
                     //Create a div for this data entry
