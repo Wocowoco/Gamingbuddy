@@ -26,12 +26,14 @@ session_start();
             die("Connection failed: " . $conn->connect_error);
         } 
 
+
+        //Get username and id
         $sql = "SELECT password, id FROM gb_account WHERE gb_Account.Username LIKE '$username'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                if(password_verify($password,$row["password"])){
-                    $_SESSION["Welcome"] = "Welkom ".$usernameF;
+                if(password_verify($password,$row["password"]))
+                {
                     $_SESSION["name"] = $username;
                     $_SESSION["id"] = $row["id"];
                 }

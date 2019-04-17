@@ -146,6 +146,17 @@ session_start();
                     item.setAttribute("value", "Zoeken naar gebruikers");
                     form.appendChild(item);
 
+                    //Account options
+                    p = document.createElement("p");
+                    main.appendChild(p);
+                    form = document.createElement("FORM");
+                    form.setAttribute("action","accountoptions.php");
+                    p.appendChild(form);
+
+                    var item = document.createElement("INPUT");
+                    item.setAttribute("type", "submit");
+                    item.setAttribute("value", "Accountinstellingen");
+                    form.appendChild(item);
 
                     //Log out
                     p = document.createElement("p");

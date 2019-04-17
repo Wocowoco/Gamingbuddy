@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Gamingbuddy: Account aanmaken</title>
+        <title>Gamingbuddy | Account aanmaken</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script>
             function verify()

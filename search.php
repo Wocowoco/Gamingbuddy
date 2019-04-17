@@ -5,7 +5,7 @@ session_start();
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Gamingbuddy</title>
+        <title>Gamingbuddy | Zoeken</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script> 
             function init()

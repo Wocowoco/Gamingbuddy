@@ -183,6 +183,7 @@ object{
     padding: 4px;
 
 }
+
 .searchresult{
     max-width: 300px;
     min-width: 300px;
@@ -221,3 +222,47 @@ object{
     margin-right: auto;  
 }
 
+/* ACCOUNT SETTINGS STYLES */
+.accountpagecenter{
+    max-width: 500px;
+    min-width: 500px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(220, 220, 220);
+    padding: 4px;
+}
+
+.centeraccheader{
+    text-align: center;
+    font-size: 25px;
+}
+
+.accpassdiv{
+    max-width: 420px;
+    min-width: 420px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+.bigtextfield{
+    width: 400px;
+    height: 30px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 25px;
+}

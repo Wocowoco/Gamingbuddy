@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Gamingbuddy: Game toevoegen</title>
+        <title>Gamingbuddy | Game toevoegen</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script>
 
