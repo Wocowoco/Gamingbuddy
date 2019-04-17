@@ -5,6 +5,7 @@ body{
     width: 100%;
     display: block;
     border: none;
+    background-color: #EEAF55  ;
    
 }
 html{
@@ -64,13 +65,7 @@ object{
   }
 
 
-  .latenvallen {
-    position: relative;
-    display: inline-block;
-    height: 30px;
-    width: 100%;
-    font-size: 100%;
-  }
+
   
  
   .show {
@@ -79,19 +74,9 @@ object{
 
 
 
-.naastmekaar{
-    height: 100%;
-    width:10%;
-}
 
-.midden{
-    margin: 0;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 0;
-    height: 100px;
-}
+
+
 .foto{
     position: relative;
     height: 100%;
@@ -105,11 +90,33 @@ object{
     text-align: center;
 }
 
+.midden{
+    margin: 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 0;
+    height: 100px;
+}
+
 .centreer{
     width: 100%;
     padding-top:100px;
     margin: auto;
     text-align: center;
+}
+
+.latenvallen {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    width: 100%;
+    font-size: 100%;
+  }
+
+.directtonen{
+    height: 100%;
+    width:10%;
 }
 
 .wvg{
@@ -118,10 +125,7 @@ object{
     margin-right: 100px; 
 }
 
-.wvgleft{
-    margin-left: 200px;
-    margin-right: 100px; 
-}
+
 
 
 /* FORMS STYLES */

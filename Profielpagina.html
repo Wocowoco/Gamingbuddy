@@ -6,8 +6,20 @@
         <link href="opmaak_site.css" rel="stylesheet" />
 
         <script>
+            var z=0;
             function myFunction() {
-                document.getElementById("drop").classList.toggle("show");
+                var x = document.getElementById("drop").innerHTML;
+                if (z==0)
+                {
+                    document.getElementById("tonen").innerHTML = x;
+                    z=1;
+                }
+                else
+                {
+                    document.getElementById("tonen").innerHTML = "";
+                    z=0;
+                }
+
             }
         </script>
     </head>
@@ -23,14 +35,20 @@
       <div class="wvg">
 
         <div class="midden">
-            <img class="foto" src="WOCO.jpg" alt="Wouter" width="100%" height="100%">
+            <img class="foto" src="WOCO.jpg" alt="Wouter" >
             <h1 class="naam">WOCO</h1>
         </div>
-        
         <div class="centreer">
-            <div class="latenvallen">
-            <img class="naastmekaar" src="pijl.jpg" alt="pijl" onclick="myFunction()" >
-            <p>  League of legends<p> 
+
+            <div class="latenvallen" > 
+
+                <div class="directtonen">
+                    <img src="pijltje.png" alt="pijl" onclick="myFunction()" >
+                    <p>  League of legends</p> 
+                </div>
+
+                <div id="tonen"></div>
+
                 <div id="drop" class="dropdown">
                     <ul>
                         <li> League of legends Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lo
@@ -48,11 +66,14 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
 
+            <p>gddfgsf</p>
         </div>
+        
 
-        </div>
+    </div>
 
     </body>
 </html>
