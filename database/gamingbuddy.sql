@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2019 at 06:07 PM
+-- Generation Time: Apr 17, 2019 at 11:10 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -54,7 +54,9 @@ INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`) VALU
 (41, 'tabeltest', '$2y$10$kiiwFlYSSjTlnZJtdBaCWuESCWnYeoHDBt.gS.OvCAB69FFK0MFA2', 'tabeltest', 'tabeltest'),
 (42, 'uiop789', '$2y$10$Ej9wjT5AudziMB36R4Q4juU3YGmaamG7H5m/AY84qqrz2ifmRNSqK', 'xdfhcgjkl', 'cnvb,km'),
 (43, 'jury', '$2y$10$Ir.Ymd0Cc7OgM1WZ.AMUueSmwka02oX84/IARZc5eqms37ndhFE7O', 'test1', 'test2'),
-(44, '789456123', '$2y$10$7ekg6c5f7xaFgBRcLxDWtOdCtpN7DsBzmg1YOB/7fjP4lV1W/PmiS', 'fsdhjkl;', 'jkl;');
+(44, '789456123', '$2y$10$7ekg6c5f7xaFgBRcLxDWtOdCtpN7DsBzmg1YOB/7fjP4lV1W/PmiS', 'fsdhjkl;', 'jkl;'),
+(45, '1234', '$2y$10$CGzk16mhCvJ07vSH4swLBeVyG1p.5Kx1uYTcGQ.YybExkXgT3BN5K', 'lol', 'lol'),
+(46, 'mar', '$2y$10$Ts/xnaMRowB3TZFBbFw3Dej9.qLiywmCqXhZFWChF77DwIlQTR4qS', 'hbhj', 'uhuh');
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,11 @@ INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `PrefR
 (66, 1, 'WocoJap', 18, 2, 6, 'JP'),
 (67, 42, 'naamKR', 8, 5, 2, 'KR'),
 (68, 43, 'testnaam', 1, 3, 4, 'EUW'),
-(69, 1, 'WocEUNE', 23, 5, 2, 'EUNE');
+(69, 1, 'WocEUNE', 23, 5, 2, 'EUNE'),
+(71, 1, 'qwertyuio', 6, 2, 3, 'EUNE'),
+(72, 1, 'testform', 25, 4, 2, 'EUW'),
+(73, 1, 'WocoOCE', 24, 3, 6, 'OCE'),
+(74, 46, 'jnjn', 14, 4, 2, 'KR');
 
 -- --------------------------------------------------------
 
@@ -235,13 +241,13 @@ ALTER TABLE `gb_lolzone`
 -- AUTO_INCREMENT for table `gb_account`
 --
 ALTER TABLE `gb_account`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
-  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `gb_lolrank`
