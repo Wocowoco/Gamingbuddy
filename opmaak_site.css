@@ -23,7 +23,6 @@ object{
     display: block;
     border: none;
 }
-
 .rechts{
     position: fixed;
     top: 100px;
@@ -121,15 +120,102 @@ object{
 
 .wvg{
     margin-left: 200px;
-    margin-top: 100px;
+    margin-top: 105px;
     margin-right: 100px; 
 }
 
 
 
 
-/* FORMS STYLES */
 
+/* MULTIPAGE STYLES */ 
+.pagecenterdiv{
+    max-width: 500px;
+    min-width: 500px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(220, 220, 220);
+    padding: 4px;
+}
+
+.pagecenterinnerdiv{
+    max-width: 420px;
+    min-width: 420px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+.bigtextfield{
+    width: 410px;
+    height: 30px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    font-size: 23px;
+}
+
+.mediumtextfield{
+    width: 200px;
+    height: 20px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    font-size: 15px; 
+}
+
+.mediumdropdown{
+    width: 210px;
+    height: 25px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    font-size: 15px; 
+}
+
+.buttoncenterdiv{
+    width: 420px;
+    height: 30px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    text-align: center;  
+}
+
+.bigbutton{
+    width: auto;
+    height: 30px;
+    font-size: 15px;
+}
+.subjectheader{
+    text-align: center;
+    font-size: 25px;
+}
+
+
+/* FORMS STYLES */
 .formError{
     margin-bottom: 0px;
 }
@@ -218,6 +304,7 @@ object{
 
 .gamenameright{
     float: right;
+    text-align: right;
 }
 
 .resultboxcenter{
@@ -226,47 +313,3 @@ object{
     margin-right: auto;  
 }
 
-/* ACCOUNT SETTINGS STYLES */
-.accountpagecenter{
-    max-width: 500px;
-    min-width: 500px;
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: auto;
-    margin-right: auto;
-
-    border: 3px;
-    border-style: solid;
-    border-color: black;
-    background-color: rgb(220, 220, 220);
-    padding: 4px;
-}
-
-.centeraccheader{
-    text-align: center;
-    font-size: 25px;
-}
-
-.accpassdiv{
-    max-width: 420px;
-    min-width: 420px;
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: auto;
-    margin-right: auto;
-  
-}
-
-.bigtextfield{
-    width: 400px;
-    height: 30px;
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: auto;
-    margin-right: auto;
-
-    font-size: 25px;
-}

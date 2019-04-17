@@ -1,0 +1,60 @@
+<?php
+    session_start();
+    //If already logged in, return to mainpage, preventing from making an account
+    if(isset($_SESSION["id"]))
+    {
+        header("Location: index.php");
+        exit;  
+    }
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Gamingbuddy | Account aanmaken</title>
+        <link href="opmaak_site.css" rel="stylesheet"/>
+    </head>
+    <body> 
+        <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
+        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
+        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
+        <div class="wvg">
+            <div class="pagecenterdiv"> 
+                <div class= "pagecenterinnerdiv">
+                    <p class="subjectheader">Eerste Titel</p>
+                    <hr>
+
+
+                    <p> Tekst met daaronder een medium textfield:<br>
+                        <input type="text" class="mediumtextfield">
+                    </p>
+
+
+                    <p> Tekst met daaronder een big textfield:<br>
+                        <input type="text" class="bigtextfield">
+                    </p>
+
+
+
+                    <hr>
+                    <div class="buttoncenterdiv">
+                            <input type="button" class="bigbutton" value="Gecentreerde knop">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagecenterdiv"> 
+                    <div class= "pagecenterinnerdiv">
+
+                        <p class="subjectheader">Tweede Titel</p>
+
+                        <hr>
+
+                        <p>Enkel wat tekst</p>
+
+                    </div>
+                </div>
+        </div>
+    </body>
+</html>

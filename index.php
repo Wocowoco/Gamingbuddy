@@ -31,23 +31,36 @@ session_start();
                 //-----------------
                 if(isLoggedIn == false){
 
-                    //Create form
+                    //Login div
+                    var div = document.createElement("div");
+                    div.setAttribute("class", "pagecenterdiv");
+                    document.getElementById("main").appendChild(div);
+
+                    //Div in login div
+                    var innerDiv = document.createElement("div");
+                    innerDiv.setAttribute("class", "pagecenterinnerdiv");
+                    div.appendChild(innerDiv);
+                    
+                    //Create form and add it to the div
                     var form = document.createElement("FORM");
                     form.setAttribute("id", "login");
                     form.setAttribute("method", "POST");
                     form.setAttribute("action", "php_login.php");
-                    document.getElementById("main").appendChild(form);
+                    innerDiv.appendChild(form);
 
                     //Username
                     var item = document.createElement("LABEL");
                     item.setAttribute("for", "username");
                     item.innerHTML = "Gebruikersnaam: "
                     form.appendChild(item);
+                    item = document.createElement("BR");
+                    form.appendChild(item);
 
                     item = document.createElement("INPUT");
                     item.setAttribute("type", "textfield");
                     item.setAttribute("id", "username");
                     item.setAttribute("name", "username");
+                    item.setAttribute("class", "bigtextfield");
                     form.appendChild(item);
                     item = document.createElement("BR");
                     form.appendChild(item);
@@ -57,38 +70,45 @@ session_start();
                     item.setAttribute("for", "password");
                     item.innerHTML = "Wachtwoord: ";
                     form.appendChild(item);
+                    item = document.createElement("BR");
+                    form.appendChild(item);
 
                     item = document.createElement("INPUT");
                     item.setAttribute("type", "password");
                     item.setAttribute("id", "password");
                     item.setAttribute("name", "password");
+                    item.setAttribute("class", "bigtextfield");
                     form.appendChild(item); 
                     item = document.createElement("BR");
-                    
                     form.appendChild(item);
 
+                    //Show login errors
+                    p = document.createElement("p");
+                    p.setAttribute("id","loginconfirm");
+                    p.setAttribute("hidden","");
+                    p.setAttribute("class","redErrorText");
+                    form.appendChild(p);
+                    showError(); //Update the text inside the paragraph accordingl
+
                     //Submit
+                    var buttonDiv = document.createElement("DIV")
+                    buttonDiv.setAttribute("class","buttoncenterdiv");
+                    form.appendChild(buttonDiv);
+
                     item = document.createElement("INPUT");
                     item.setAttribute("type", "submit");
                     item.setAttribute("value", "Log in");
-                    form.appendChild(item);
+                    item.setAttribute("class", "bigbutton");
+                    buttonDiv.appendChild(item);
 
                     //Create acc
                     var p = document.createElement("p");
-                    document.getElementById("main").appendChild(p);
+                    innerDiv.appendChild(p);
                     
                     item = document.createElement("a");
                     item.setAttribute("href", "addaccount.php");
                     item.innerHTML = "Geen account? Maak hier een aan!"
-                    p.appendChild(item);
-
-                    p = document.createElement("p");
-                    p.setAttribute("id","loginconfirm");
-                    p.setAttribute("hidden","");
-                    p.setAttribute("onload","");
-                    document.getElementById("main").appendChild(p);
-                    showError(); //Update the text inside the paragraph accordingly
-                    
+                    p.appendChild(item);                 
 
                 }
                 //-----------------

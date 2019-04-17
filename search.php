@@ -178,6 +178,7 @@ session_start();
                     var select = document.createElement("SELECT");
                     select.setAttribute("name","region");
                     select.setAttribute("id","region");
+                    select.setAttribute("class","mediumdropdown");
                     p.appendChild(select);
 
                         //Add options
@@ -252,8 +253,6 @@ session_start();
                         select.appendChild(option);
 
                     //Roles
-                    p = document.createElement("HR");
-                    formDiv.appendChild(p);
                     p = document.createElement("P");
                     p.innerHTML = "Selecteer gewenste role(s):<br>"
                     formDiv.appendChild(p);
@@ -289,8 +288,6 @@ session_start();
                     p.innerHTML += "Support<br>";
                     
                     //Rank
-                    p = document.createElement("HR");
-                    formDiv.appendChild(p);
                     p = document.createElement("P");
                     p.setAttribute("id", "lolrankline");
                     p.innerHTML = "Filter op rank:<br>";
@@ -303,6 +300,7 @@ session_start();
                     select.setAttribute("name","lolranksort");
                     select.setAttribute("id","lolranksort");
                     select.setAttribute("onchange","displayLolRankOptions();");
+                    select.setAttribute("class","mediumdropdown");
                     p.appendChild(select);
                     
                         //Add options
@@ -332,6 +330,7 @@ session_start();
                     select.setAttribute("name","lolrankdiv");
                     select.setAttribute("id","lolrankdiv");
                     select.setAttribute("disabled","");
+                    select.setAttribute("class","mediumdropdown");
                     p.appendChild(select);
 
                         //Divisions
@@ -668,13 +667,12 @@ session_start();
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object>
         <div id="main" class="wvg">
-            <div id="search" class="searchdiv">
+            <div id="search" class="pagecenterdiv">
                 <form method="post" action="php_search.php">
                     <label for="name">Naam:</label>
-                    <input name="name" id="name" type="textbox">
+                    <input name="name" id="name" type="textbox" class="mediumtextfield">
                     <div class="gamenameright">
-                        <label for="game">Spel:</label>
-                        <select id="game" name="game" onchange="createGameForm();">
+                        <select id="game" name="game" onchange="createGameForm();" class="mediumdropdown">
                             <option value="none">Alle spellen</option>
                             <option value="apex">Apex Legends</option>
                             <option value="lol">League of Legends</option>
@@ -683,9 +681,9 @@ session_start();
                     <div id="gameoptions">
                     </div>
                     <hr>
-                    <p class="searchbutton">
-                        <input type="submit" value="Zoeken">
-                    </p>
+                    <div class="buttoncenterdiv">
+                        <input type="submit" value="Zoeken" class="bigbutton">
+                    </div>
                 </form>
             </div>
             <div id="results" class="resultsdiv">

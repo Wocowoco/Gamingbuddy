@@ -169,41 +169,46 @@
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
-            <form id="accountData" method="post" action="php_adduser.php">
-                <p id="nameP">
-                    <label for="name">Naam: </label>
-                    <input type="text" id="name" name="name" required>
-                    <p id="nameError" class="redErrorText" hidden></p>
-                </p>    
-                <p id="lastnameP"> 
-                    <label for="lastName">Achternaam: </label>
-                    <input type="text" id="lastName" name="lastName" required>
-                    <p id="lastnameError" class="redErrorText" hidden></p>
-                </p>
-                <p id="usernameP">
-                    <label for="username">Gebruikersnaam: </label>
-                    <input type="text" id="username" name="username" required>
-                    <p id="usernameError" class="redErrorText" hidden></p>
-                    
-                </p>
-                <p id="passwordP">  
-                    <label for="password">Wachtwoord: </label>
-                    <input type="password" id="password" name="password" required> 
-                    <p id="passwordError" class="redErrorText" hidden></p>
-                </p>
-                <p> 
-                    <label for="verifypassword">Herhaal wachtwoord: </label>
-                    <input type="password" id="verifypassword" name="verifypassword" required>
-                </p>
-                <p>     
-                    <input type="checkbox" id="addgame" name="addgame" required>
-                    <label for="addgame">Ik wens een game toe te voegen aan mijn account. </label>
-                </p>
-                <p>
-                    <input type="button" type="submit" value="Account Aanmaken" onclick="verify();"/>
-                </p>
-            
-            </form>
+            <div class="pagecenterdiv"> 
+                <div class= "pagecenterinnerdiv">
+                    <p class="subjectheader">Account aanmaken</p>
+                    <hr>
+                    <form id="accountData" method="post" action="php_adduser.php">
+                        <p id="nameP">
+                            <label for="name">Naam: </label><br>
+                            <input type="text" id="name" name="name" class="bigtextfield">
+                            <p id="nameError" class="redErrorText" hidden></p>
+                        </p>    
+                        <p id="lastnameP"> 
+                            <label for="lastName">Achternaam: </label><br>
+                            <input type="text" id="lastName" name="lastName" class="bigtextfield">
+                            <p id="lastnameError" class="redErrorText" hidden></p>
+                        </p>
+                        <p id="usernameP">
+                            <label for="username">Gebruikersnaam: </label><br>
+                            <input type="text" id="username" name="username" class="bigtextfield">
+                            <p id="usernameError" class="redErrorText" hidden></p>
+                            
+                        </p>
+                        <p id="passwordP">  
+                            <label for="password">Wachtwoord: </label><br>
+                            <input type="password" id="password" name="password" class="bigtextfield"> 
+                            <p id="passwordError" class="redErrorText" hidden></p>
+                        </p>
+                        <p> 
+                            <label for="verifypassword">Herhaal wachtwoord: </label><br>
+                            <input type="password" id="verifypassword" name="verifypassword" class="bigtextfield">
+                        </p>
+                        <p>     
+                            <input type="checkbox" id="addgame" name="addgame">
+                            <label for="addgame">Ik wens een game toe te voegen aan mijn account. </label>
+                        </p>
+                        <div class="buttoncenterdiv">
+                            <input type="button" type="submit" value="Account Aanmaken" onclick="verify();" class="bigbutton">
+                        </div>
+                    </form>
+                </div>
+            </div>
         
 
         </div>

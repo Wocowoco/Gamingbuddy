@@ -25,13 +25,13 @@ session_start();
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
-
-            <div class="accountpagecenter">
+            <div class="pagecenterdiv">
                 <div>
-                    <p class="centeraccheader">Wijzig wachtwoord</p>
+                    <p class="subjectheader">Wijzig wachtwoord</p>
                     <hr>
-                    <div id="passdiv" class="accpassdiv">
+                    <div id="passdiv" class="pagecenterinnerdiv">
                         <form>
+                            <br>
                             <label>Huidig wachtwoord:</label><br>
                             <input type=password id="currentpassword" class="bigtextfield">
                             <p id="currentpasswordError"class="formError redErrorText">Not yet implemented</p>
@@ -44,7 +44,9 @@ session_start();
                             <input type=password id="newpasswordcheck" class="bigtextfield">
                             <p id="currentpasswordError"class="formError redErrorText">Not yet implemented</p>
                             <br>
-                            <input type=button id="passwordconfirm" action="verifyPassword();" value="Update wachtwoord" class=""><br>
+                            <div class="buttoncenterdiv">
+                                <input type=button id="passwordconfirm" action="verifyPassword();" value="Update wachtwoord" class="bigbutton"><br>
+                            </div>
                         </form>
                     </div>
                 </div>
