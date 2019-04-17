@@ -57,18 +57,24 @@
             function createApexForm()
             {
                 gameDetails.setAttribute("action","php_addapexdb.php")
-                
+                //HR
+                var hr = document.createElement("hr");
+                gameDetails.appendChild(hr);
                 
                 //ORIGIN NAME
                 var txt = document.createElement("LABEL");
                 txt.setAttribute("for", "originName");
                 txt.innerHTML = "Orgin accountnaam: "
                 gameDetails.appendChild(txt);
+                
+                var br = document.createElement("br");
+                gameDetails.appendChild(br);
 
                 var field = document.createElement("INPUT");
                 field.setAttribute("type", "textfield");
                 field.setAttribute("id", "originName");
                 field.setAttribute("name", "originName");
+                field.setAttribute("class", "mediumtextfield");
                 gameDetails.appendChild(field);
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
@@ -80,9 +86,13 @@
                 txt.innerHTML = "Favoriete Legend:"
                 gameDetails.appendChild(txt);
 
+                var br = document.createElement("br");
+                gameDetails.appendChild(br);
+
                 field = document.createElement("SELECT");
                 field.setAttribute("id", "role1");
                 field.setAttribute("name", "role1");
+                field.setAttribute("class", "mediumdropdown");
                 gameDetails.appendChild(field);
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
@@ -144,9 +154,13 @@
                 txt.innerHTML = "Back-up Legend:"
                 gameDetails.appendChild(txt);
 
+                var br = document.createElement("br");
+                gameDetails.appendChild(br);
+
                 field = document.createElement("SELECT");
                 field.setAttribute("id", "role2");
                 field.setAttribute("name", "role2");
+                field.setAttribute("class", "mediumdropdown");
                 gameDetails.appendChild(field);
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
@@ -210,15 +224,23 @@
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
 
+                
+                //HR
+                var hr = document.createElement("hr");
+                gameDetails.appendChild(hr);
+
                 //Voeg game to aan account 
+                var buttonDiv = document.createElement("div");
+                buttonDiv.setAttribute("class","buttoncenterdiv");
+                gameDetails.appendChild(buttonDiv);
+
                 var field = document.createElement("INPUT");
                 field.setAttribute("type", "button");
                 field.setAttribute("value", "Game toevoegen");
                 field.setAttribute("id", "lolsubmit");
+                field.setAttribute("class", "bigbutton");
                 field.setAttribute("onclick", "verifyApexForm();");
-                gameDetails.appendChild(field);
-                txt = document.createElement("br");
-                gameDetails.appendChild(txt);
+                buttonDiv.appendChild(field);
             }
 
             function verifyApexForm()
@@ -231,27 +253,34 @@
             //-------------------------
             function createLeagueOfLegendsForm()
             {
-                gameDetails.setAttribute("action","php_addloldb.php")
-
+                gameDetails.setAttribute("action","php_addloldb.php");
+                
+                //HR
+                var hr = document.createElement("hr");
+                gameDetails.appendChild(hr);
 
                 //Region
-                var p = document.createElement("P");
-                gameDetails.appendChild(p);
+                var div = document.createElement("div");
+                gameDetails.appendChild(div);
                 var txt = document.createElement("LABEL");
                 txt.setAttribute("for", "region");
                 txt.innerHTML = "Kies je regio: "
-                p.appendChild(txt);
+                div.appendChild(txt);
+
+                var br = document.createElement("br");
+                div.appendChild(br);
 
                 var field = document.createElement("SELECT");
                 field.setAttribute("id", "region");
                 field.setAttribute("name", "region");
-                p.appendChild(field);
+                field.setAttribute("class", "mediumdropdown");
+                div.appendChild(field);
 
                 var innerP = document.createElement("P");
                 innerP.setAttribute("id","regionError");
                 innerP.setAttribute("class","redErrorText");
                 innerP.setAttribute("hidden","");
-                p.appendChild(innerP);
+                div.appendChild(innerP);
 
                     //Add options
                     var option = document.createElement("option");
@@ -325,38 +354,47 @@
                     field.appendChild(option);
 
                 //SummonerName
-                p = document.createElement("P");
-                gameDetails.appendChild(p);
+                div = document.createElement("div");
+                gameDetails.appendChild(div);
                 txt = document.createElement("LABEL");
                 txt.setAttribute("for", "summonerName");
                 txt.innerHTML = "Summoner Naam: "
-                p.appendChild(txt);
+                div.appendChild(txt);
+
+                var br = document.createElement("br");
+                div.appendChild(br);
 
                 field = document.createElement("INPUT");
                 field.setAttribute("type", "text");
                 field.setAttribute("value", "");
+                field.setAttribute("class", "mediumtextfield");
                 field.setAttribute("id", "summonerName");
                 field.setAttribute("name", "summonerName");
-                p.appendChild(field);
+                div.appendChild(field);
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","summonerError");
                 innerP.setAttribute("class","redErrorText");
                 innerP.setAttribute("hidden","");
-                p.appendChild(innerP);
+                div.appendChild(innerP);
 
                 //Rank
-                p = document.createElement("P");
-                gameDetails.appendChild(p);
+                div = document.createElement("div");
+                gameDetails.appendChild(div);
+
                 txt = document.createElement("LABEL");
                 txt.setAttribute("for", "rank");
                 txt.innerHTML = "Huidige rank: "
-                p.appendChild(txt);
+                div.appendChild(txt);
+
+                var br = document.createElement("br");
+                div.appendChild(br);
 
                 var field = document.createElement("SELECT");
                 field.setAttribute("id", "rank");
                 field.setAttribute("name", "rank");
+                field.setAttribute("class", "mediumdropdown");
                 field.setAttribute("onchange", "showDivision();");
-                p.appendChild(field);
+                div.appendChild(field);
 
                     //Options
                     option = document.createElement("option");
@@ -415,19 +453,20 @@
                 txt.setAttribute("hidden", "");
                 txt.setAttribute("id", "divisiontxt")
                 txt.innerHTML = " Division: "
-                p.appendChild(txt);
+                div.appendChild(txt);
 
                 var field = document.createElement("SELECT");
                 field.setAttribute("id", "division");
                 field.setAttribute("name", "division");
+                field.setAttribute("class", "mediumdropdown");
                 field.setAttribute("hidden", "");
-                p.appendChild(field);
+                div.appendChild(field);
 
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","rankError");
                 innerP.setAttribute("class","redErrorText");
                 innerP.setAttribute("hidden","");
-                p.appendChild(innerP);
+                div.appendChild(innerP);
 
 
                     //Options
@@ -457,24 +496,28 @@
                     field.appendChild(option);
 
                 //Prefered Main Role
-                p = document.createElement("P");
-                gameDetails.appendChild(p);
+                div = document.createElement("div");
+                gameDetails.appendChild(div);
                 txt = document.createElement("LABEL");
                 txt.setAttribute("for", "role1");
                 txt.innerHTML = "Voorkeursrol: "
-                p.appendChild(txt);
+                div.appendChild(txt);
+
+                var br = document.createElement("br");
+                div.appendChild(br);
 
                 var field = document.createElement("SELECT");
                 field.setAttribute("id", "role1");
                 field.setAttribute("name", "role1");
+                field.setAttribute("class", "mediumdropdown");
                 field.setAttribute("onchange", "showSecondRole();");
-                p.appendChild(field);
+                div.appendChild(field);
 
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","role1Error");
                 innerP.setAttribute("class","redErrorText");
                 innerP.setAttribute("hidden","");
-                p.appendChild(innerP);
+                div.appendChild(innerP);
 
                     //Options
                     option = document.createElement("option");
@@ -513,23 +556,28 @@
                     field.appendChild(option);
 
                 //Prefered Second Role
-                p = document.createElement("P");
-                gameDetails.appendChild(p);
+                div = document.createElement("div");
+                gameDetails.appendChild(div);
+
                 txt = document.createElement("LABEL");
                 txt.setAttribute("for", "role2");
                 txt.setAttribute("id", "role2txt");
                 txt.innerHTML = "Tweede voorkeursrol: ";
-                p.appendChild(txt);
+                div.appendChild(txt);
+                                
+                var br = document.createElement("br");
+                div.appendChild(br);
 
                 field = document.createElement("SELECT");
                 field.setAttribute("id", "role2");
                 field.setAttribute("name", "role2");
-                p.appendChild(field);
+                field.setAttribute("class", "mediumdropdown");
+                div.appendChild(field);
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","role2Error");
                 innerP.setAttribute("class","redErrorText");
                 innerP.setAttribute("hidden","");
-                p.appendChild(innerP);
+                div.appendChild(innerP);
 
                     //Options
                     option = document.createElement("option");
@@ -567,16 +615,25 @@
                     option.text = "Fill";
                     field.appendChild(option);
 
+                
+                //HR
+                var hr = document.createElement("hr");
+                gameDetails.appendChild(hr);
 
                 //Voeg game to aan account 
-                p = document.createElement("P");
-                gameDetails.appendChild(p);
+                var buttonDiv = document.createElement("div");
+                buttonDiv.setAttribute("class","buttoncenterdiv")
+                gameDetails.appendChild(buttonDiv);
+
                 var field = document.createElement("INPUT");
                 field.setAttribute("type", "button");
                 field.setAttribute("value", "Game toevoegen");
                 field.setAttribute("id", "lolsubmit");
+                field.setAttribute("class", "bigbutton");
                 field.setAttribute("onclick", "verifyLeagueOfLegendsForm();");
-                p.appendChild(field);
+                buttonDiv.appendChild(field);
+
+
             }
 
             function verifyLeagueOfLegendsForm()
@@ -782,20 +839,21 @@
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
-            <p>
-                <label for="gameName">Selecteer het spel dat je wil toevoegen aan je account: </label>
-                <select onchange="checkGame();" id="gameName">
-                    <option value="invalid">Kies een spel</option>
-                    <option value="apex">Apex Legends</option>
-                    <option value="lol">League of Legends</option>
-                </select>
-            </p>
+            <div class="pagecenterdiv">
+                <div class="pagecenterinnerdiv">
+                    <label for="gameName">Selecteer het spel dat je wil toevoegen aan je account: </label>
+                    <select onchange="checkGame();" id="gameName" class="mediumdropdown">
+                        <option value="invalid">Kies een spel</option>
+                        <option value="apex">Apex Legends</option>
+                        <option value="lol">League of Legends</option>
+                    </select>
+                    <form id="gameDetails" method="post">       
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="wvgleft">
-            <form id="gameDetails" method="post">
-
-            </form>
         </div>
     </body>
 </html>
