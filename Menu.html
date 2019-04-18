@@ -8,12 +8,19 @@
     <body  class="alles">
         <div>
             <ul>
-                <li class="horizontaal"><a href="Profielpagina.html">Profiel</a></li>
                 <li class="horizontaal">
-                        <form> <!-- action="/action_page.php" -->
-                        <input type="text">
-                        </form>
-                    </li>
+                    <a a href="index.php" target="_top">
+                        <input type="button" value="Home">
+                    </a>
+                </li>
+                <li class="horizontaal">  
+                    <form action="php_search.php" target="_top" method="POST">
+                        <input type="text" id="name" name="name">
+                        <select id="game" name="game" hidden>
+                            <option value="none">none</option>
+                        </select>
+                    </form>
+                </li>
                 <li class="horizontaal"><a href="start.html">start</a></li>
                 <li class="horizontaal"><a href="Profielpagina.html">Profiel</a></li>
                 <li class="horizontaal"style="width:19%"><a href="Profielpagina.html">Profiel</a></li>
