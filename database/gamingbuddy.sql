@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2019 at 11:10 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Gegenereerd op: 18 apr 2019 om 13:12
+-- Serverversie: 10.1.38-MariaDB
+-- PHP-versie: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb_account`
+-- Tabelstructuur voor tabel `gb_account`
 --
 
 CREATE TABLE `gb_account` (
@@ -37,7 +37,7 @@ CREATE TABLE `gb_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gb_account`
+-- Gegevens worden geëxporteerd voor tabel `gb_account`
 --
 
 INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`) VALUES
@@ -56,12 +56,14 @@ INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`) VALU
 (43, 'jury', '$2y$10$Ir.Ymd0Cc7OgM1WZ.AMUueSmwka02oX84/IARZc5eqms37ndhFE7O', 'test1', 'test2'),
 (44, '789456123', '$2y$10$7ekg6c5f7xaFgBRcLxDWtOdCtpN7DsBzmg1YOB/7fjP4lV1W/PmiS', 'fsdhjkl;', 'jkl;'),
 (45, '1234', '$2y$10$CGzk16mhCvJ07vSH4swLBeVyG1p.5Kx1uYTcGQ.YybExkXgT3BN5K', 'lol', 'lol'),
-(46, 'mar', '$2y$10$Ts/xnaMRowB3TZFBbFw3Dej9.qLiywmCqXhZFWChF77DwIlQTR4qS', 'hbhj', 'uhuh');
+(46, 'mar', '$2y$10$Ts/xnaMRowB3TZFBbFw3Dej9.qLiywmCqXhZFWChF77DwIlQTR4qS', 'hbhj', 'uhuh'),
+(47, 'deletetest', '$2y$10$DnzGPklmTYkEHRtXnpOIcuYPlJNoTnq8NQsT.uDTy5kCi0eOGY2UK', 'opoi', ';opiouyhfg'),
+(48, '17april2019', '$2y$10$9gl9nxCyWY7v0AN2c6p94Om/rUp/F6vS08XznNze2ucwUWDpcg.Ai', '17', 'april');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb_loldata`
+-- Tabelstructuur voor tabel `gb_loldata`
 --
 
 CREATE TABLE `gb_loldata` (
@@ -75,7 +77,7 @@ CREATE TABLE `gb_loldata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gb_loldata`
+-- Gegevens worden geëxporteerd voor tabel `gb_loldata`
 --
 
 INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `PrefRole1`, `PrefRole2`, `Zone`) VALUES
@@ -95,12 +97,13 @@ INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `PrefR
 (71, 1, 'qwertyuio', 6, 2, 3, 'EUNE'),
 (72, 1, 'testform', 25, 4, 2, 'EUW'),
 (73, 1, 'WocoOCE', 24, 3, 6, 'OCE'),
-(74, 46, 'jnjn', 14, 4, 2, 'KR');
+(74, 46, 'jnjn', 14, 4, 2, 'KR'),
+(75, 46, 'lala', 19, 2, 4, 'JP');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb_lolrank`
+-- Tabelstructuur voor tabel `gb_lolrank`
 --
 
 CREATE TABLE `gb_lolrank` (
@@ -109,7 +112,7 @@ CREATE TABLE `gb_lolrank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gb_lolrank`
+-- Gegevens worden geëxporteerd voor tabel `gb_lolrank`
 --
 
 INSERT INTO `gb_lolrank` (`rankID`, `Name`) VALUES
@@ -144,7 +147,7 @@ INSERT INTO `gb_lolrank` (`rankID`, `Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb_lolrole`
+-- Tabelstructuur voor tabel `gb_lolrole`
 --
 
 CREATE TABLE `gb_lolrole` (
@@ -153,7 +156,7 @@ CREATE TABLE `gb_lolrole` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gb_lolrole`
+-- Gegevens worden geëxporteerd voor tabel `gb_lolrole`
 --
 
 INSERT INTO `gb_lolrole` (`roleID`, `Name`) VALUES
@@ -167,7 +170,7 @@ INSERT INTO `gb_lolrole` (`roleID`, `Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb_lolzone`
+-- Tabelstructuur voor tabel `gb_lolzone`
 --
 
 CREATE TABLE `gb_lolzone` (
@@ -176,7 +179,7 @@ CREATE TABLE `gb_lolzone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gb_lolzone`
+-- Gegevens worden geëxporteerd voor tabel `gb_lolzone`
 --
 
 INSERT INTO `gb_lolzone` (`zoneID`, `Name`) VALUES
@@ -195,17 +198,17 @@ INSERT INTO `gb_lolzone` (`zoneID`, `Name`) VALUES
 ('TR', 'Turkey');
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `gb_account`
+-- Indexen voor tabel `gb_account`
 --
 ALTER TABLE `gb_account`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `gb_loldata`
+-- Indexen voor tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
   ADD PRIMARY KEY (`LoLID`),
@@ -216,57 +219,57 @@ ALTER TABLE `gb_loldata`
   ADD KEY `gb_loldata_ibfk_7` (`AccountID`);
 
 --
--- Indexes for table `gb_lolrank`
+-- Indexen voor tabel `gb_lolrank`
 --
 ALTER TABLE `gb_lolrank`
   ADD PRIMARY KEY (`rankID`);
 
 --
--- Indexes for table `gb_lolrole`
+-- Indexen voor tabel `gb_lolrole`
 --
 ALTER TABLE `gb_lolrole`
   ADD PRIMARY KEY (`roleID`);
 
 --
--- Indexes for table `gb_lolzone`
+-- Indexen voor tabel `gb_lolzone`
 --
 ALTER TABLE `gb_lolzone`
   ADD PRIMARY KEY (`zoneID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `gb_account`
+-- AUTO_INCREMENT voor een tabel `gb_account`
 --
 ALTER TABLE `gb_account`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `gb_loldata`
+-- AUTO_INCREMENT voor een tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
-  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
--- AUTO_INCREMENT for table `gb_lolrank`
+-- AUTO_INCREMENT voor een tabel `gb_lolrank`
 --
 ALTER TABLE `gb_lolrank`
   MODIFY `rankID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `gb_lolrole`
+-- AUTO_INCREMENT voor een tabel `gb_lolrole`
 --
 ALTER TABLE `gb_lolrole`
   MODIFY `roleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Constraints for table `gb_loldata`
+-- Beperkingen voor tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
   ADD CONSTRAINT `gb_loldata_ibfk_1` FOREIGN KEY (`Zone`) REFERENCES `gb_lolzone` (`zoneID`),
