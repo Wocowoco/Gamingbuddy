@@ -79,6 +79,12 @@
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
 
+                var p = document.createElement("P");
+                p.setAttribute("id", "originNameError");
+                p.setAttribute("name", "originNameError");
+                p.setAttribute("hidden", "");
+                p.setAttribute("class", "redErrorText");
+                gameDetails.appendChild(p);
 
                 //ROLE1
                 txt = document.createElement("LABEL");
@@ -96,6 +102,13 @@
                 gameDetails.appendChild(field);
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
+
+                var p = document.createElement("P");
+                p.setAttribute("id", "role1Error");
+                p.setAttribute("name", "role1Error");
+                p.setAttribute("hidden", "");
+                p.setAttribute("class", "redErrorText");
+                gameDetails.appendChild(p);
 
                     //Add options
                     var option = document.createElement("option");
@@ -164,6 +177,13 @@
                 gameDetails.appendChild(field);
                 txt = document.createElement("br");
                 gameDetails.appendChild(txt);
+
+                var p = document.createElement("P");
+                p.setAttribute("id", "role2Error");
+                p.setAttribute("name", "role2Error");
+                p.setAttribute("hidden", "");
+                p.setAttribute("class", "redErrorText");
+                gameDetails.appendChild(p);
 
                     //Add options
                     var option = document.createElement("option");
@@ -245,7 +265,101 @@
 
             function verifyApexForm()
             {
-                document.getElementById("gameDetails").submit(); 
+                var error = false;
+
+                //Check if originname is filled
+                if(document.getElementById("originName").value.length == 0)
+                {
+                    error = true;
+                    var errorMessage = document.getElementById("originNameError");
+                    errorMessage.removeAttribute("hidden");
+                    errorMessage.innerHTML = "Gelieve je accountnaam in te vullen.";
+                }
+                else
+                {
+                    var errorMessage = document.getElementById("originNameError");
+                    errorMessage.setAttribute("hidden","");
+                    errorMessage.innerHTML = "";
+                }
+
+
+                //Check roles
+                //Check if role1 is invalid
+                if(document.getElementById("role1").value == "invalid")
+                {
+                    error = true;
+                    var errorMessage = document.getElementById("role1Error");
+                    errorMessage.removeAttribute("hidden");
+                    errorMessage.innerHTML = "Gelieve een Legend te selecteren.";
+
+                    //Check if the role2 is valid
+                    if(document.getElementById("role2").value == "invalid")
+                    {
+                        error = true;
+                        var errorMessage = document.getElementById("role2Error");
+                        errorMessage.removeAttribute("hidden");
+                        errorMessage.innerHTML = "Gelieve een back-up Legend te selecteren.";
+                    }
+                    else
+                    {    
+                        errorMessage = document.getElementById("role2Error");
+                        errorMessage.setAttribute("hidden","");
+                        errorMessage.innerHTML = "";
+                    }
+                }  
+                //Check if role2 is invalid
+                else if(document.getElementById("role2").value == "invalid")
+                {
+                    errorMessage = document.getElementById("role1Error");
+                    errorMessage.setAttribute("hidden","");
+                    errorMessage.innerHTML = "";
+
+                    error = true;
+                    errorMessage = document.getElementById("role2Error");
+                    errorMessage.removeAttribute("hidden");
+                    errorMessage.innerHTML = "Gelieve een back-up Legend te selecteren."; 
+                } 
+
+                //If role1 is valid, check if role2 is duplicate
+                else
+                {
+                    //Check if role2 is valid in case role1 fill is not selected
+                    if(document.getElementById("role1").value != "6" && document.getElementById("role2").value == "invalid")
+                    {
+                        error = true;
+                        var errorMessage = document.getElementById("role2Error");
+                        errorMessage.removeAttribute("hidden");
+                        errorMessage.innerHTML = "Gelieve een back-up Legend te selecteren.";  
+                    }
+                    //Check if the entered roles aren't duplicate
+                    else if(document.getElementById("role1").value == document.getElementById("role2").value)
+                    {
+                        error = true;
+                        var errorMessage = document.getElementById("role1Error");
+                        errorMessage.removeAttribute("hidden");
+                        errorMessage.innerHTML = "Je mag niet twee maal dezelfde Legend kiezen.";  
+
+                        errorMessage = document.getElementById("role2Error");
+                        errorMessage.removeAttribute("hidden");
+                        errorMessage.innerHTML = "Je mag niet twee maal dezelfde Legend kiezen."   ; 
+                    }
+
+                    else //No error, hide message
+                    {
+                        var errorMessage = document.getElementById("role1Error");
+                        errorMessage.setAttribute("hidden","");
+                        errorMessage.innerHTML = "";
+
+                        errorMessage = document.getElementById("role2Error");
+                        errorMessage.setAttribute("hidden","");
+                        errorMessage.innerHTML = "";
+                    }
+                } 
+                //If no errors, submit form
+                if(error == false)
+                {
+                    document.getElementById("gameDetails").submit(); 
+                }
             }
 
             //-------------------------
