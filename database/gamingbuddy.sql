@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 apr 2019 om 13:12
+-- Gegenereerd op: 21 apr 2019 om 17:48
 -- Serverversie: 10.1.38-MariaDB
 -- PHP-versie: 7.3.2
 
@@ -58,7 +58,8 @@ INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`) VALU
 (45, '1234', '$2y$10$CGzk16mhCvJ07vSH4swLBeVyG1p.5Kx1uYTcGQ.YybExkXgT3BN5K', 'lol', 'lol'),
 (46, 'mar', '$2y$10$Ts/xnaMRowB3TZFBbFw3Dej9.qLiywmCqXhZFWChF77DwIlQTR4qS', 'hbhj', 'uhuh'),
 (47, 'deletetest', '$2y$10$DnzGPklmTYkEHRtXnpOIcuYPlJNoTnq8NQsT.uDTy5kCi0eOGY2UK', 'opoi', ';opiouyhfg'),
-(48, '17april2019', '$2y$10$9gl9nxCyWY7v0AN2c6p94Om/rUp/F6vS08XznNze2ucwUWDpcg.Ai', '17', 'april');
+(48, '17april2019', '$2y$10$9gl9nxCyWY7v0AN2c6p94Om/rUp/F6vS08XznNze2ucwUWDpcg.Ai', '17', 'april'),
+(49, '21april2019', '$2y$10$DKZM1ZKA34zjl3Y5n/MLgOXGszNx7wRdOtiCKuQ3i.uQazYD8w.0q', 'fdhcgkjl', 'fhgkjl');
 
 -- --------------------------------------------------------
 
@@ -244,7 +245,7 @@ ALTER TABLE `gb_lolzone`
 -- AUTO_INCREMENT voor een tabel `gb_account`
 --
 ALTER TABLE `gb_account`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT voor een tabel `gb_loldata`
