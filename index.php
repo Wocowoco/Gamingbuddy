@@ -13,7 +13,7 @@ session_start();
             function init(){
                 //Check if a user is logged in or not
                 var isLoggedIn = false;
-
+                var isAccDel = false;
                 <?php
                     if(isset($_SESSION["id"]))
                     {
@@ -23,6 +23,13 @@ session_start();
                     {
                         echo "isLoggedIn = false;";
                         unset($_SESSION["name"]);
+                    }
+                    //Check if account was just deleted
+
+                    if(isset($_SESSION["accountdeleted"]))
+                    {
+                        echo "isAccDel = true;";
+                        unset($_SESSION["accountdeleted"]);
                     }
                 ?>
 
@@ -41,6 +48,10 @@ session_start();
                     innerDiv.setAttribute("class", "pagecenterinnerdiv");
                     div.appendChild(innerDiv);
                     
+                    var p = document.createElement("p");
+                    p.innerHTML = "Gamingbuddy - Login"
+                    p.setAttribute("class","subjectheader")
+                    innerDiv.appendChild(p);
                     //Create form and add it to the div
                     var form = document.createElement("FORM");
                     form.setAttribute("id", "login");
@@ -88,7 +99,7 @@ session_start();
                     p.setAttribute("hidden","");
                     p.setAttribute("class","redErrorText");
                     form.appendChild(p);
-                    showError(); //Update the text inside the paragraph accordingl
+                    showError(); //Update the text inside the paragraph accordingly
 
                     //Submit
                     var buttonDiv = document.createElement("DIV")
@@ -101,15 +112,34 @@ session_start();
                     item.setAttribute("class", "bigbutton");
                     buttonDiv.appendChild(item);
 
-                    //Create acc
+                    //OR text
                     var p = document.createElement("p");
+                    p.innerHTML = "OF"
+                    p.setAttribute("class","centerdiv verdana");
                     innerDiv.appendChild(p);
-                    
-                    item = document.createElement("a");
-                    item.setAttribute("href", "addaccount.php");
-                    item.innerHTML = "Geen account? Maak hier een aan!"
-                    p.appendChild(item);                 
 
+                    //Create acc
+                    var form = document.createElement("form");
+                    form.setAttribute("action","addaccount.php");
+                    innerDiv.appendChild(form);
+
+                    var buttonDiv = document.createElement("DIV")
+                    buttonDiv.setAttribute("class","buttoncenterdiv");
+                    form.appendChild(buttonDiv);
+
+                    var button = document.createElement("input");
+                    button.setAttribute("type","submit");
+                    button.setAttribute("class","bigbutton");
+                    button.setAttribute("value", "Maak een account aan");
+                    buttonDiv.appendChild(button);   
+
+                    if(isAccDel)
+                    {
+                        var p = document.createElement("p"); 
+                        p.innerHTML = "Uw account is successvol verwijderd.";
+                        p.setAttribute("class","centerdiv");
+                        document.getElementById("main").appendChild(p);
+                    }         
                 }
                 //-----------------
                 //IF LOGGED IN
@@ -120,6 +150,7 @@ session_start();
                     //Welkom message
 
                     var main = document.getElementById("main");
+                    main.setAttribute("class","wvg");
                     var p = document.createElement("p");
                     <?php
                         if(isset($_SESSION["id"]))
@@ -224,7 +255,7 @@ session_start();
         </script>
     </head>
     <body id="test" onLoad="init();"> 
-        <div id="main" class="wvg">
+        <div id="main">
         </div>
     </body>
 </html>

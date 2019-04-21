@@ -1,5 +1,11 @@
 <?php
-session_start();
+    session_start();
+    //If not logged in, return to mainpage
+    if(!isset($_SESSION["id"]))
+    {
+        header("Location: index.php");
+        exit;  
+    }
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,11 @@
 <?php
-session_start();
+    session_start();
+    //If not logged in, return to mainpage
+    if(!isset($_SESSION["id"]))
+    {
+        header("Location: index.php");
+        exit;  
+    }
 ?>
 
 <!DOCTYPE html>
@@ -11,11 +17,12 @@ session_start();
         <script>
             var passwordError;
             var passwordSuccess;
+            var delpasswordError;
             <?php 
             //If error is shown
             if(isset($_SESSION['passwordchangeerror']))
             {
-                echo 'passwordError = "Huidige wachtwoord is niet correct.";';
+                echo 'passwordError = "Ingegeven wachtwoord is niet correct.";';
             }
 
             //If success needs to be shown
@@ -24,6 +31,12 @@ session_start();
                 echo 'passwordSuccess = "Wachtwoord is aangepast.";';
             }
 
+            //If password on account deletion was wrong
+            if(isset($_SESSION['delpassworderror']))
+            {
+                echo 'delpasswordError = "Ingegeven wachtwoord is niet correct.";';
+            }
+            unset($_SESSION['delpassworderror']);
             unset($_SESSION['passwordchangeerror']);
             unset($_SESSION['passwordchangesuccess']);
             ?>
@@ -41,6 +54,13 @@ session_start();
                 {
                     document.getElementById("passwordUpdated").innerHTML = passwordSuccess;
                     document.getElementById("passwordUpdated").removeAttribute("hidden");  
+                }
+
+                //Check if account deletion password was wrong
+                if(delpasswordError != null)
+                {
+                    document.getElementById("delpasswordError").innerHTML = delpasswordError;
+                    document.getElementById("delpasswordError").removeAttribute("hidden");              
                 }
             }
 
@@ -103,6 +123,7 @@ session_start();
                         <input type=password id="newpasswordcheck" class="bigtextfield">
                         <p id="newpassword2Error"class="formError redErrorText" hidden></p>
                         <br>
+                        <hr>
                         <div class="buttoncenterdiv">
                             <input type=button id="passwordconfirm" onclick="verifyPassword();" value="Update wachtwoord" class="bigbutton"><br>
                         </div>
@@ -115,17 +136,36 @@ session_start();
         <div class="pagecenterdiv">
             <div id="games">
                 <p class="subjectheader">Mijn spellen</p>
-                <div id="passdiv" class="pagecenterinnerdiv">
+                <div id="gamesinnerdiv" class="pagecenterinnerdiv">
                     <hr>
 
                     <!-- DISPLAY USER'S GAME HERE -->
-                    <p class="redErrorText centerdiv">Word aan gewerkt</p>
+                    <p class="redErrorText centerdiv">Nog niet geimplementeerd</p>
                     <hr>
                     <div class="buttoncenterdiv">
                         <form action="addgame.php" method="POST">
                             <input type=submit value="Spel toevoegen" class="bigbutton"><br>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagecenterdiv">
+            <div id="deleteacc">
+                <p class="subjectheader">Account verwijderen</p>
+                <div id="deleteaccinnerdiv" class="pagecenterinnerdiv">
+                    <hr>
+                    <form action="php_deleteaccount.php" method="POST">
+                        <p class="redErrorText">Indien u het account wenst te verwijderen, gelieve dan uw wachtwoord in te geven en vervolgens op de "Account verwijderen" knop te klikken."</p>
+                        <label>Huidig wachtwoord:</label><br>
+                        <input type=password id="delpassword" name="delpassword" class="bigtextfield">
+                        <p id="delpasswordError"class="formError redErrorText" hidden></p>
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <input type=submit value="Account verwijderen" class="bigbutton"><br>
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>

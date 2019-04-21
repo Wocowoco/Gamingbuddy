@@ -165,10 +165,6 @@
         </script>
     </head>
     <body> 
-        <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
-        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
-        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
-        <div class="wvg">
             <div class="pagecenterdiv"> 
                 <div class= "pagecenterinnerdiv">
                     <p class="subjectheader">Account aanmaken</p>
@@ -201,7 +197,7 @@
                         </p>
                         <p>     
                             <input type="checkbox" id="addgame" name="addgame">
-                            <label for="addgame">Ik wens een game toe te voegen aan mijn account. </label>
+                            <label for="addgame">Ik wens meteen een game toe te voegen aan mijn account. </label>
                         </p>
                         <div class="buttoncenterdiv">
                             <input type="button" type="submit" value="Account Aanmaken" onclick="verify();" class="bigbutton">
@@ -209,8 +205,10 @@
                     </form>
                 </div>
             </div>
-        
-
-        </div>
+            <div class="buttoncenterdiv"> 
+                <form action="index.php">  
+                    <input type="submit" type="submit" value="Terug naar Login" class="bigbutton">    
+                </form> 
+            </div>
     </body>
 </html>

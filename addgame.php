@@ -562,13 +562,6 @@
                     field.appendChild(option);
 
                 //Division on rank
-                txt = document.createElement("LABEL");
-                txt.setAttribute("for", "division");
-                txt.setAttribute("hidden", "");
-                txt.setAttribute("id", "divisiontxt")
-                txt.innerHTML = " Division: "
-                div.appendChild(txt);
-
                 var field = document.createElement("SELECT");
                 field.setAttribute("id", "division");
                 field.setAttribute("name", "division");
@@ -918,14 +911,12 @@
                 var selectedRank = document.getElementById("rank").value;
                 if(selectedRank == "25" || selectedRank == "26" || selectedRank == "27" ||selectedRank == "invalid")
                 {
-                    document.getElementById("divisiontxt").setAttribute("hidden", "");
                     document.getElementById("division").setAttribute("hidden", "");
                     document.getElementById("division").value = "0";
                 }
                 else
                 {
                     document.getElementById("division").value = "invalid";
-                    document.getElementById("divisiontxt").removeAttribute("hidden");
                     document.getElementById("division").removeAttribute("hidden");
                 }
             }
