@@ -668,6 +668,8 @@ session_start();
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object>
         <div id="main" class="wvg">
             <div id="search" class="pagecenterdiv">
+            <p class="subjectheader">Zoeken</p>
+            <hr>
                 <form method="post" action="php_search.php">
                     <label for="name">Naam:</label>
                     <input name="name" id="name" type="textbox" class="mediumtextfield">

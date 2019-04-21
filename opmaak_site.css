@@ -123,7 +123,7 @@ object{
 
 
 /* MULTIPAGE STYLES */ 
-.pagecenterdiv{
+div.pagecenterdiv{
     max-width: 500px;
     min-width: 500px;
 
@@ -139,7 +139,7 @@ object{
     padding: 4px;
 }
 
-.pagecenterinnerdiv{
+div.pagecenterinnerdiv{
     max-width: 420px;
     min-width: 420px;
 
@@ -150,7 +150,7 @@ object{
   
 }
 
-.bigtextfield{
+input.bigtextfield{
     width: 410px;
     height: 30px;
 
@@ -162,7 +162,7 @@ object{
     font-size: 23px;
 }
 
-.mediumtextfield{
+input.mediumtextfield{
     width: 200px;
     height: 20px;
 
@@ -174,7 +174,7 @@ object{
     font-size: 15px; 
 }
 
-.mediumdropdown{
+select.mediumdropdown{
     width: 210px;
     height: 25px;
 
@@ -186,7 +186,7 @@ object{
     font-size: 15px; 
 }
 
-.buttoncenterdiv{
+div.buttoncenterdiv{
     width: 420px;
     height: 30px;
 
@@ -198,12 +198,17 @@ object{
     text-align: center;  
 }
 
-.bigbutton{
+.centerdiv{
+    text-align: center; 
+}
+
+input.bigbutton{
     width: auto;
     height: 30px;
     font-size: 15px;
 }
-.subjectheader{
+
+p.subjectheader{
     text-align: center;
     font-size: 25px;
 }
@@ -223,6 +228,11 @@ object{
     color: red;
 }
 
+.greenErrorText{
+    margin-top: 0px;
+    color: green;
+}
+
 .formborder{
     border: 3px;
     border-style: solid;
@@ -231,6 +241,12 @@ object{
     margin: 5px;
     padding: 4px;
 }
+
+div.formparagraph{
+    margin-top: 25px;
+}
+
+
 
 
 /* SEARCH STYLES */
