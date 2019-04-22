@@ -137,6 +137,8 @@ div.pagecenterdiv{
     border-color: black;
     background-color: rgb(220, 220, 220);
     padding: 4px;
+
+    position: relative;
 }
 
 div.pagecenterinnerdiv{
@@ -218,10 +220,16 @@ p.subjectheader{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.spananchor{
+    position: absolute;
+    top: -150px;
+}
+
 
 /* FORMS STYLES */
 .formError{
-    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 16px;
 }
 
 .formNoError{
@@ -229,8 +237,12 @@ p.subjectheader{
 }
 
 .redErrorText{
-    margin-top: 0px;
     color: red;
+}
+
+.hintText{
+    color: gray;
+    font-size: 14px; 
 }
 
 .greenErrorText{

@@ -58,7 +58,7 @@ session_start();
         }
 
     $conn->close();
-    header("Location: accountoptions.php");
+    header("Location: accountoptions.php#passworddiv");
     exit;
     ?> 
 </body>

@@ -13,12 +13,13 @@ session_start();
 <body>
     <?php
     $username = filter_input(INPUT_POST,'username');
-    $username = strtolower($username);
+    $usernameLower = strtolower($username);
     $password = filter_input(INPUT_POST,'password');
     $password = password_hash("$password", PASSWORD_DEFAULT);
     $name = filter_input(INPUT_POST,'name');
     $lastname = filter_input(INPUT_POST,'lastName');
     
+    //Check if need to redirect to addgame
     if (filter_input(INPUT_POST,'addgame'))
     {
         $_SESSION["addgame"] = "1";
@@ -37,25 +38,43 @@ session_start();
         . mysqli_connect_error());
     }
     else{
+
+        include 'php_getaccountnames.php';
+        getAccountNames();
+
+        //Check if the username is not already taken
+        for($i = 0; $i < sizeof($_SESSION['accountNames']) ; $i++)
+        {
+            if($usernameLower == ($_SESSION['accountNames'][$i]))
+            {
+                $conn->close();
+                header("Location: addaccount.php");
+
+                $_SESSION['addaccount_name'] = $name;
+                $_SESSION['addaccount_lastname'] = $lastname;
+                $_SESSION['addaccount_username'] = $username;
+                exit; 
+            }
+        }
+
+
+        //Add the user to the DB
         $sql = "INSERT INTO gb_account (username, password, name, lastname)
         VALUES ('$username','$password','$name','$lastname')";
-        if($conn->query($sql)){
-            echo "New record is created succesfully";
-        }
-        else{
-            echo "Error: ".$sql ."
-            ". $conn->error;
-        }
+        $conn->query($sql);
 
         //Fill in the session stats for the newly created account
         $sql = "SELECT Username,id FROM gb_account WHERE gb_Account.Username LIKE '$username'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        if ($result->num_rows > 0) 
+        {
+            while($row = $result->fetch_assoc())
+            {
                     $_SESSION["name"] = $username;
                     $_SESSION["id"] = $row["id"];
-                }
             }
+        }
+        
 
         $conn->close();
 

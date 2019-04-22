@@ -14,56 +14,128 @@
         <link href="opmaak_site.css" rel="stylesheet" /> 
         <meta charset="utf-8"/>
         <title>Gamingbuddy | Account opties</title>   
-        <script>
-            var passwordError;
-            var passwordSuccess;
-            var delpasswordError;
-            <?php 
-            //If error is shown
-            if(isset($_SESSION['passwordchangeerror']))
-            {
-                echo 'passwordError = "Ingegeven wachtwoord is niet correct.";';
-            }
-
-            //If success needs to be shown
-            if(isset($_SESSION['passwordchangesuccess']))
-            {
-                echo 'passwordSuccess = "Wachtwoord is aangepast.";';
-            }
-
-            //If password on account deletion was wrong
-            if(isset($_SESSION['delpassworderror']))
-            {
-                echo 'delpasswordError = "Ingegeven wachtwoord is niet correct.";';
-            }
-            unset($_SESSION['delpassworderror']);
-            unset($_SESSION['passwordchangeerror']);
-            unset($_SESSION['passwordchangesuccess']);
-            ?>
-
+        <script>            
             function init(){
-                //Check if currentpassword is correct
-                if(passwordError != null)
+
+                <?php 
+                //Get accountdetails and fill them in on the appropriate forms
+                include 'php_getaccountdetails.php';
+                getAccountDetails();
+
+                if(isset($_SESSION['user_firstname']))
                 {
-                    document.getElementById("currentpasswordError").innerHTML = passwordError;
-                    document.getElementById("currentpasswordError").removeAttribute("hidden");  
+                    echo 'document.getElementById("accname").value = "' . $_SESSION["user_firstname"] . '";';
+                    unset($_SESSION['user_firstname']);
                 }
 
-                //Check if password got updated
-                if(passwordSuccess != null)
+                if(isset($_SESSION['user_lastname']))
                 {
-                    document.getElementById("passwordUpdated").innerHTML = passwordSuccess;
-                    document.getElementById("passwordUpdated").removeAttribute("hidden");  
+                    echo 'document.getElementById("acclastname").value = "' . $_SESSION["user_lastname"] . '";';
+                    unset($_SESSION['user_lastname']);
+                }
+ 
+                if(isset($_SESSION['user_username']))
+                {
+                    echo 'document.getElementById("username").value = "' . $_SESSION["user_username"] . '";';
+                    unset($_SESSION['user_username']);
                 }
 
-                //Check if account deletion password was wrong
-                if(delpasswordError != null)
+                 //If the name is already taken, throw error
+                if(isset($_SESSION['namealreadytaken']))
                 {
-                    document.getElementById("delpasswordError").innerHTML = delpasswordError;
-                    document.getElementById("delpasswordError").removeAttribute("hidden");              
+                    echo 'document.getElementById("username").value = "' . $_SESSION["namealreadytaken"] . '";';
+                    echo 'document.getElementById("usernameError").innerHTML = "Deze gebruikersnaam is niet beschikbaar";';
+                    echo 'document.getElementById("usernameError").removeAttribute("hidden");';
+                    unset($_SESSION['namealreadytaken']);
                 }
+
+
+
+
+                //If the names just got updated, show message
+                if(isset($_SESSION['nameschanged']))
+                {
+                    echo  'document.getElementById("namesUpdated").innerHTML = "Gegevens zijn aangepast.";';
+                    echo 'document.getElementById("namesUpdated").removeAttribute("hidden");';
+                    unset($_SESSION['nameschanged']);
+                }
+
+                //If passworderror is shown
+                if(isset($_SESSION['passwordchangeerror']))
+                {
+                    echo 'document.getElementById("currentpasswordError").innerHTML = "Ingegeven wachtwoord is niet correct.";';
+                    echo 'document.getElementById("currentpasswordError").removeAttribute("hidden");';
+                    unset($_SESSION['passwordchangeerror']);
+                }
+
+                //If success on passwordchange needs to be shown
+                if(isset($_SESSION['passwordchangesuccess']))
+                {
+                    echo 'document.getElementById("passwordUpdated").innerHTML = "Wachtwoord is aangepast.";';
+                    echo 'document.getElementById("passwordUpdated").removeAttribute("hidden");';
+                    unset($_SESSION['passwordchangesuccess']);
+                }
+
+                //If password on account deletion was wrong
+                if(isset($_SESSION['delpassworderror']))
+                {
+                    echo 'document.getElementById("delpasswordError").innerHTML = "Ingegeven wachtwoord is niet correct.";';
+                    echo 'document.getElementById("delpasswordError").removeAttribute("hidden");';
+                    unset($_SESSION['delpassworderror']);
+                }
+                ?>
             }
 
+            function verifyNames()
+            {
+                var username = document.getElementById("username").value;
+                var name = document.getElementById("accname").value;
+                var lastname = document.getElementById("acclastname").value;
+                var error = false;
+
+                //Check if name is filled in
+                if(username.length == 0)
+                {
+                    error = true;
+                    document.getElementById("usernameError").innerHTML = "Dit veld mag niet leeg zijn.";
+                    document.getElementById("usernameError").removeAttribute("hidden");
+                }
+                else
+                {
+                    document.getElementById("accnameError").setAttribute("hidden","");
+                    document.getElementById("accnameError").innerHTML = "";
+                }
+                //Check if name is filled in
+                if(name.length == 0)
+                {
+                    error = true;
+                    document.getElementById("accnameError").innerHTML = "Dit veld mag niet leeg zijn.";
+                    document.getElementById("accnameError").removeAttribute("hidden");
+                }
+                else
+                {
+                    document.getElementById("accnameError").setAttribute("hidden","");
+                    document.getElementById("accnameError").innerHTML = "";
+                }
+
+                //Check if last name is filled in
+                if(lastname.length == 0)
+                {
+                    error = true;
+                    document.getElementById("acclastnameError").innerHTML = "Dit veld mag niet leeg zijn.";
+                    document.getElementById("acclastnameError").removeAttribute("hidden");
+                }
+                else
+                {
+                    document.getElementById("acclastnameError").setAttribute("hidden","");
+                    document.getElementById("acclastnameError").innerHTML = "";
+                }
+
+                if(error == false)
+                {
+                    document.getElementById("namesform").submit();   
+                }
+            }
 
             function verifyPassword()
             {
@@ -85,15 +157,15 @@
                         document.getElementById("passwordform").submit();   
                     }
                     else{
-                        document.getElementById("newpassword1Error").innerHTML = "De ingegeven wachtwoorden komen niet overeen."
+                        document.getElementById("newpassword1Error").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
                         document.getElementById("newpassword1Error").removeAttribute("hidden");
-                        document.getElementById("newpassword2Error").innerHTML = "De ingegeven wachtwoorden komen niet overeen."
+                        document.getElementById("newpassword2Error").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
                         document.getElementById("newpassword2Error").removeAttribute("hidden");
                     }
                 }
                 else
                 {
-                    document.getElementById("newpassword1Error").innerHTML = "Het ingegeven wachtwoord moet minstens 6 karakters lang zijn."
+                    document.getElementById("newpassword1Error").innerHTML = "Het ingegeven wachtwoord moet minstens 6 karakters lang zijn.";
                     document.getElementById("newpassword1Error").removeAttribute("hidden");    
                 }
 
@@ -106,21 +178,56 @@
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
             <div class="pagecenterdiv">
+                <p class="subjectheader">Wijzig gegevens</p>
+                <div id="namediv" class="pagecenterinnerdiv">
+                    <hr>
+                    <form id="namesform" action="php_setaccountdetails.php" method="POST">
+                        <br>
+                        <label class="">Accountnaam:</label><br>
+                        <input type=text id="username" name="username" class="bigtextfield">
+                        <p id="usernameError" class="formError redErrorText" hidden></p>
+                        <p id="usernameHint" class="formError hintText">Dit is je log-in naam. Als je deze veranderd, moet je in de toekomst die naam gebruiken voor in te loggen.</p>
+                        
+
+                        <div class="formparagraph"></div>
+
+                        <label class="">Voornaam:</label><br>
+                        <input type=text id="accname" name="accname" class="bigtextfield">
+                        <p id="accnameError" class="formError redErrorText" hidden></p>
+                        <br>
+
+                        <label>Achternaam:</label><br>
+                        <input type=textfield id="acclastname" name="acclastname" class="bigtextfield">
+                        <p id="acclastnameError" class="formError redErrorText" hidden></p>
+                        <br>
+                        
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <input type=button id="namesconfirm" onclick="verifyNames();" value="Update gegevens" class="bigbutton"><br>
+                        </div>
+                        <p id="namesUpdated" class="formError greenErrorText centerdiv" hidden></p>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="pagecenterdiv">
+                <span id="passworddiv" class="spananchor"></span>
                 <p class="subjectheader">Wijzig wachtwoord</p>
                 <div id="passdiv" class="pagecenterinnerdiv">
                     <hr>
                     <form id="passwordform" action="php_changepassword.php" method="POST">
                         <br>
                         <label>Huidig wachtwoord:</label><br>
-                        <input type=password id="currentpassword" name="currentpassword" class="bigtextfield">
+                        <input type="password" id="currentpassword" name="currentpassword" class="bigtextfield">
                         <p id="currentpasswordError"class="formError redErrorText" hidden></p>
                         <div class="formparagraph"></div>
-                        <label class="formparagraph">Nieuw wachtwoord:</label><br>
-                        <input type=password id="newpassword" name="newpassword" class="bigtextfield">
+                        <label>Nieuw wachtwoord:</label><br>
+                        <input type="password" id="newpassword" name="newpassword" class="bigtextfield">
                         <p id="newpassword1Error"class="formError redErrorText" hidden></p>
                         <br>
                         <label>Herhaal nieuw wachtwoord:</label><br>
-                        <input type=password id="newpasswordcheck" class="bigtextfield">
+                        <input type="password" id="newpasswordcheck" class="bigtextfield">
                         <p id="newpassword2Error"class="formError redErrorText" hidden></p>
                         <br>
                         <hr>
@@ -131,41 +238,44 @@
 
                     </form>
                 </div>
-        </div>
+            </div>
 
-        <div class="pagecenterdiv">
-            <div id="games">
-                <p class="subjectheader">Mijn spellen</p>
-                <div id="gamesinnerdiv" class="pagecenterinnerdiv">
-                    <hr>
+            <div class="pagecenterdiv">
+                <span id="gamesdiv" class="spananchor"></span>
+                <div id="games">
+                    <p class="subjectheader">Mijn spellen</p>
+                    <div id="gamesinnerdiv" class="pagecenterinnerdiv">
+                        <hr>
 
-                    <!-- DISPLAY USER'S GAME HERE -->
-                    <p class="redErrorText centerdiv">Nog niet geimplementeerd</p>
-                    <hr>
-                    <div class="buttoncenterdiv">
-                        <form action="addgame.php" method="POST">
-                            <input type=submit value="Spel toevoegen" class="bigbutton"><br>
-                        </form>
+                        <!-- DISPLAY USER'S GAME HERE -->
+                        <p class="redErrorText centerdiv">Nog niet geimplementeerd</p>
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <form action="addgame.php" method="POST">
+                                <input type=submit value="Spel toevoegen" class="bigbutton"><br>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="pagecenterdiv">
-            <div id="deleteacc">
-                <p class="subjectheader">Account verwijderen</p>
-                <div id="deleteaccinnerdiv" class="pagecenterinnerdiv">
-                    <hr>
-                    <form action="php_deleteaccount.php" method="POST">
-                        <p class="redErrorText">Indien u het account wenst te verwijderen, gelieve dan uw wachtwoord in te geven en vervolgens op de "Account verwijderen" knop te klikken."</p>
-                        <label>Huidig wachtwoord:</label><br>
-                        <input type=password id="delpassword" name="delpassword" class="bigtextfield">
-                        <p id="delpasswordError"class="formError redErrorText" hidden></p>
+            <div class="pagecenterdiv">
+                <span id="accountdeldiv" class="spananchor"></span>
+                <div>
+                    <p class="subjectheader">Account verwijderen</p>
+                    <div id="deleteaccinnerdiv" class="pagecenterinnerdiv">
                         <hr>
-                        <div class="buttoncenterdiv">
-                            <input type=submit value="Account verwijderen" class="bigbutton"><br>
-                        </div>
-                    </form> 
+                        <form action="php_deleteaccount.php" method="POST">
+                            <p class="redErrorText">Indien u het account wenst te verwijderen, gelieve dan uw wachtwoord in te geven en vervolgens op de "Account verwijderen" knop te klikken.</p>
+                            <label>Wachtwoord:</label><br>
+                            <input type=password id="delpassword" name="delpassword" class="bigtextfield">
+                            <p id="delpasswordError"class="formError redErrorText" hidden></p>
+                            <hr>
+                            <div class="buttoncenterdiv">
+                                <input type=submit value="Account verwijderen" class="bigbutton"><br>
+                            </div>
+                        </form> 
+                    </div>
                 </div>
             </div>
         </div>

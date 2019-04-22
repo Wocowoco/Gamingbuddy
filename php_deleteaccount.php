@@ -61,7 +61,7 @@ session_start();
                         $_SESSION['delpassworderror'] = "true";
                         //Return to the page
                         $conn->close();
-                        header("Location: accountoptions.php#deleteacc");
+                        header("Location: accountoptions.php#accountdeldiv");
                         exit;
                     }
                 }

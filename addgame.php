@@ -83,7 +83,7 @@
                 p.setAttribute("id", "originNameError");
                 p.setAttribute("name", "originNameError");
                 p.setAttribute("hidden", "");
-                p.setAttribute("class", "redErrorText");
+                p.setAttribute("class", "formError redErrorText");
                 gameDetails.appendChild(p);
 
                 //ROLE1
@@ -107,7 +107,7 @@
                 p.setAttribute("id", "role1Error");
                 p.setAttribute("name", "role1Error");
                 p.setAttribute("hidden", "");
-                p.setAttribute("class", "redErrorText");
+                p.setAttribute("class", "formError redErrorText");
                 gameDetails.appendChild(p);
 
                     //Add options
@@ -182,7 +182,7 @@
                 p.setAttribute("id", "role2Error");
                 p.setAttribute("name", "role2Error");
                 p.setAttribute("hidden", "");
-                p.setAttribute("class", "redErrorText");
+                p.setAttribute("class", "formError redErrorText");
                 gameDetails.appendChild(p);
 
                     //Add options
@@ -392,7 +392,7 @@
 
                 var innerP = document.createElement("P");
                 innerP.setAttribute("id","regionError");
-                innerP.setAttribute("class","redErrorText");
+                innerP.setAttribute("class","formError redErrorText");
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
@@ -487,7 +487,7 @@
                 div.appendChild(field);
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","summonerError");
-                innerP.setAttribute("class","redErrorText");
+                innerP.setAttribute("class","formError redErrorText");
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
@@ -571,7 +571,7 @@
 
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","rankError");
-                innerP.setAttribute("class","redErrorText");
+                innerP.setAttribute("class","formError redErrorText");
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
@@ -622,7 +622,7 @@
 
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","role1Error");
-                innerP.setAttribute("class","redErrorText");
+                innerP.setAttribute("class","formError redErrorText");
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
@@ -682,7 +682,7 @@
                 div.appendChild(field);
                 innerP = document.createElement("P");
                 innerP.setAttribute("id","role2Error");
-                innerP.setAttribute("class","redErrorText");
+                innerP.setAttribute("class","formError redErrorText");
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 

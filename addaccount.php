@@ -15,9 +15,40 @@
         <title>Gamingbuddy | Account aanmaken</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script>
+
+            function init()
+            {
+                <?php 
+                if (isset($_SESSION['accountnametaken']))
+                {
+                    unset($_SESSION['accountnametaken']);
+                    echo 'document.getElementById("usernameError").removeAttribute("hidden");';
+                    echo 'document.getElementById("usernameError").innerHTML = "Deze gebruikersnaam is niet beschikbaar.";';
+                    echo 'document.getElementById("usernameError").setAttribute("class","formError redErrorText");';
+                }
+
+                if(isset($_SESSION['addaccount_name']))
+                {
+                    echo  'document.getElementById("name").value = "' . $_SESSION["addaccount_name"] . '";';
+                    unset($_SESSION['addaccount_name']);
+                }
+                
+                if(isset($_SESSION['addaccount_lastname']))
+                {
+                    echo  'document.getElementById("lastName").value = "' . $_SESSION["addaccount_lastname"] . '";';
+                    unset($_SESSION['addaccount_lastname']);
+                }
+                
+                if(isset($_SESSION['addaccount_username']))
+                {
+                    echo  'document.getElementById("username").value = "' . $_SESSION["addaccount_username"] . '";';
+                    unset($_SESSION['addaccount_username']);
+                }
+                ?>
+            }
+
             function verify()
             {
-                var takenNames = getUsernames();
                 var error = false;
                 var formData = document.getElementById("accountData");
                 var name = formData.elements[0].value;;
@@ -31,14 +62,12 @@
                 {   
                     document.getElementById("nameError").removeAttribute("hidden");
                     document.getElementById("nameError").innerHTML = "Gelieve je naam in te vullen.";
-                    document.getElementById("nameP").setAttribute("class","formError");
                     error = true;
                 }
                 //If there's no errors with the names, hide error (if any)
                 else
                 {
                     document.getElementById("nameError").setAttribute("hidden","");
-                    document.getElementById("nameP").removeAttribute("class");
                 }
 
                 //Check lastname
@@ -46,7 +75,6 @@
                 {
                     document.getElementById("lastnameError").removeAttribute("hidden");
                     document.getElementById("lastnameError").innerHTML = "Gelieve je achternaam in te vullen.";
-                    document.getElementById("lastnameP").setAttribute("class","formError");
                     error = true;   
                 }
 
@@ -54,7 +82,6 @@
                 else
                 {
                     document.getElementById("lastnameError").setAttribute("hidden","");
-                    document.getElementById("lastnameP").removeAttribute("class");
                 }
 
                 //Check username 
@@ -62,58 +89,41 @@
                 {
                     document.getElementById("usernameError").removeAttribute("hidden");
                     document.getElementById("usernameError").innerHTML = "Gelieve je gebruikersnaam in te vullen.";
-                    document.getElementById("usernameP").setAttribute("class","formError");
                     error = true;      
                 }
             
-                //If there's no errors with the names, hide error (if any)
+                //If there's no errors with the username, hide error (if any)
                 else
                 {
                     document.getElementById("usernameError").setAttribute("hidden","");
-                    document.getElementById("usernameP").removeAttribute("class");
                 }
 
-                //Check if username is already taken
-                for(i=0;i<takenNames.length;i++)
-                {     
-                    if(username.toLowerCase() == takenNames[i])
-                    {
-                        document.getElementById("usernameError").removeAttribute("hidden");
-                        document.getElementById("usernameError").innerHTML = "De gebruikersnaam <b>"+username+"</b> is al reeds in gebruik.";
-                        document.getElementById("usernameP").setAttribute("class","formError");
-                        error = true;
-                    }
-                }
-
-                //Hide the username error once it is solved
-                if(error == false)
-                {
-                    document.getElementById("usernameError").setAttribute("hidden","");
-                    document.getElementById("usernameP").removeAttribute("class");
-                }
-
-
-                //Check if passwords match
-                if(password != password2)
-                {
-                    document.getElementById("passwordError").removeAttribute("hidden");
-                    document.getElementById("passwordError").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
-                    document.getElementById("passwordP").setAttribute("class","formError");
-                    error = true;
-                }
                 //Check password length
-                else if(password.length < 6)
+                if(password.length < 6)
                 {
                     document.getElementById("passwordError").removeAttribute("hidden");
                     document.getElementById("passwordError").innerHTML = "Het ingegeven wachtwoord is te kort. (Minimaal 6 karakters)";
-                    document.getElementById("passwordP").setAttribute("class","formError");
+                    document.getElementById("passwordverifyError").setAttribute("hidden","");
+                    error = true;
+
+                }
+
+                //Check if passwords match
+                else if(password != password2)
+                {
+                    document.getElementById("passwordError").removeAttribute("hidden");
+                    document.getElementById("passwordError").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
+
+                    document.getElementById("passwordverifyError").removeAttribute("hidden");
+                    document.getElementById("passwordverifyError").innerHTML = "De ingegeven wachtwoorden komen niet overeen.";
                     error = true;
                 }
+
                 //Hide the error if the password has no problems
                 else
                 {
                     document.getElementById("passwordError").setAttribute("hidden","");
-                    document.getElementById("passwordP").removeAttribute("class");
+                    document.getElementById("passwordverifyError").setAttribute("hidden","");
                 }
 
                 //If there's no errors with the data, send it to database
@@ -123,92 +133,49 @@
                 }
 
             }
-
-            function getUsernames()
-            {
-                var takenNames = ["",""];
-                var count = 0;
-                <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "gamingbuddy";
-
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    } 
-
-                    $sql = "SELECT username FROM gb_account";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                            echo "takenNames[count] = \"".$row["username"]."\";";
-                            echo "count++;"; 
-                        }
-
-
-                    } 
-                    else {
-                        echo "0 results";
-                    }
-
-                $conn->close();
-                ?> 
-
-                return takenNames;
-            }
         </script>
     </head>
-    <body> 
-            <div class="pagecenterdiv"> 
-                <div class= "pagecenterinnerdiv">
-                    <p class="subjectheader">Account aanmaken</p>
-                    <hr>
-                    <form id="accountData" method="post" action="php_adduser.php">
-                        <p id="nameP">
-                            <label for="name">Naam: </label><br>
-                            <input type="text" id="name" name="name" class="bigtextfield">
-                            <p id="nameError" class="redErrorText" hidden></p>
-                        </p>    
-                        <p id="lastnameP"> 
-                            <label for="lastName">Achternaam: </label><br>
-                            <input type="text" id="lastName" name="lastName" class="bigtextfield">
-                            <p id="lastnameError" class="redErrorText" hidden></p>
-                        </p>
-                        <p id="usernameP">
-                            <label for="username">Gebruikersnaam: </label><br>
-                            <input type="text" id="username" name="username" class="bigtextfield">
-                            <p id="usernameError" class="redErrorText" hidden></p>
-                            
-                        </p>
-                        <p id="passwordP">  
-                            <label for="password">Wachtwoord: </label><br>
-                            <input type="password" id="password" name="password" class="bigtextfield"> 
-                            <p id="passwordError" class="redErrorText" hidden></p>
-                        </p>
-                        <p> 
-                            <label for="verifypassword">Herhaal wachtwoord: </label><br>
-                            <input type="password" id="verifypassword" name="verifypassword" class="bigtextfield">
-                        </p>
-                        <p>     
-                            <input type="checkbox" id="addgame" name="addgame">
-                            <label for="addgame">Ik wens meteen een game toe te voegen aan mijn account. </label>
-                        </p>
-                        <div class="buttoncenterdiv">
-                            <input type="button" type="submit" value="Account Aanmaken" onclick="verify();" class="bigbutton">
-                        </div>
-                    </form>
-                </div>
+    <body onload="init();"> 
+        <div class="pagecenterdiv"> 
+            <div class= "pagecenterinnerdiv">
+                <p class="subjectheader">Account aanmaken</p>
+                <hr>
+                <form id="accountData" method="post" action="php_adduser.php">
+
+                    <label for="name">Naam: </label><br>
+                    <input type="text" id="name" name="name" class="bigtextfield">
+                    <p id="nameError" class="formError redErrorText" hidden></p>
+
+                    <label for="lastName">Achternaam: </label><br>
+                    <input type="text" id="lastName" name="lastName" class="bigtextfield">
+                    <p id="lastnameError" class="formError redErrorText" hidden></p>
+
+                    <label for="username">Gebruikersnaam: </label><br>
+                    <input type="text" id="username" name="username" class="bigtextfield">
+                    <p id="usernameError" class="formError redErrorText" hidden></p>
+
+                    <label for="password">Wachtwoord: </label><br>
+                    <input type="password" id="password" name="password" class="bigtextfield"> 
+                    <p id="passwordError" class="formError redErrorText" hidden></p>
+
+                    <label for="verifypassword">Herhaal wachtwoord: </label><br>
+                    <input type="password" id="verifypassword" name="verifypassword" class="bigtextfield">
+                    <p id="passwordverifyError" class="formError redErrorText" hidden></p>
+
+                    <input type="checkbox" id="addgame" name="addgame">
+                    <label for="addgame">Ik wens meteen een game toe te voegen aan mijn account. </label>
+
+                    <div class="buttoncenterdiv">
+                        <input type="button" type="submit" value="Account Aanmaken" onclick="verify();" class="bigbutton">
+                    </div>
+
+                </form>
             </div>
-            <div class="buttoncenterdiv"> 
-                <form action="index.php">  
-                    <input type="submit" type="submit" value="Terug naar Login" class="bigbutton">    
-                </form> 
-            </div>
+        </div>
+        <div class="buttoncenterdiv"> 
+            <form action="index.php">  
+                <input type="submit" type="submit" value="Terug naar Login" class="bigbutton">    
+            </form> 
+        </div>
     </body>
 </html>

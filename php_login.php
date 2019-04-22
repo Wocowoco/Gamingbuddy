@@ -10,8 +10,6 @@ session_start();
         unset($_SESSION['Error']);
         unset($_SESSION['Welcome']);
         $username = filter_input(INPUT_POST,'username');
-        $usernameF = $username;
-        $username = strtolower($username);
         $password = filter_input(INPUT_POST,'password');
         $servername = "localhost";
         $dbusername = "root";
@@ -28,13 +26,14 @@ session_start();
 
 
         //Get username and id
-        $sql = "SELECT password, id FROM gb_account WHERE gb_Account.Username LIKE '$username'";
+        $sql = "SELECT password, id, Username FROM gb_account WHERE gb_Account.Username LIKE '$username'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+                //Check if the passwords match
                 if(password_verify($password,$row["password"]))
                 {
-                    $_SESSION["name"] = $username;
+                    $_SESSION["name"] = $row["Username"];
                     $_SESSION["id"] = $row["id"];
                 }
                 else{

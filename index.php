@@ -97,7 +97,7 @@ session_start();
                     p = document.createElement("p");
                     p.setAttribute("id","loginconfirm");
                     p.setAttribute("hidden","");
-                    p.setAttribute("class","redErrorText");
+                    p.setAttribute("class","formError redErrorText");
                     form.appendChild(p);
                     showError(); //Update the text inside the paragraph accordingly
 
