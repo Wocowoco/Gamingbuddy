@@ -179,6 +179,32 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } 
+            
+            //----------------------------------
+            //USERNAME SEARCH QUERRIES
+            //---------------------------------- 
+            //Search only by name
+            if($game == "none")
+            {
+                $number = 0;
+                $sql = 
+                "SELECT Username
+                FROM gb_account
+                WHERE Username LIKE '%$name%'";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    //Output data of each row    
+                    while($row = $result->fetch_assoc())
+                    {   
+                        $username = $row["Username"];
+                        $_SESSION["usernamedata"][$number] = $username;
+                        $number++;
+                    }
+                    
+                    $_SESSION['usernamedataAmount'] = $number;
+                }
+            } 
 
 
             //----------------------------------
@@ -214,10 +240,6 @@ session_start();
                     }
                     
                     $_SESSION['apexdataAmount'] = $number;
-                }
-                else
-                {
-                    $_SESSION['apexFAILED'] = "Failed"; 
                 }
             } 
 

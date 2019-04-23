@@ -162,9 +162,13 @@
                     <input type="password" id="verifypassword" name="verifypassword" class="bigtextfield">
                     <p id="passwordverifyError" class="formError redErrorText" hidden></p>
 
+                    <div class="formparagraph"></div>
+
                     <input type="checkbox" id="addgame" name="addgame">
                     <label for="addgame">Ik wens meteen een game toe te voegen aan mijn account. </label>
 
+                    <hr>
+                    
                     <div class="buttoncenterdiv">
                         <input type="button" type="submit" value="Account Aanmaken" onclick="verify();" class="bigbutton">
                     </div>

@@ -173,18 +173,6 @@ session_start();
                     item.setAttribute("value", "Voeg een spel toe");
                     form.appendChild(item);
 
-                    //Show games
-                    p = document.createElement("p");
-                    main.appendChild(p);
-                    form = document.createElement("FORM");
-                    form.setAttribute("action","getloldata.php");
-                    p.appendChild(form);
-
-                    var item = document.createElement("INPUT");
-                    item.setAttribute("type", "submit");
-                    item.setAttribute("value", "Mijn spellen");
-                    form.appendChild(item);
-
                     //Search
                     p = document.createElement("p");
                     main.appendChild(p);

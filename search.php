@@ -20,7 +20,14 @@
                 <?php
                 //If no results are shown, hide the result box
                 if(isset($_SESSION['searchresultsfound']))
-                {                 
+                {      
+                    
+                    //Show Username results
+                    if(isset($_SESSION["usernamedata"]))
+                    {
+                        echo "showUsernameData();";  
+                    }
+
                     //Show Apex results
                     if(isset($_SESSION["apexdata"]))
                     {
@@ -461,6 +468,77 @@
             }
 
 
+            //-----------------------------
+            //RESULTS
+            //-----------------------------
+
+            function showUsernameData()
+            {
+                //Create a div for all username elements
+                var usernameDiv = document.createElement("DIV");
+                usernameDiv.setAttribute("id","usernameData");
+                usernameDiv.setAttribute("class","formborder");
+                document.getElementById("results").appendChild(usernameDiv);
+
+                var amountOfusernamedata;
+                var usernamedataArray = new Array();
+
+                //Get all the usernamedata
+                <?php 
+                    //Set amount of data
+                    if(isset($_SESSION['usernamedataAmount']))
+                    {
+                         echo "amountOfusernamedata = " . $_SESSION['usernamedataAmount'] . ";";
+
+
+                        //Loop through all the username data
+                        for($i = 0; $i < $_SESSION['usernamedataAmount']; $i++)
+                        {
+                            echo "usernamedataArray.push([\"" . $_SESSION['usernamedata'][$i] . "\"]);"; 
+                        }
+                    }
+                    else
+                    {
+                        echo "amountOfusernamedata = 0;";
+                    }
+                ?>
+
+                //username result info + button
+                var title = document.createElement("p");
+                title.innerHTML = "Gebruikers - "+ amountOfusernamedata + " resultaten gevonden.";
+                usernameDiv.appendChild(title);
+                var button = document.createElement("INPUT");
+                button.setAttribute("type","button");
+                button.setAttribute("id","usernameresultbutton");
+                button.setAttribute("value","Toon resultaten");
+                button.setAttribute("class","buttonright");
+                title.appendChild(button);
+
+                //Div for results
+                var innerusernameDiv = document.createElement("div");
+                innerusernameDiv.setAttribute("id","usernameresultdiv");
+                innerusernameDiv.setAttribute("hidden","");
+                usernameDiv.appendChild(innerusernameDiv);
+                //Set attribute after the div has been made
+                button.setAttribute("onclick","toggleResults(document.getElementById('usernameresultbutton'),document.getElementById('usernameresultdiv'), true)");
+
+                //Print all the username data
+                for(i = 0; i < amountOfusernamedata; i++)
+                {
+                    //Create a div for this data entry
+                    var div = document.createElement("div");
+                    div.setAttribute("class","searchresult");
+                    innerusernameDiv.appendChild(div);
+                    //Name 
+                    var p = document.createElement("p");
+                    var naam = usernamedataArray[i];
+                    p.innerHTML = "Gebruiker: " + naam;
+                    div.appendChild(p);
+
+
+                }  
+            }
+
             function showApexData()
             {
                 //Create a div for all Apex elements
@@ -480,7 +558,7 @@
                          echo "amountOfApexdata = " . $_SESSION['apexdataAmount'] . ";";
 
 
-                        //Loop through all the lol data
+                        //Loop through all the apex data
                         for($i = 0; $i < $_SESSION['apexdataAmount']; $i++)
                         {
                             echo "apexdataArray.push([\"" . $_SESSION['apexdata'][$i][0] . "\",\"" 
@@ -501,18 +579,19 @@
                 var button = document.createElement("INPUT");
                 button.setAttribute("type","button");
                 button.setAttribute("id","apexresultbutton");
-                button.setAttribute("value","Verberg resultaten");
+                button.setAttribute("value","Toon resultaten");
                 button.setAttribute("class","buttonright");
                 title.appendChild(button);
 
                 //Div for results
                 var innerApexDiv = document.createElement("div");
                 innerApexDiv.setAttribute("id","apexresultdiv");
+                innerApexDiv.setAttribute("hidden","");
                 apexDiv.appendChild(innerApexDiv);
                 //Set attribute after the div has been made
-                button.setAttribute("onclick","toggleResults(document.getElementById('apexresultbutton'),document.getElementById('apexresultdiv'), false)");
+                button.setAttribute("onclick","toggleResults(document.getElementById('apexresultbutton'),document.getElementById('apexresultdiv'), true)");
 
-                //Print all the lol data
+                //Print all the Apex data
                 for(i = 0; i < amountOfApexdata; i++)
                 {
                     //Create a div for this data entry
@@ -580,16 +659,17 @@
                 var button = document.createElement("INPUT");
                 button.setAttribute("type","button");
                 button.setAttribute("id","lolresultbutton");
-                button.setAttribute("value","Verberg resultaten");
+                button.setAttribute("value","Toon resultaten");
                 button.setAttribute("class","buttonright");
                 title.appendChild(button);
 
                 //Div for results
                 var innerLolDiv = document.createElement("div");
                 innerLolDiv.setAttribute("id","lolresultdiv");
+                innerLolDiv.setAttribute("hidden","");
                 lolDiv.appendChild(innerLolDiv);
                 //Set attribute after the div has been made
-                button.setAttribute("onclick","toggleResults(document.getElementById('lolresultbutton'),document.getElementById('lolresultdiv'), false)");
+                button.setAttribute("onclick","toggleResults(document.getElementById('lolresultbutton'),document.getElementById('lolresultdiv'), true)");
 
                 //Print all the lol data
                 for(i = 0; i < amountOfLoldata; i++)
@@ -655,6 +735,8 @@
 
             //Reset all search variables
             <?php
+            //unset($_SESSION['usernamedata']);
+            //unset($_SESSION['usernamedataAmount']);
             unset($_SESSION['apexdata']);
             unset($_SESSION['apexdataAmount']);
             unset($_SESSION['loldata']);
