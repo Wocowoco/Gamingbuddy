@@ -14,6 +14,9 @@
         <title>Gamingbuddy | Zoeken</title>
         <link href="opmaak_site.css" rel="stylesheet" />
         <script> 
+            //-----------------------------
+            //SHOW RESULTS (PHP)
+            //-----------------------------
             function init()
             {
                 //Check if results need to be shown or not     
@@ -57,6 +60,10 @@
                 ?>   
             }
 
+
+            //-----------------------------
+            //SEARCH FORM
+            //-----------------------------
             function displayLolRankOptions()
             {
                 var rankDiv = document.getElementById("lolrankdiv");
@@ -539,6 +546,7 @@
                 }  
             }
 
+
             function showApexData()
             {
                 //Create a div for all Apex elements
@@ -705,6 +713,10 @@
             }
 
 
+            //-----------------------------
+            //FUNCTIONS
+            //-----------------------------
+
             function toggleResults(button, resultDiv, isActive)
             {
                 //Check if button needs to be activated
@@ -735,14 +747,18 @@
 
             //Reset all search variables
             <?php
-            //unset($_SESSION['usernamedata']);
-            //unset($_SESSION['usernamedataAmount']);
+            unset($_SESSION['usernamedata']);
+            unset($_SESSION['usernamedataAmount']);
+
             unset($_SESSION['apexdata']);
             unset($_SESSION['apexdataAmount']);
+
             unset($_SESSION['loldata']);
             unset($_SESSION['loldataAmount']);
+
             unset($_SESSION['searchresultsfound']);
             unset($_SESSION['searchresultsfailed']);
+
             unset($_SESSION['apexFAILED']);
             unset($_SESSION['searchResultsFound']);
             ?>
