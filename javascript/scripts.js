@@ -2,9 +2,7 @@ $.get("..//xampp//omtoer.php", {url: "https://euw1.api.riotgames.com/lol/summone
  data => {
     data = JSON.parse(data)
     console.log(data)
+    document.write(data)
   })
 
-  function printFollowers(followersSum) {
-    document.getElementById('root').innerHTML = followersSum;
-    console.log(followersSum); // you can do print followersSum wherever you want
-  }
+  
