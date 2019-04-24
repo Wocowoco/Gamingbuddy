@@ -48,11 +48,14 @@ session_start();
             if($usernameLower == ($_SESSION['accountNames'][$i]))
             {
                 $conn->close();
-                header("Location: addaccount.php");
 
                 $_SESSION['addaccount_name'] = $name;
                 $_SESSION['addaccount_lastname'] = $lastname;
                 $_SESSION['addaccount_username'] = $username;
+
+                $_SESSION['accountnametaken'] = true;
+
+                header("Location: addaccount.php");
                 exit; 
             }
         }

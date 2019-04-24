@@ -31,7 +31,14 @@
             // output data of each row
             $i = 0;
             while($row = $result->fetch_assoc()) {
+
+                //Get all account names
                 $accountname = $row["username"];
+
+                //Make all names lowercase for comparison
+                $accountname = strtolower($accountname);
+
+                //Store names in a session array
                 $_SESSION['accountNames'][$i] = $accountname;
                 $i++;
             }

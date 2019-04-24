@@ -19,14 +19,7 @@
             function init()
             {
                 <?php 
-                if (isset($_SESSION['accountnametaken']))
-                {
-                    unset($_SESSION['accountnametaken']);
-                    echo 'document.getElementById("usernameError").removeAttribute("hidden");';
-                    echo 'document.getElementById("usernameError").innerHTML = "Deze gebruikersnaam is niet beschikbaar.";';
-                    echo 'document.getElementById("usernameError").setAttribute("class","formError redErrorText");';
-                }
-
+                //If $SESSION[x] is set, change stuff, unset $SESSION[x] after
                 if(isset($_SESSION['addaccount_name']))
                 {
                     echo  'document.getElementById("name").value = "' . $_SESSION["addaccount_name"] . '";';
@@ -43,6 +36,14 @@
                 {
                     echo  'document.getElementById("username").value = "' . $_SESSION["addaccount_username"] . '";';
                     unset($_SESSION['addaccount_username']);
+                }
+
+                if (isset($_SESSION['accountnametaken']))
+                {
+                    echo 'document.getElementById("usernameError").removeAttribute("hidden");';
+                    echo 'document.getElementById("usernameError").innerHTML = "Deze gebruikersnaam is niet beschikbaar.";';
+                    echo 'document.getElementById("usernameError").setAttribute("class","formError redErrorText");';
+                    unset($_SESSION['accountnametaken']);
                 }
                 ?>
             }
