@@ -10,10 +10,10 @@ session_start();
 
     //Unset all session variables
     unset($S_SESSION);
-    
+
     //Destroy session
     session_destroy();
-
+    
     header("Location: index.php");
     exit;
     ?> 
