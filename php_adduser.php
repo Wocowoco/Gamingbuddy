@@ -60,15 +60,21 @@ session_start();
             }
         }
 
-
-        //Add the user to the DB
-        $sql = "INSERT INTO gb_account (username, password, name, lastname)
-        VALUES ('$username','$password','$name','$lastname')";
-        $conn->query($sql);
+        //Add user to DB
+        //Prepared statement
+        $stmt = $conn->prepare("INSERT INTO gb_account (username, password, name, lastname)
+        VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss",$username,$password,$name,$lastname);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
         //Fill in the session stats for the newly created account
-        $sql = "SELECT Username,id FROM gb_account WHERE gb_Account.Username LIKE '$username'";
-        $result = $conn->query($sql);
+        //Prepared statement
+        $stmt = $conn->prepare("SELECT Username,id FROM gb_account WHERE gb_Account.Username LIKE ?");
+        $stmt->bind_param("s", $username);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
         if ($result->num_rows > 0) 
         {
             while($row = $result->fetch_assoc())

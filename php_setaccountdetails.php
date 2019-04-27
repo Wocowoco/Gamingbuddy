@@ -49,17 +49,26 @@ session_start();
                 }
 
                 //Update username
-                $sql = "UPDATE gb_account
-                SET Username = '$username'
-                WHERE ID = '$id'";
-                $result = $conn->query($sql);
+                //Prepared statement
+                $stmt = $conn->prepare("UPDATE gb_account
+                SET Username = ?
+                WHERE ID = ?");
+                $stmt->bind_param("si",$username, $id);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
             }
         }
 
-        $sql = "UPDATE gb_account
-        SET Name = '$name', LastName = '$lastname'
-        WHERE ID = '$id'";
-        $result = $conn->query($sql);
+        //Update name & lastname
+        //Prepared statement
+        $stmt = $conn->prepare("UPDATE gb_account
+        SET Name = ?, LastName = ?
+        WHERE ID = ?");
+        $stmt->bind_param("ssi",$name,$lastname, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        //Update user that names have been changed
         $_SESSION['nameschanged'] = true;
 
 

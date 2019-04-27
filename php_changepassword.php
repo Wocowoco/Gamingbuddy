@@ -32,22 +32,29 @@ session_start();
         //If logged in
         if($id != null)
         {
-            $sql = "SELECT password
+            //Prepared statement
+            $stmt = $conn->prepare("SELECT password
             FROM gb_account 
-            WHERE ID = '$id'";
-            $result = $conn->query($sql);
+            WHERE ID = ?");
+            $stmt->bind_param("i",$id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     if(password_verify($password,$row["password"]))
                     {
                         $newpassword = password_hash("$newpassword", PASSWORD_DEFAULT);
                         
-                        //If the password matches            
+                        //If the password matches   
+                        //Prepared statement
+                        $stmt2 = $conn->prepare("UPDATE gb_account 
+                        SET password = ?
+                        WHERE gb_Account.ID = ?");
+                        $stmt2->bind_param("si",$newpassword,$id);
+                        mysqli_stmt_execute($stmt2);
+                        $result2 = mysqli_stmt_get_result($stmt2);
+
                         $_SESSION['passwordchangesuccess'] = "true";
-                        $sql2 = "UPDATE gb_account 
-                        SET password = '$newpassword'
-                        WHERE gb_Account.ID = '$id'";
-                        $result2 = $conn->query($sql2);
                     }
                     else{
                         //If the password doesn't match

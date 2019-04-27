@@ -31,28 +31,37 @@ session_start();
         //If logged in
         if($id != null)
         {
-            $sql = "SELECT password
+            //Get user account and check password
+            //Prepared statement
+            $stmt = $conn->prepare("SELECT password
             FROM gb_account 
-            WHERE ID = '$id'";
-            $result = $conn->query($sql);
+            WHERE ID = ?");
+            $stmt->bind_param("i",$id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     if(password_verify($password,$row["password"]))
                     {
-                        $newpassword = password_hash("$newpassword", PASSWORD_DEFAULT);
-                        
-                        //If the password matches            
-                        $sql2 = "DELETE
+                        //If the password matches
+                        //Prepared statement  
+                        $stmt2 = $conn->prepare("DELETE
                         FROM gb_Account
-                        WHERE gb_Account.ID = '$id'";
-                        $result2 = $conn->query($sql2);
+                        WHERE gb_Account.ID = ?");
+                        $stmt2->bind_param("i",$id);
+                        mysqli_stmt_execute($stmt2);
+                        $result2 = mysqli_stmt_get_result($stmt2);          
 
                         //Unset session vars
                         unset($_SESSION['id']);
                         unset($_SESSION['name']);
+
                         //Return to title
                         $conn->close();
                         header("Location: index.php");
+
+                        //Show that account was deleted
                         $_SESSION['accountdeleted'] = "true";
                         exit;
                     }

@@ -24,8 +24,11 @@
             die("Connection failed: " . $conn->connect_error);
         } 
 
-        $sql = "SELECT username FROM gb_account";
-        $result = $conn->query($sql);
+        //Prepared statement
+        $stmt = $conn->prepare("SELECT username FROM gb_account");
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        
         if ($result->num_rows > 0) 
         {
             // output data of each row
