@@ -9,16 +9,15 @@
 ?>
 
 <!DOCTYPE html>
-    <html>
-        <head>
+<html>
+    <head>
         <link href="opmaak_site.css" rel="stylesheet" /> 
         <meta charset="utf-8"/>
         <title>Gamingbuddy | Account opties</title>   
         <script>            
             function init(){
-
                 <?php 
-                //Get accountdetails and fill them in on the appropriate forms
+                //Get accountdetails and add them on the appropriate forms
                 include 'php_getaccountdetails.php';
                 getAccountDetails();
 
@@ -33,14 +32,55 @@
                     echo 'document.getElementById("acclastname").value = "' . $_SESSION["user_lastname"] . '";';
                     unset($_SESSION['user_lastname']);
                 }
- 
+
                 if(isset($_SESSION['user_username']))
                 {
                     echo 'document.getElementById("username").value = "' . $_SESSION["user_username"] . '";';
                     unset($_SESSION['user_username']);
                 }
 
-                 //If the name is already taken, throw error
+
+                //Get all the games that belong to this account
+                include 'php_getaccountgames.php';
+                getAccountGames();
+
+
+                //Add display names to table
+                echo 'var table = document.getElementById("gamestable");';
+                echo 'table.innerHTML = "<table id=\'innergamestable\'><tr><th>Spel</th><th>Accountnaam</th><th></th><th></th></tr>";';
+
+                //APEX
+                if(isset($_SESSION['apex_amount']))
+                {
+                    echo 'var innertable = document.getElementById("innergamestable");';
+                    for($i = 0; $i < $_SESSION['apex_amount'] + 1; $i++)
+                    {
+
+                        echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . '</td><td>Bewerken</td> <td>Delete</td></tr>";';
+                    }
+
+                    unset($_SESSION['apex_username']);
+                    unset($_SESSION['apex_ID']);
+                    unset($_SESSION['apex_amount']);
+                }
+
+                //lol
+                if(isset($_SESSION['lol_amount']))
+                {
+                    echo 'var innertable = document.getElementById("innergamestable");';
+                    for($i = 0; $i < $_SESSION['lol_amount'] + 1; $i++)
+                    {
+
+                        echo 'innertable.innerHTML += "<tr><td>League of Legends</td><td>'. $_SESSION["lol_username"][$i] . '</td><td>Bewerken</td> <td>Delete</td></tr>";';
+                    }
+
+                    unset($_SESSION['lol_username']);
+                    unset($_SESSION['lol_ID']);
+                    unset($_SESSION['lol_amount']);
+                }
+
+
+                //If the name is already taken, throw error
                 if(isset($_SESSION['namealreadytaken']))
                 {
                     echo 'document.getElementById("username").value = "' . $_SESSION["namealreadytaken"] . '";';
@@ -48,8 +88,6 @@
                     echo 'document.getElementById("usernameError").removeAttribute("hidden");';
                     unset($_SESSION['namealreadytaken']);
                 }
-
-
 
 
                 //If the names just got updated, show message
@@ -170,8 +208,9 @@
                 }
 
             }
+
         </script>
-        </head>
+    </head>
     <body onload="init();">
         <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
@@ -248,7 +287,8 @@
                         <hr>
 
                         <!-- DISPLAY USER'S GAME HERE -->
-                        <p class="redErrorText centerdiv">Nog niet geimplementeerd</p>
+                        <div id="gamestable">
+                        </div>
                         <hr>
                         <div class="buttoncenterdiv">
                             <form action="addgame.php" method="POST">

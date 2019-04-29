@@ -36,6 +36,9 @@ session_start();
             //Check if username changed
             if($username != $_SESSION['name'])
             {
+                include 'php_getaccountnames.php';
+                getAccountNames();
+                 
                 //Check if the username is not already taken
                 for($i = 0; $i < sizeof($_SESSION['accountNames']) ; $i++)
                 {
@@ -47,6 +50,9 @@ session_start();
                         exit; 
                     }
                 }
+
+                //Remove names variable
+                unset($_SESSION['accountNames']);
 
                 //Update username
                 //Prepared statement

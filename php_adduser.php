@@ -59,6 +59,8 @@ session_start();
                 exit; 
             }
         }
+        //Remove names variable
+        unset($_SESSION['accountNames']);
 
         //Add user to DB
         //Prepared statement

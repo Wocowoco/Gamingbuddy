@@ -1,13 +1,3 @@
-<?php
-    session_start();
-    //If already logged in, return to mainpage, preventing from making an account
-    if(isset($_SESSION["id"]))
-    {
-        header("Location: index.php");
-        exit;  
-    }
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
