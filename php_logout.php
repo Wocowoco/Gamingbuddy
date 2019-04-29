@@ -7,15 +7,13 @@ session_start();
     </head>
 <body>
     <?php
-    if(isset($_SESSION['id']))
-    {
-        unset($_SESSION['id']);
-    }
 
-    if(isset($_SESSION['name']))
-    {
-        unset($_SESSION['name']);
-    }
+    //Unset all session variables
+    unset($S_SESSION);
+
+    //Destroy session
+    session_destroy();
+    
     header("Location: index.php");
     exit;
     ?> 

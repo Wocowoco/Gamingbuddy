@@ -29,6 +29,7 @@ session_start();
 
             //Get variables 
             $name = filter_input(INPUT_POST,'name');
+            $name = "%$name%";
             $game = filter_input(INPUT_POST,'game');
 
             //Game specific things
@@ -187,12 +188,13 @@ session_start();
             if($game == "none")
             {
                 $number = 0;
-                $sql = 
-                "SELECT Username
+                //Prepared statement
+                $stmt = $conn->prepare("SELECT Username
                 FROM gb_account
-                WHERE Username LIKE '%$name%'";
-                $result = $conn->query($sql);
-
+                WHERE Username LIKE ?");
+                $stmt->bind_param("s",$name);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
                 if ($result->num_rows > 0) {
                     //Output data of each row    
                     while($row = $result->fetch_assoc())
@@ -214,15 +216,16 @@ session_start();
             if($game == "none")
             {
                 $number = 0;
-                $sql = 
-                "SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
+                //Prepared statement
+                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
                 FROM gb_apexdata AS apexdat
                 INNER JOIN gb_apexrole AS apexrole1 ON apexdat.PrefRole1 = apexrole1.roleID
                 INNER JOIN gb_apexrole AS apexrole2 ON apexdat.PrefRole2 = apexrole2.roleID
-                WHERE originName LIKE '%$name%'";
-                
-
-                $result = $conn->query($sql);
+                WHERE originName LIKE ?");
+                $stmt->bind_param("s",$name);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            
 
                 if ($result->num_rows > 0) {
                     //Output data of each row    
@@ -247,15 +250,15 @@ session_start();
             if($game == "apex")
             {
                 $number = 0;
-                $sql = 
-                "SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
+                //Prepared statement
+                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
                 FROM gb_apexdata AS apexdat
                 INNER JOIN gb_apexrole AS apexrole1 ON apexdat.PrefRole1 = apexrole1.roleID
                 INNER JOIN gb_apexrole AS apexrole2 ON apexdat.PrefRole2 = apexrole2.roleID
-                WHERE originName LIKE '%$name%'";
-                
-
-                $result = $conn->query($sql);
+                WHERE originName LIKE ?");
+                $stmt->bind_param("s",$name);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
 
                 if ($result->num_rows > 0) {
                     //Output data of each row    
@@ -414,15 +417,17 @@ session_start();
             if($game == "none")
             {
                 $number = 0;
-                $sql = 
-                "SELECT SummonerName, Zone, lolrank.Name AS rank, lolrole1.Name AS role1, lolrole2.Name AS role2
+
+                //Prepared statement
+                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rank, lolrole1.Name AS role1, lolrole2.Name AS role2
                 FROM gb_loldata AS loldat
                 INNER JOIN gb_lolrank AS lolrank ON loldat.RankID = lolrank.rankID
                 INNER JOIN gb_lolRole AS lolrole1 ON loldat.PrefRole1 = lolrole1.roleID
                 INNER JOIN gb_lolRole AS lolrole2 ON loldat.PrefRole2 = lolrole2.roleID
-                WHERE loldat.summonerName LIKE '%$name%'";
-
-                $result = $conn->query($sql);
+                WHERE loldat.summonerName LIKE ?");
+                $stmt->bind_param("s",$name);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
 
                 if ($result->num_rows > 0) {
                     //Output data of each row
@@ -449,16 +454,17 @@ session_start();
             else if($game == "lol")
             {
                 $number = 0;
-                $sql = 
-                "SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2
+                //Prepared statement
+                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2
                 FROM gb_loldata AS loldat
                 INNER JOIN gb_lolrank AS lolrank ON loldat.RankID = lolrank.rankID
                 INNER JOIN gb_lolRole AS lolrole1 ON loldat.PrefRole1 = lolrole1.roleID
                 INNER JOIN gb_lolRole AS lolrole2 ON loldat.PrefRole2 = lolrole2.roleID
-                WHERE loldat.summonerName LIKE '%$name%'";
-
-                $result = $conn->query($sql);
-
+                WHERE loldat.summonerName LIKE ?");
+                $stmt->bind_param("s",$name);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                
                 if ($result->num_rows > 0) {
                     //Output data of each row
                     

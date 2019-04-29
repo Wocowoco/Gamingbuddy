@@ -24,10 +24,12 @@ session_start();
             die("Connection failed: " . $conn->connect_error);
         } 
 
+        //Prepared statement
+        $stmt = $conn->prepare("SELECT password, id, Username FROM gb_account WHERE gb_Account.Username=?");
+        $stmt->bind_param("s", $username);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        //Get username and id
-        $sql = "SELECT password, id, Username FROM gb_account WHERE gb_Account.Username LIKE '$username'";
-        $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 //Check if the passwords match
@@ -38,17 +40,19 @@ session_start();
                 }
                 else{
                     $_SESSION["Error"] = $error;
+
                 }
             }
         } 
         else {
             $_SESSION["Error"] = $error;
+
         }
 
-
-    $conn->close();
-    header("Location: index.php");
-    exit;
+        $stmt->close();
+        $conn->close();
+        header("Location: index.php");
+        exit;
     ?> 
 </body>
 </html>

@@ -30,10 +30,13 @@
         //If logged in
         if($id != null)
         {
-            $sql = "SELECT Name, LastName, Username
+            //Prepared statement
+            $stmt = $conn->prepare("SELECT Name, LastName, Username
             FROM gb_account 
-            WHERE ID = '$id'";
-            $result = $conn->query($sql);
+            WHERE ID = ?");
+            $stmt->bind_param("i",$id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $_SESSION['user_firstname'] = $row['Name'];
