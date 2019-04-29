@@ -541,7 +541,7 @@
                     var naam = usernamedataArray[i];
                     p.innerHTML = "Gebruiker: " + naam;
                     div.appendChild(p);
-
+                    
 
                 }  
             }

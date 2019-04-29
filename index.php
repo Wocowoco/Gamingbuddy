@@ -244,6 +244,7 @@ session_start();
     </head>
     <body id="test" onLoad="init();"> 
         <div id="main">
+            
         </div>
     </body>
 </html>
