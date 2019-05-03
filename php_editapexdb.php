@@ -50,7 +50,8 @@
         $stmt->bind_param("siii",$username,$prefrole1,$prefrole2, $_SESSION["gameID"]);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-
+        unset($_SESSION["gameID"]);
+        
         header("Location: accountoptions.php");
         exit; 
     }
