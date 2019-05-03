@@ -55,8 +55,9 @@
                     echo 'var innertable = document.getElementById("innergamestable");';
                     for($i = 0; $i < $_SESSION['apex_amount'] + 1; $i++)
                     {
-
-                        echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . '</td><td>Bewerken</td> <td>Delete</td></tr>";';
+                        echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . ' </td>';
+                        echo '<td><form action=php_getgamedetails.php method=POST><input type=submit value=Bewerken></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>';
+                        echo '<td>Delete</td></tr>";'; //WORKING ON THIS -Woco
                     }
 
                     unset($_SESSION['apex_username']);
@@ -64,7 +65,7 @@
                     unset($_SESSION['apex_amount']);
                 }
 
-                //lol
+                //League of Legends
                 if(isset($_SESSION['lol_amount']))
                 {
                     echo 'var innertable = document.getElementById("innergamestable");';
