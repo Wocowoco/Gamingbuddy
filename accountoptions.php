@@ -14,7 +14,7 @@
         <link href="opmaak_site.css" rel="stylesheet" /> 
         <meta charset="utf-8"/>
         <title>Gamingbuddy | Account opties</title>   
-        <script>            
+        <script>          
             function init(){
                 <?php 
                 //Get accountdetails and add them on the appropriate forms
@@ -49,7 +49,7 @@
                 echo 'var table = document.getElementById("gamestable");';
                 echo 'table.innerHTML = "<table id=\'innergamestable\'><tr><th>Spel</th><th>Accountnaam</th><th></th><th></th></tr>";';
 
-                //APEX
+                //APEX games on user account
                 if(isset($_SESSION['apex_amount']))
                 {
                     echo 'var innertable = document.getElementById("innergamestable");';
@@ -57,15 +57,16 @@
                     {
                         echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . ' </td>';
                         echo '<td><form action=php_getgamedetails.php method=POST><input type=submit value=Bewerken></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>';
-                        echo '<td>Delete</td></tr>";'; //WORKING ON THIS -Woco
+                        echo '<td><form id=delgame'.$i.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"Apex Legends\",\"'.$_SESSION["apex_username"][$i].'\",\"'.$i.'\");\'></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>";';
                     }
 
                     unset($_SESSION['apex_username']);
                     unset($_SESSION['apex_ID']);
                     unset($_SESSION['apex_amount']);
+                    unset($_SESSION['gameID']);
                 }
 
-                //League of Legends
+                //League of Legends games on user account
                 if(isset($_SESSION['lol_amount']))
                 {
                     echo 'var innertable = document.getElementById("innergamestable");';
@@ -123,6 +124,15 @@
                     unset($_SESSION['delpassworderror']);
                 }
                 ?>
+            }
+
+            function verifyDelete(gamename, gameUsername, number)
+            {
+                //Throw confirmation message to delete account;
+                if(window.confirm("Bent u zeker dat u " + gameUsername + " (" + gamename + ") wil verwijderen?"))
+                {
+                    document.getElementById("delgame"+number).submit();
+                }
             }
 
             function verifyNames()
