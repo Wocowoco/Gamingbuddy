@@ -15,6 +15,7 @@
     $dbname = "gamingbuddy";
     $gameid = filter_input(INPUT_POST,'gameid');
     $game = filter_input(INPUT_POST,'game');
+    
     $_SESSION["gameID"] = $gameid;
     $_SESSION["editGame"] = $game;
 
@@ -42,8 +43,8 @@
             //Prepared statement
             $stmt = $conn->prepare("SELECT OriginName, PrefRole1, PrefRole2
             FROM gb_apexdata
-            WHERE accountID = ?");
-            $stmt->bind_param("i",$id);
+            WHERE apexID = ?");
+            $stmt->bind_param("i",$_SESSION["gameID"]);
 
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
