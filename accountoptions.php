@@ -49,6 +49,7 @@
                 echo 'var table = document.getElementById("gamestable");';
                 echo 'table.innerHTML = "<table id=\'innergamestable\'><tr><th>Spel</th><th>Accountnaam</th><th></th><th></th></tr>";';
 
+                $itot = 0;
                 //APEX games on user account
                 if(isset($_SESSION['apex_amount']))
                 {
@@ -57,7 +58,8 @@
                     {
                         echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . ' </td>';
                         echo '<td><form action=php_getgamedetails.php method=POST><input type=submit value=Bewerken></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>';
-                        echo '<td><form id=delgame'.$i.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"Apex Legends\",\"'.$_SESSION["apex_username"][$i].'\",\"'.$i.'\");\'></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>";';
+                        echo '<td><form id=delgame'.$itot.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"Apex Legends\",\"'.$_SESSION["apex_username"][$i].'\",\"'.$itot.'\");\'></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>";';
+                        $itot+= 1;
                     }
 
                     unset($_SESSION['apex_username']);
@@ -72,13 +74,16 @@
                     echo 'var innertable = document.getElementById("innergamestable");';
                     for($i = 0; $i < $_SESSION['lol_amount'] + 1; $i++)
                     {
-
-                        echo 'innertable.innerHTML += "<tr><td>League of Legends</td><td>'. $_SESSION["lol_username"][$i] . '</td><td>Bewerken</td> <td>Delete</td></tr>";';
+                        echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["lol_username"][$i] . ' </td>';
+                        echo '<td>Bewerken</td>';
+                        echo '<td><form id=delgame'.$itot.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"League of Legends\",\"'.$_SESSION["lol_username"][$i].'\",\"'.$itot.'\");\'></input><input type=text name=game value=lol hidden></input><input type=text name=gameid value='. $_SESSION['lol_ID'][$i].' hidden></input></form></td>";';
+                        $itot+= 1;
                     }
 
                     unset($_SESSION['lol_username']);
                     unset($_SESSION['lol_ID']);
                     unset($_SESSION['lol_amount']);
+                    unset($_SESSION['gameID']);
                 }
 
 

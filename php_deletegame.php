@@ -55,6 +55,18 @@
             $result = mysqli_stmt_get_result($stmt);
         }
 
+        if($gameToDelete == "lol")
+        {
+            //Delete apexdata from DB
+            //Prepared statement
+            $stmt = $conn->prepare("DELETE 
+            FROM gb_lolData 
+            WHERE lolID = ?");
+            $stmt->bind_param("i",$gameid);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+        }
+
         header("Location: accountoptions.php");
         exit; 
     }
