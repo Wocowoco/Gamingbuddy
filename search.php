@@ -31,13 +31,13 @@
                         echo "showUsernameData();";  
                     }
 
-                    //Show Apex results
+                    //Show Apex results if there are Apex Results
                     if(isset($_SESSION["apexdata"]))
                     {
                         echo "showApexData();";  
                     }
 
-                    //Show League of Legends results
+                    //Show League of Legends results if there are League of Legends Results
                     if(isset($_SESSION["loldata"]))
                     {
                         echo "showLolData();";    

@@ -56,6 +56,7 @@
                     echo 'var innertable = document.getElementById("innergamestable");';
                     for($i = 0; $i < $_SESSION['apex_amount'] + 1; $i++)
                     {
+                        //Create the Apex Legends change and delete buttons, and link them to their pages
                         echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["apex_username"][$i] . ' </td>';
                         echo '<td><form action=php_getgamedetails.php method=POST><input type=submit value=Bewerken></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>';
                         echo '<td><form id=delgame'.$itot.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"Apex Legends\",\"'.$_SESSION["apex_username"][$i].'\",\"'.$itot.'\");\'></input><input type=text name=game value=apex hidden></input><input type=text name=gameid value='. $_SESSION['apex_ID'][$i].' hidden></input></form></td>";';
@@ -74,8 +75,9 @@
                     echo 'var innertable = document.getElementById("innergamestable");';
                     for($i = 0; $i < $_SESSION['lol_amount'] + 1; $i++)
                     {
-                        echo 'innertable.innerHTML += "<tr><td>Apex Legends</td><td>'. $_SESSION["lol_username"][$i] . ' </td>';
-                        echo '<td>Bewerken</td>';
+                        //Create the League of Legends change and delete buttons, and link them to their pages
+                        echo 'innertable.innerHTML += "<tr><td>League of Legends</td><td>'. $_SESSION["lol_username"][$i] . ' </td>';
+                        echo '<td><form action=php_getgamedetails.php method=POST><input type=submit value=Bewerken></input><input type=text name=game value=lol hidden></input><input type=text name=gameid value='. $_SESSION['lol_ID'][$i].' hidden></input></form></td>';
                         echo '<td><form id=delgame'.$itot.' action=php_deletegame.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDelete(\"League of Legends\",\"'.$_SESSION["lol_username"][$i].'\",\"'.$itot.'\");\'></input><input type=text name=game value=lol hidden></input><input type=text name=gameid value='. $_SESSION['lol_ID'][$i].' hidden></input></form></td>";';
                         $itot+= 1;
                     }

@@ -56,6 +56,28 @@
                 }
             }
         }
+
+        //If game is League of Legends
+        if($_SESSION["editGame"] == "lol")
+        {
+            //Prepared statement
+            $stmt = $conn->prepare("SELECT SummonerName, RankID, PrefRole1, PrefRole2, Zone
+            FROM gb_loldata
+            WHERE lolID = ?");
+            $stmt->bind_param("i",$_SESSION["gameID"]);
+
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $_SESSION['editLol_name'] = $row['SummonerName'];
+                    $_SESSION['editLol_rank'] = $row['RankID'];
+                    $_SESSION['editLol_zone'] = $row['Zone'];
+                    $_SESSION['editLol_role1'] = $row['PrefRole1'];
+                    $_SESSION['editLol_role2'] = $row['PrefRole2'];
+                }
+            }
+        }
     }
 
     $conn->close();

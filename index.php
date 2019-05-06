@@ -37,7 +37,7 @@ session_start();
                 //IF NOT LOGGED IN
                 //-----------------
                 if(isLoggedIn == false){
-
+                    
                     //Login div
                     var div = document.createElement("div");
                     div.setAttribute("class", "pagecenterdiv");

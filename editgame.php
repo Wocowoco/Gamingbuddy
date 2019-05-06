@@ -25,10 +25,10 @@
             <?php 
             if(isset($_SESSION["editGame"]))
             {
+                //Get which game to edit from editGame var
                 echo 'var selectedGame = "' . $_SESSION["editGame"] . '";';
             }
             ?>
-
 
             var gameDetails;
 
@@ -41,24 +41,20 @@
             function checkGame()
             {              
 
-                //Check which game is selected
+                //Check which game is is going to be edited
                 if(selectedGame == "apex")
                 {
                     createApexForm();
                     fillApexForm();
                 }
+
                 else if(selectedGame == "lol")
                 {
                     createLeagueOfLegendsForm();
+                    fillLeagueOfLegendsForm();
                 }
 
 
-            }
-
-            function destroyAllForms()
-            {
-                gameDetails.innerHTML = "";
-                gameDetails.removeAttribute("action");
             }
 
 
@@ -278,18 +274,21 @@
             function fillApexForm()
             {
                 <?php
-                    //Set originname
-                    echo 'document.getElementById("originName").value = "' . $_SESSION["editApex_name"] . '";';
-                    //Set role1
-                    echo 'document.getElementById("role1").value = "' . $_SESSION["editApex_role1"] . '";';
-                    //Set role2
-                    echo 'document.getElementById("role2").value = "' . $_SESSION["editApex_role2"] . '";';
+                    //Only set variables if the game is League of Legends
+                    if($_SESSION["editGame"] == "apex")
+                    {
+                        //Set originname
+                        echo 'document.getElementById("originName").value = "' . $_SESSION["editApex_name"] . '";';
+                        //Set role1
+                        echo 'document.getElementById("role1").value = "' . $_SESSION["editApex_role1"] . '";';
+                        //Set role2
+                        echo 'document.getElementById("role2").value = "' . $_SESSION["editApex_role2"] . '";';
 
-                    //Unset vars
-                    unset($_SESSION["editApex_name"]);
-                    unset($_SESSION["editApex_role1"]);
-                    unset($_SESSION["editApex_role2"]);
-                    unset($_SESSION["editGame"]);
+                        //Unset vars
+                        unset($_SESSION["editApex_name"]);
+                        unset($_SESSION["editApex_role1"]);
+                        unset($_SESSION["editApex_role2"]);
+                    }
                 ?>
             }
 
@@ -392,12 +391,13 @@
                 }
             }
 
+
             //-------------------------
             //LEAGUE OF LEGENDS
             //-------------------------
             function createLeagueOfLegendsForm()
             {
-                gameDetails.setAttribute("action","php_addloldb.php");
+                gameDetails.setAttribute("action","php_editloldb.php");
                 
                 //HR
                 var hr = document.createElement("hr");
@@ -533,105 +533,132 @@
                 var br = document.createElement("br");
                 div.appendChild(br);
 
-                var field = document.createElement("SELECT");
-                field.setAttribute("id", "rank");
-                field.setAttribute("name", "rank");
-                field.setAttribute("class", "mediumdropdown");
-                field.setAttribute("onchange", "showDivision();");
-                div.appendChild(field);
+                var select = document.createElement("SELECT");
+                select.setAttribute("id", "rank");
+                select.setAttribute("name", "rank");
+                select.setAttribute("class", "mediumdropdown");
+                select.setAttribute("onchange", "showDivision();");
+                div.appendChild(select);
 
-                    //Options
-                    option = document.createElement("option");
-                    option.value = "invalid";
-                    option.text = "";
-                    field.appendChild(option);
+                        //Divisions
+                        option = document.createElement("option");
+                        option.value = "1";
+                        option.text = "Iron IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "2";
+                        option.text = "Iron III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "3";
+                        option.text = "Iron II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "4";
+                        option.text = "Iron I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "1";
-                    option.text = "Iron";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "5";
+                        option.text = "Bronze IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "6";
+                        option.text = "Bronze III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "7";
+                        option.text = "Bronze II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "8";
+                        option.text = "Bronze I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "5";
-                    option.text = "Bronze";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "9";
+                        option.text = "Silver IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "10";
+                        option.text = "Silver III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "11";
+                        option.text = "Silver II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "12";
+                        option.text = "Silver I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "9";
-                    option.text = "Silver";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "13";
+                        option.text = "Gold IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "14";
+                        option.text = "Gold III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "15";
+                        option.text = "Gold II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "16";
+                        option.text = "Gold I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "13";
-                    option.text = "Gold";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "17";
+                        option.text = "Platinum IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "18";
+                        option.text = "Platinum III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "19";
+                        option.text = "Platinum II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "20";
+                        option.text = "Platinum I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "17";
-                    option.text = "Platinum";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "21";
+                        option.text = "Diamond IV";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "22";
+                        option.text = "Diamond III";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "23";
+                        option.text = "Diamond II";
+                        select.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "24";
+                        option.text = "Diamond I";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "21";
-                    option.text = "Diamond";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "25";
+                        option.text = "Master";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "25";
-                    option.text = "Master";
-                    field.appendChild(option);
+                        option = document.createElement("option");
+                        option.value = "26";
+                        option.text = "Grand Master";
+                        select.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "26";
-                    option.text = "Grand Master";
-                    field.appendChild(option);
-
-                    option = document.createElement("option");
-                    option.value = "27";
-                    option.text = "Challenger";
-                    field.appendChild(option);
-
-                //Division on rank
-                var field = document.createElement("SELECT");
-                field.setAttribute("id", "division");
-                field.setAttribute("name", "division");
-                field.setAttribute("class", "mediumdropdown");
-                field.setAttribute("hidden", "");
-                div.appendChild(field);
-
-                innerP = document.createElement("P");
-                innerP.setAttribute("id","rankError");
-                innerP.setAttribute("class","formError redErrorText");
-                innerP.setAttribute("hidden","");
-                div.appendChild(innerP);
-
-
-                    //Options
-                    option = document.createElement("option");
-                    option.value = "invalid";
-                    option.text = "";
-                    field.appendChild(option);
-
-                    option = document.createElement("option");
-                    option.value = "3";
-                    option.text = "I";
-                    field.appendChild(option);
-
-                    option = document.createElement("option");
-                    option.value = "2";
-                    option.text = "II";
-                    field.appendChild(option);
-
-                    option = document.createElement("option");
-                    option.value = "1";
-                    option.text = "III";
-                    field.appendChild(option);
-
-                    option = document.createElement("option");
-                    option.value = "0";
-                    option.text = "IV";
-                    field.appendChild(option);
-
+                        option = document.createElement("option");
+                        option.value = "27";
+                        option.text = "Challenger";
+                        select.appendChild(option);
+                
+                
                 //Prefered Main Role
                 div = document.createElement("div");
                 gameDetails.appendChild(div);
@@ -757,19 +784,47 @@
                 var hr = document.createElement("hr");
                 gameDetails.appendChild(hr);
 
-                //Voeg game to aan account 
+                //Gegevens aanpassen 
                 var buttonDiv = document.createElement("div");
                 buttonDiv.setAttribute("class","buttoncenterdiv")
                 gameDetails.appendChild(buttonDiv);
 
                 var field = document.createElement("INPUT");
                 field.setAttribute("type", "button");
-                field.setAttribute("value", "Game toevoegen");
+                field.setAttribute("value", "Gegevens wijzigen");
                 field.setAttribute("id", "lolsubmit");
                 field.setAttribute("class", "bigbutton");
                 field.setAttribute("onclick", "verifyLeagueOfLegendsForm();");
                 buttonDiv.appendChild(field);
 
+
+            }
+
+            function fillLeagueOfLegendsForm()
+            {
+                <?php
+                    //Check if the game to fill out is League of Legends, else ignore
+                    if($_SESSION["editGame"] == "lol")
+                    {
+                        //Set region
+                        echo 'document.getElementById("region").value = "' . $_SESSION["editLol_zone"] . '";';
+                        //Set Summonername
+                        echo 'document.getElementById("summonerName").value = "' . $_SESSION["editLol_name"] . '";';
+                        //Set role1
+                        echo 'document.getElementById("role1").value = "' . $_SESSION["editLol_role1"] . '";';
+                        //Set role2
+                        echo 'document.getElementById("role2").value = "' . $_SESSION["editLol_role2"] . '";';
+                        //Set 
+                        echo 'document.getElementById("rank").value = "' . $_SESSION["editLol_rank"] . '";';
+
+                        //Unset vars
+                        unset($_SESSION["editLol_name"]);
+                        unset($_SESSION["editLol_role1"]);
+                        unset($_SESSION["editLol_role2"]);
+                        unset($_SESSION["editLol_rank"]);
+                        unset($_SESSION["editLol_zone"]);
+                    }
+                ?>
 
             }
 
@@ -965,6 +1020,11 @@
                     document.getElementById("role2").removeAttribute("hidden");
                 }
             }
+
+            <?php 
+                //Unset editGame so that the user can't refresh this page, and is sent back to accountoptions
+                unset($_SESSION["editGame"]);
+            ?>
 
    
         </script>
