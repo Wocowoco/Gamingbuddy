@@ -43,7 +43,7 @@ body{
     white-space: nowrap; 
     width: 20%;
     overflow: hidden;
-  text-overflow: clip; 
+    text-overflow: clip; 
 }
 div{
     margin:30px;

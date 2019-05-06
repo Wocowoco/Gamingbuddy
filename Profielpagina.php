@@ -65,7 +65,7 @@
         
     <div class="wvg" id="wvg">
         <div class="pagecenterdiv">
-            <img class="foto" src="../pics/WOCO.jpg" alt="Wouter" >
+            <img class="foto" src="matthias.png" alt="Wouter" >
             <h1 class="naam">WOCO</h1>
         </div>
 

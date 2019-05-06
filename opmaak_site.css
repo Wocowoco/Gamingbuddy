@@ -86,9 +86,10 @@ object{
     
 }
 .foto{
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
+    display: block;
+    max-width: 450px;
+    transform: translate(15%, 0);
+    margin: auto;
 }
 .naam{
     text-align: center;
