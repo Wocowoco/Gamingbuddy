@@ -657,11 +657,6 @@
                     option.text = "Support";
                     field.appendChild(option);
 
-                    option = document.createElement("option");
-                    option.value = "6";
-                    option.text = "Fill";
-                    field.appendChild(option);
-
                 //Prefered Second Role
                 div = document.createElement("div");
                 gameDetails.appendChild(div);
