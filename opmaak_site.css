@@ -125,6 +125,89 @@ object{
     z-index: 1;
 }
 
+.blokken{
+    max-width: 700px;
+    min-width: 500px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(220, 220, 220);
+    padding: 4px;
+
+    position: relative;
+}
+
+.blokkenvanbinnen{
+    max-width: 500px;
+    min-width: 500px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(220, 220, 220);
+    padding: 4px;
+
+    position: relative;
+}
+
+.titel{
+    max-width: 400px;
+    min-width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+   
+}
+.pijl{
+    height: 35px;
+    max-width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    
+}
+.horizontaal{
+    display: inline-block;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: clip;
+    vertical-align: middle;
+
+}
+ul{
+    list-style-type: none;
+    margin: 0px;
+}
+.top{
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+input[type=text] {
+    width: 93%;
+    padding: 12px 20px;
+    margin: auto;
+    display: inline-block;
+    height: 30px;
+    
+    
+    
+}
 
 
 
@@ -222,7 +305,7 @@ input.bigbutton{
     font-size: 15px;
 }
 
-p.subjectheader{
+.subjectheader{
     text-align: center;
     font-size: 25px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
