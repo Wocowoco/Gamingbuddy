@@ -6,7 +6,9 @@
         <link href="opmaak_site.css" rel="stylesheet" />
 
         <script>
+            var loldataArray = new Array();
             var z=0;
+
             function myFunction() {
                 
 
@@ -24,15 +26,13 @@
                 }
 
             }
-            
-        </script>
-        <script>
-            function init(){
 
+            function init(){
                 <?php 
                 //aanpassen van de border van u eigen profiel zodat die overeenkomt met je rank
                 include 'profielaanpas.php';
                 getlolrank();
+                getlolacounts();
                     for($waar=0; $waar < $_SESSION['loldataAmount']; $waar++){
                         $rank = $_SESSION["lol_RankID"];
                         if($rank >= 1 && $rank <= 4 )
@@ -81,12 +81,8 @@
                             unset($_SESSION["user_firstname"]);
                         }
                     }
-                ?>
-            }
-        </script>
-        <script>
-            <?php 
-            getlolacounts();
+
+                    
                     //Set amount of data
                     if(isset($_SESSION["loldataAmount"]))
                     {
@@ -107,8 +103,9 @@
                     {
                         echo "amountOfLoldata = 0;";
                     }
-
                 ?>
+            }
+
         </script>
     </head>
     <body onload="init()">
@@ -132,10 +129,7 @@
                 echo $naam ;
             ?>
             </h1>
-            <form action="gamingbuddy">
-                <input type="text" name="beschrijving"><br>
-                <input type="submit" value="Submit">
-            </form>
+            <p id="userbio">Deze gebruiker heeft nog geen bio.</p>
         </div>
 
 
