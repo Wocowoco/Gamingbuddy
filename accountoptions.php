@@ -17,29 +17,10 @@
         <script>          
             function init(){
                 <?php 
-                //Get accountdetails and add them on the appropriate forms
+
+                //Get all the accountdata that is in the database
                 include 'php_getaccountdetails.php';
                 getAccountDetails();
-
-                if(isset($_SESSION['user_firstname']))
-                {
-                    echo 'document.getElementById("accname").value = "' . $_SESSION["user_firstname"] . '";';
-                    unset($_SESSION['user_firstname']);
-                }
-
-                if(isset($_SESSION['user_lastname']))
-                {
-                    echo 'document.getElementById("acclastname").value = "' . $_SESSION["user_lastname"] . '";';
-                    unset($_SESSION['user_lastname']);
-                }
-
-                if(isset($_SESSION['user_username']))
-                {
-                    echo 'document.getElementById("username").value = "' . $_SESSION["user_username"] . '";';
-                    unset($_SESSION['user_username']);
-                }
-
-
                 //Get all the games that belong to this account
                 include 'php_getaccountgames.php';
                 getAccountGames();
@@ -105,6 +86,14 @@
                     echo  'document.getElementById("namesUpdated").innerHTML = "Gegevens zijn aangepast.";';
                     echo 'document.getElementById("namesUpdated").removeAttribute("hidden");';
                     unset($_SESSION['nameschanged']);
+                }
+
+                //If the bio just got updated, show message
+                if(isset($_SESSION['biochanged']))
+                {
+                    echo  'document.getElementById("bioUpdated").innerHTML = "Beschrijving is aangepast.";';
+                    echo 'document.getElementById("bioUpdated").removeAttribute("hidden");';
+                    unset($_SESSION['biochanged']);
                 }
 
                 //If passworderror is shown
@@ -234,6 +223,27 @@
         <object class= "links"  name="games" type="text/html" data="games.html"> </object>
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
+        <div class="pagecenterdiv">
+                <p class="subjectheader">Beschrijving aanpassen</p>
+                <div id="namediv" class="pagecenterinnerdiv">
+                    <hr>
+                    <form id="bioform" action="php_setaccountbio.php" method="POST">
+                        <br>
+                        <label class="">Beschrijving:</label><br>
+                        <textarea id="bio" name="bio" class="bigtextarea"><?php if(isset($_SESSION['user_bio'])){echo $_SESSION["user_bio"]; unset($_SESSION["user_bio"]);} ?></textarea>
+                        <p id="bioError" class="formError redErrorText" hidden></p>
+                        
+
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <input type=submit id="bioconfirm" value="Update beschrijving" class="bigbutton"><br>
+                        </div>
+                        <p id="bioUpdated" class="formError greenErrorText centerdiv" hidden></p>
+
+                    </form>
+                </div>
+            </div>
+
             <div class="pagecenterdiv">
                 <p class="subjectheader">Wijzig gegevens</p>
                 <div id="namediv" class="pagecenterinnerdiv">
@@ -241,7 +251,7 @@
                     <form id="namesform" action="php_setaccountdetails.php" method="POST">
                         <br>
                         <label class="">Accountnaam:</label><br>
-                        <input type=text id="username" name="username" class="bigtextfield">
+                        <input type=text id="username" name="username" class="bigtextfield" value="<?php if(isset($_SESSION['user_username'])){echo $_SESSION["user_username"]; unset($_SESSION["user_username"]);} ?>">
                         <p id="usernameError" class="formError redErrorText" hidden></p>
                         <p id="usernameHint" class="formError hintText">Dit is je log-in naam. Als je deze veranderd, moet je in de toekomst die naam gebruiken voor in te loggen.</p>
                         
@@ -249,12 +259,12 @@
                         <div class="formparagraph"></div>
 
                         <label class="">Voornaam:</label><br>
-                        <input type=text id="accname" name="accname" class="bigtextfield">
+                        <input type=text id="accname" name="accname" class="bigtextfield" value="<?php if(isset($_SESSION['user_firstname'])){echo $_SESSION["user_firstname"]; unset($_SESSION["user_firstname"]);} ?>">
                         <p id="accnameError" class="formError redErrorText" hidden></p>
                         <br>
 
                         <label>Achternaam:</label><br>
-                        <input type=textfield id="acclastname" name="acclastname" class="bigtextfield">
+                        <input type=textfield id="acclastname" name="acclastname" class="bigtextfield" value="<?php if(isset($_SESSION['user_lastname'])){echo $_SESSION["user_lastname"]; unset($_SESSION["user_lastname"]);} ?>">
                         <p id="acclastnameError" class="formError redErrorText" hidden></p>
                         <br>
                         

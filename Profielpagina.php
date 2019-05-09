@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    //If not logged in, return to mainpage
+    if(!isset($_SESSION["id"]))
+    {
+        header("Location: index.php");
+        exit;  
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,6 +18,7 @@
         <script>
             var loldataArray = new Array();
             var z=0;
+            var changeBio = false;
 
             function myFunction() {
                 
@@ -28,11 +39,39 @@
             }
 
             function init(){
-                <?php 
+                <?php   
+                //Get profilebio from DB
+                include 'php_getaccountdetails.php';
+                getAccountBio();
                 //aanpassen van de border van u eigen profiel zodat die overeenkomt met je rank
-                include 'profielaanpas.php';
+                include 'php_profielaanpas.php';
                 getlolrank();
                 getlolacounts();
+
+
+                    //Set amount of data
+                    if(isset($_SESSION["loldataAmount"]))
+                    {
+                         echo "amountOfLoldata = " . $_SESSION['loldataAmount'] . ";";
+
+
+                        //Loop through all the lol data
+                        for($i = 0; $i < $_SESSION['loldataAmount']; $i++)
+                        {
+                            echo "loldataArray.push([\"" . $_SESSION['loldata'][$i][0] . "\",\"" 
+                            . $_SESSION['loldata'][$i][1] . "\",\"" 
+                            . $_SESSION['loldata'][$i][2] . "\",\"" 
+                            . $_SESSION['loldata'][$i][3] . "\",\"" 
+                            . $_SESSION['loldata'][$i][4] . "\"]);";
+                        }
+                    }
+                    else
+                    {
+                        echo "amountOfLoldata = 0;";
+                    }
+
+
+
                     for($waar=0; $waar < $_SESSION['loldataAmount']; $waar++){
                         $rank = $_SESSION["lol_RankID"];
                         if($rank >= 1 && $rank <= 4 )
@@ -81,28 +120,6 @@
                             unset($_SESSION["user_firstname"]);
                         }
                     }
-
-                    
-                    //Set amount of data
-                    if(isset($_SESSION["loldataAmount"]))
-                    {
-                         echo "amountOfLoldata = " . $_SESSION['loldataAmount'] . ";";
-
-
-                        //Loop through all the lol data
-                        for($i = 0; $i < $_SESSION['loldataAmount']; $i++)
-                        {
-                            echo "loldataArray.push([\"" . $_SESSION['loldata'][$i][0] . "\",\"" 
-                            . $_SESSION['loldata'][$i][1] . "\",\"" 
-                            . $_SESSION['loldata'][$i][2] . "\",\"" 
-                            . $_SESSION['loldata'][$i][3] . "\",\"" 
-                            . $_SESSION['loldata'][$i][4] . "\"]);";
-                        }
-                    }
-                    else
-                    {
-                        echo "amountOfLoldata = 0;";
-                    }
                 ?>
             }
 
@@ -111,7 +128,7 @@
     <body onload="init()">
         <object class="boven" name="menu" type="text/html" data="Menu.html"> </object>
         <object class= "links" id="links" name="games" type="text/html" data="games.html"> </object>
-        <object class="rechts" id="rechts" name="chat" type="text/html" data="chat.html"> </object>4
+        <object class="rechts" id="rechts" name="chat" type="text/html" data="chat.html"> </object>
         <div id="test">
 
         </div>
@@ -129,7 +146,25 @@
                 echo $naam ;
             ?>
             </h1>
-            <p id="userbio">Deze gebruiker heeft nog geen bio.</p>
+            <p id="userbio">
+                <?php
+                    //Check if there's a bio, and if it's not empty
+                    if (isset($_SESSION['user_bio']))
+                    {
+                        if($_SESSION['user_bio'] != "")
+                        {
+                            echo nl2br($_SESSION['user_bio']);
+                        }
+                    }
+                    else
+                    {
+                        //Show that this user has set no bio yet
+                        echo "Deze gebruiker heeft nog geen bio.<br>";
+
+                    }
+                    unset($_SESSION['user_bio']);
+                ?>
+            </p>
         </div>
 
 
@@ -175,6 +210,20 @@
                 
         </div>
     </div>
-
+    <p>
+    <?php
+        //------------------------------------------------------------------//
+        //                                DELETE THIS                       //
+        //------------------------------------------------------------------//
+        echo "<b>NIET UNSETTE VARIABELEN, ZIE ONDERAAN CODE        -Wouter</b><br><br>";
+        // Dit zijn variabelen die gij nergens unset na gebruik, dus doe ik het ff op het einde van uw PHP  -Wouter
+        print_r($_SESSION);
+        unset($_SESSION['loldata']);
+        unset($_SESSION['zelfUsername']);
+        unset($_SESSION['loldataAmount']);
+        unset($_SESSION['lol_RankID']);
+        //print_r($_SESSION);
+    ?>
+    </p>
     </body>
 </html>

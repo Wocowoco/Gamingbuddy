@@ -14,7 +14,10 @@
         $dbname = "gamingbuddy";
 
         //ProfielID die je nu opzoekt
-            $id = 1;
+        if(isset($_SESSION['id']))
+        {
+            $id = $_SESSION['id'];
+        }
 
         // Create connection
         $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
@@ -51,7 +54,10 @@
         $dbname = "gamingbuddy";
 
         //ProfielID die je nu opzoekt
-            $id = 1;
+        if(isset($_SESSION['id']))
+        {
+            $id = $_SESSION['id'];
+        }
 
         // Create connection
         $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
@@ -86,7 +92,10 @@ function getlolacounts(){
     $dbpassword = "";
     $dbname = "gamingbuddy";
 
-    $id = 1;
+    if(isset($_SESSION['id']))
+    {
+        $id = $_SESSION['id'];
+    }
      // Create connection
      $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
