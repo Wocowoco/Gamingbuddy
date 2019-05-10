@@ -32,6 +32,7 @@
     $rank += $division;
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
+    $bio = filter_input(INPUT_POST,'bio');
 
     $host = "localhost";
     $dbusername = "root";
@@ -48,9 +49,9 @@
     else{
         //Add LOL data to DB
         //Prepared statement
-        $stmt = $conn->prepare("INSERT INTO gb_loldata (accountID, SummonerName, RankID, PrefRole1, PrefRole2, Zone)
-        VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("isiiis",$id,$username,$rank,$prefrole1,$prefrole2,$region);
+        $stmt = $conn->prepare("INSERT INTO gb_loldata (accountID, SummonerName, RankID, PrefRole1, PrefRole2, Zone, Bio)
+        VALUES (?,?,?,?,?,?,?)");
+        $stmt->bind_param("isiiiss",$id,$username,$rank,$prefrole1,$prefrole2,$region, $bio);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 

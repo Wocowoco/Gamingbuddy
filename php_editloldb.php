@@ -25,13 +25,13 @@
     }
 
     $username = filter_input(INPUT_POST,'summonerName');
-    $username = filter_input(INPUT_POST,'summonerName');
     $region = filter_input(INPUT_POST,'region');
     $rank = filter_input(INPUT_POST,'rank');
     $division = filter_input(INPUT_POST,'division');
     $rank += $division;
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
+    $bio = filter_input(INPUT_POST,'bio');
 
     $host = "localhost";
     $dbusername = "root";
@@ -49,13 +49,13 @@
         //Add LOL data to DB
         //Prepared statement
         $stmt = $conn->prepare("UPDATE gb_loldata 
-        SET SummonerName = ?, RankID = ?, PrefRole1 = ?, PrefRole2 = ?, Zone = ?)
+        SET SummonerName = ?, RankID = ?, PrefRole1 = ?, PrefRole2 = ?, Zone = ?, Bio = ?
         WHERE lolID = ?");
-        $stmt->bind_param("iiiis", $username,$rank,$prefrole1,$prefrole2,$region);
+        $stmt->bind_param("siiissi", $username,$rank,$prefrole1,$prefrole2,$region, $bio, $_SESSION["gameID"]);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
-        header("Location: index.php");
+        header("Location: accountoptions.php");
         exit; 
     }
     ?>

@@ -41,7 +41,7 @@
         if($_SESSION["editGame"] == "apex")
         {
             //Prepared statement
-            $stmt = $conn->prepare("SELECT OriginName, PrefRole1, PrefRole2
+            $stmt = $conn->prepare("SELECT OriginName, PrefRole1, PrefRole2, Bio
             FROM gb_apexdata
             WHERE apexID = ?");
             $stmt->bind_param("i",$_SESSION["gameID"]);
@@ -53,6 +53,7 @@
                     $_SESSION['editApex_name'] = $row['OriginName'];
                     $_SESSION['editApex_role1'] = $row['PrefRole1'];
                     $_SESSION['editApex_role2'] = $row['PrefRole2'];
+                    $_SESSION['editApex_bio'] = $row['Bio'];
                 }
             }
         }
@@ -61,7 +62,7 @@
         if($_SESSION["editGame"] == "lol")
         {
             //Prepared statement
-            $stmt = $conn->prepare("SELECT SummonerName, RankID, PrefRole1, PrefRole2, Zone
+            $stmt = $conn->prepare("SELECT SummonerName, RankID, PrefRole1, PrefRole2, Zone, Bio
             FROM gb_loldata
             WHERE lolID = ?");
             $stmt->bind_param("i",$_SESSION["gameID"]);
@@ -75,6 +76,7 @@
                     $_SESSION['editLol_zone'] = $row['Zone'];
                     $_SESSION['editLol_role1'] = $row['PrefRole1'];
                     $_SESSION['editLol_role2'] = $row['PrefRole2'];
+                    $_SESSION['editLol_bio'] = $row['Bio'];
                 }
             }
         }

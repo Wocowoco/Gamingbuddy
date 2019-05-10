@@ -27,6 +27,7 @@
     $username = filter_input(INPUT_POST,'originName');
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
+    $bio = filter_input(INPUT_POST,'bio');
 
     $host = "localhost";
     $dbusername = "root";
@@ -44,9 +45,9 @@
         
         //Add apexdata to DB
         //Prepared statement
-        $stmt = $conn->prepare("INSERT INTO gb_apexData (AccountID, OriginName, PrefRole1, PrefRole2)
-        VALUES (?,?,?,?)");
-        $stmt->bind_param("ssii",$id,$username,$prefrole1,$prefrole2);
+        $stmt = $conn->prepare("INSERT INTO gb_apexData (AccountID, OriginName, PrefRole1, PrefRole2, Bio)
+        VALUES (?,?,?,?,?)");
+        $stmt->bind_param("ssiis",$id,$username,$prefrole1,$prefrole2, $bio);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 

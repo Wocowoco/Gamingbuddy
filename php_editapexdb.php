@@ -27,6 +27,7 @@
     $username = filter_input(INPUT_POST,'originName');
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
+    $bio = filter_input(INPUT_POST,'bio');
 
     $host = "localhost";
     $dbusername = "root";
@@ -45,9 +46,9 @@
         //Update apexdata in DB
         //Prepared statement
         $stmt = $conn->prepare("UPDATE gb_apexData 
-        SET OriginName = ?, PrefRole1 = ?, PrefRole2 = ?
+        SET OriginName = ?, PrefRole1 = ?, PrefRole2 = ?, Bio = ?
         WHERE apexID = ?");
-        $stmt->bind_param("siii",$username,$prefrole1,$prefrole2, $_SESSION["gameID"]);
+        $stmt->bind_param("siisi",$username,$prefrole1,$prefrole2,$bio, $_SESSION["gameID"]);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         unset($_SESSION["gameID"]);

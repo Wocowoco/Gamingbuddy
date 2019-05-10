@@ -241,10 +241,29 @@
                 field.setAttribute("id", "apexError");
                 field.setAttribute("hidden", "");
                 gameDetails.appendChild(field);
-                txt = document.createElement("br");
+
+                //Apex Legends bio
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "bio");
+                txt.setAttribute("id", "biotxt");
+                txt.innerHTML = "Beschrijving:";
                 gameDetails.appendChild(txt);
 
-                
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "bio");
+                txt.setAttribute("id", "biotextoptional");
+                txt.setAttribute("class", "hintText");
+                txt.innerHTML = " (Optioneel)";
+                gameDetails.appendChild(txt);
+             
+                var br = document.createElement("br");
+                gameDetails.appendChild(br);
+
+                field = document.createElement("textarea");
+                field.setAttribute("id", "bio");
+                field.setAttribute("name", "bio");
+                field.setAttribute("class", "bigtextarea");
+                gameDetails.appendChild(field);
                 //HR
                 var hr = document.createElement("hr");
                 gameDetails.appendChild(hr);
@@ -717,7 +736,32 @@
                     option.text = "Fill";
                     field.appendChild(option);
 
-                
+                var br = document.createElement("br");
+                div.appendChild(br);
+
+                //League of Legends bio
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "bio");
+                txt.setAttribute("id", "biotxt");
+                txt.innerHTML = "Beschrijving:";
+                gameDetails.appendChild(txt);
+
+                txt = document.createElement("LABEL");
+                txt.setAttribute("for", "bio");
+                txt.setAttribute("id", "biotextoptional");
+                txt.setAttribute("class", "hintText");
+                txt.innerHTML = " (Optioneel)";
+                gameDetails.appendChild(txt);
+                                
+                var br = document.createElement("br");
+                gameDetails.appendChild(br);
+
+                field = document.createElement("textarea");
+                field.setAttribute("id", "bio");
+                field.setAttribute("name", "bio");
+                field.setAttribute("class", "bigtextarea");
+                gameDetails.appendChild(field);
+
                 //HR
                 var hr = document.createElement("hr");
                 gameDetails.appendChild(hr);

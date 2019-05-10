@@ -34,6 +34,7 @@
 
             function init()
             {
+                gameDetailsForm = document.getElementById("gameDetailsForm");
                 gameDetails = document.getElementById("gameDetails");
                 checkGame();
 
@@ -45,12 +46,14 @@
                 if(selectedGame == "apex")
                 {
                     createApexForm();
+                    document.getElementById("submitEdit").setAttribute("onclick","verifyApexForm();");
                     fillApexForm();
                 }
 
                 else if(selectedGame == "lol")
                 {
                     createLeagueOfLegendsForm();
+                    document.getElementById("submitEdit").setAttribute("onclick","verifyLeagueOfLegendsForm();");
                     fillLeagueOfLegendsForm();
                 }
 
@@ -63,7 +66,13 @@
             //-------------------------
             function createApexForm()
             {
-                gameDetails.setAttribute("action","php_editapexdb.php")
+                gameDetailsForm.setAttribute("action","php_editapexdb.php")
+                
+                //Title
+                var p = document.createElement("p");
+                p.setAttribute("class", "subjectheader");
+                p.innerHTML = "Apex Legends - Aanpassen"
+                gameDetails.appendChild(p);
 
                 //HR
                 var hr = document.createElement("hr");
@@ -249,26 +258,7 @@
                 field.setAttribute("id", "apexError");
                 field.setAttribute("hidden", "");
                 gameDetails.appendChild(field);
-                txt = document.createElement("br");
-                gameDetails.appendChild(txt);
 
-                
-                //HR
-                var hr = document.createElement("hr");
-                gameDetails.appendChild(hr);
-
-                //Gegevens aanpassen
-                var buttonDiv = document.createElement("div");
-                buttonDiv.setAttribute("class","buttoncenterdiv");
-                gameDetails.appendChild(buttonDiv);
-
-                var field = document.createElement("INPUT");
-                field.setAttribute("type", "button");
-                field.setAttribute("value", "Gegevens aanpassen");
-                field.setAttribute("id", "lolsubmit");
-                field.setAttribute("class", "bigbutton");
-                field.setAttribute("onclick", "verifyApexForm();");
-                buttonDiv.appendChild(field);
             }
 
             function fillApexForm()
@@ -283,6 +273,8 @@
                         echo 'document.getElementById("role1").value = "' . $_SESSION["editApex_role1"] . '";';
                         //Set role2
                         echo 'document.getElementById("role2").value = "' . $_SESSION["editApex_role2"] . '";';
+
+
 
                         //Unset vars
                         unset($_SESSION["editApex_name"]);
@@ -387,7 +379,7 @@
                 //If no errors, submit form
                 if(error == false)
                 {
-                    document.getElementById("gameDetails").submit(); 
+                    document.getElementById("gameDetailsForm").submit(); 
                 }
             }
 
@@ -397,7 +389,13 @@
             //-------------------------
             function createLeagueOfLegendsForm()
             {
-                gameDetails.setAttribute("action","php_editloldb.php");
+                gameDetailsForm.setAttribute("action","php_editloldb.php");
+                //Title
+                var p = document.createElement("p");
+                p.setAttribute("class", "subjectheader");
+                p.innerHTML = "League of Legends - Aanpassen"
+                gameDetails.appendChild(p);
+
                 
                 //HR
                 var hr = document.createElement("hr");
@@ -537,8 +535,13 @@
                 select.setAttribute("id", "rank");
                 select.setAttribute("name", "rank");
                 select.setAttribute("class", "mediumdropdown");
-                select.setAttribute("onchange", "showDivision();");
                 div.appendChild(select);
+
+                innerP = document.createElement("P");
+                innerP.setAttribute("id","rankError");
+                innerP.setAttribute("class","formError redErrorText");
+                innerP.setAttribute("hidden","");
+                div.appendChild(innerP);
 
                         //Divisions
                         option = document.createElement("option");
@@ -773,26 +776,6 @@
                     option.value = "6";
                     option.text = "Fill";
                     field.appendChild(option);
-
-                
-                //HR
-                var hr = document.createElement("hr");
-                gameDetails.appendChild(hr);
-
-                //Gegevens aanpassen 
-                var buttonDiv = document.createElement("div");
-                buttonDiv.setAttribute("class","buttoncenterdiv")
-                gameDetails.appendChild(buttonDiv);
-
-                var field = document.createElement("INPUT");
-                field.setAttribute("type", "button");
-                field.setAttribute("value", "Gegevens wijzigen");
-                field.setAttribute("id", "lolsubmit");
-                field.setAttribute("class", "bigbutton");
-                field.setAttribute("onclick", "verifyLeagueOfLegendsForm();");
-                buttonDiv.appendChild(field);
-
-
             }
 
             function fillLeagueOfLegendsForm()
@@ -809,8 +792,9 @@
                         echo 'document.getElementById("role1").value = "' . $_SESSION["editLol_role1"] . '";';
                         //Set role2
                         echo 'document.getElementById("role2").value = "' . $_SESSION["editLol_role2"] . '";';
-                        //Set 
+                        //Set rank
                         echo 'document.getElementById("rank").value = "' . $_SESSION["editLol_rank"] . '";';
+
 
                         //Unset vars
                         unset($_SESSION["editLol_name"]);
@@ -871,26 +855,6 @@
                     var errorMessage = document.getElementById("rankError");
                     errorMessage.removeAttribute("hidden");
                     errorMessage.innerHTML = "Gelieve je rank te selecteren uit de lijst."; 
-                }
-
-                //Check if the selected rank is not master+ (for division)
-                else if(document.getElementById("rank").value != "25" &&
-                document.getElementById("rank").value != "26" &&
-                document.getElementById("rank").value != "27")
-                {
-                    if(document.getElementById("division").value == "invalid")
-                    {
-                        error = true;
-                        var errorMessage = document.getElementById("rankError");
-                        errorMessage.removeAttribute("hidden");
-                        errorMessage.innerHTML = "Gelieve een divisie te selecteren voor je rank.";  
-                    }
-                    else //No error, hide message
-                    {
-                    var errorMessage = document.getElementById("rankError");
-                    errorMessage.setAttribute("hidden","");
-                    errorMessage.innerHTML = "";
-                    }
                 }
                 else //No error, hide message
                 {
@@ -975,32 +939,13 @@
                     }
                 }   
 
-
-
-
-
                 //Check if error, else submit form
                 if(!error)
                 {
-                    document.getElementById("gameDetails").submit();
+                    document.getElementById("gameDetailsForm").submit();
                 }
             }
             
-            function showDivision()
-            {
-                var selectedRank = document.getElementById("rank").value;
-                if(selectedRank == "25" || selectedRank == "26" || selectedRank == "27" ||selectedRank == "invalid")
-                {
-                    document.getElementById("division").setAttribute("hidden", "");
-                    document.getElementById("division").value = "0";
-                }
-                else
-                {
-                    document.getElementById("division").value = "invalid";
-                    document.getElementById("division").removeAttribute("hidden");
-                }
-            }
-
             function showSecondRole()
             {
                 var selectedRole = document.getElementById("role1").value;
@@ -1031,7 +976,29 @@
         <div class="wvg">
             <div class="pagecenterdiv">
                 <div class="pagecenterinnerdiv">
-                    <form id="gameDetails" method="post">       
+                    <form id="gameDetailsForm" method="post">    
+                        <div id=gameDetails>
+                        </div>  
+                        <label for="bio">Beschrijving:</label>
+                        <label for="bio" class="hintText">( Optioneel)</label>
+                        <textarea id="bio" name="bio" class="bigtextarea"><?php 
+                            //Check which game to print the bio of
+                            if (isset($_SESSION['editApex_bio']))
+                            {
+                                echo $_SESSION['editApex_bio'];
+                                unset($_SESSION['editApex_bio']);
+                            }
+
+                            else if (isset($_SESSION['editLol_bio']))
+                            {
+                                echo $_SESSION['editLol_bio'];
+                                unset($_SESSION['editLol_bio']);
+                            }
+                            ?></textarea>
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <input type="button" value="Gegevens wijzigen" class="bigbutton" id="submitEdit" onclick="">
+                        </div>
                     </form>
                 </div>
             </div>
