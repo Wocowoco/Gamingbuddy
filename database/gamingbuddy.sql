@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 mei 2019 om 15:27
+-- Gegenereerd op: 11 mei 2019 om 21:04
 -- Serverversie: 10.1.38-MariaDB
 -- PHP-versie: 7.3.2
 
@@ -42,7 +42,7 @@ CREATE TABLE `gb_account` (
 --
 
 INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`, `Bio`) VALUES
-(1, 'Woco', '$2y$10$xrcTnJJT7SOacsqUU1PIFu0hdYCqKcZyJCSjqycROIsar2frsoX8O', 'Wouter', 'Cornelis', NULL),
+(1, 'Woco', '$2y$10$xrcTnJJT7SOacsqUU1PIFu0hdYCqKcZyJCSjqycROIsar2frsoX8O', 'Wouter', 'Cornelis', 'Dit is Wouter\'s test bio.\r\nMet een tweede regel.\r\n\r\nHierboven zou een lege regel moeten staan, aangezien dit regel 4 is.'),
 (2, 'matth', '$2y$10$xrcTnJJT7SOacsqUU1PIFu0hdYCqKcZyJCSjqycROIsar2frsoX8O', 'Matthias', 'Hernalsteen', NULL),
 (3, 'petsel', '$2y$10$rGgHDmPKucSLM95rtek3iuaiQnkj28ht5ag483ISVCyz6HXp36EjK', 'Peter', 'Selie', NULL),
 (4, 'lolplayer', '$2y$10$QgWykm.4YZKkcXVfUDPfveEKJSfWvDI.XZbbHrreLWXGadTI65Rvu', 'League', 'Player', NULL),
@@ -68,7 +68,9 @@ INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`, `Bio
 (77, '26april', '$2y$10$EEZmPyP7dYeX5PLBvTDdk.X.re/VWHXtwZcJBvrzJwFECHit3kSn.', '26', 'april', NULL),
 (78, '29april', '$2y$10$hQISVnFFkDWRYsJkHEkfle0qk6L2RLwzkdZgS3s2I7iSnf2mJ2yta', '29', 'april', NULL),
 (79, '3mei', '$2y$10$0HbOruIMekU.G7Y4GWMeFeAwRjCqCv/zACZRiz6g9asQEVRu7j5dK', '3', 'mei', NULL),
-(80, '5mei', '$2y$10$FR1VWzyXU6vGh5wVa6Mo4.fGocoYFHyxXJv0lW//AsaoW5.bTuS2a', '5', 'mei', NULL);
+(80, '5mei', '$2y$10$FR1VWzyXU6vGh5wVa6Mo4.fGocoYFHyxXJv0lW//AsaoW5.bTuS2a', '5', 'mei', NULL),
+(81, '9mei', '$2y$10$Us8ltwtPB.Fj7iGskFHQWO9Wgnxga/C7vdZ8Oy4uOJbwEPPM4Sw5a', '9', 'mei', 'Dit is een test.\r\nDit is een tweede test.'),
+(82, '11mei', '$2y$10$hckmlSlWDhayBPBMal8naeXkKd0aCwDFeTJLcl.JRj5Ld9ggSx/j.', '11', 'mei', 'Het profiel aangemaakt op 11 Mei.\r\nHeeft zowel LoL als Apex account met beschrijving.');
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,10 @@ INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `PrefR
 (77, 56, '22april', 22, 2, 6, 'LAS', NULL),
 (78, 73, 'silversea3', 10, 4, 2, 'SEA', NULL),
 (79, 80, '5MeiLolDel', 13, 1, 5, 'SEA', NULL),
-(81, 80, '5Mei6MeiDelTest', 19, 2, 1, 'EUNE', NULL);
+(81, 80, '5Mei6MeiDelTest', 19, 2, 1, 'EUNE', NULL),
+(82, 81, '9meiLolbio', 1, 5, 6, 'EUNE', 'Test11'),
+(83, 81, '9meibio', 6, 1, 2, 'CN', 'Test1\r\nTest2\r\nTest3'),
+(84, 82, '11mei', 15, 3, 4, 'EUW', 'Testbeschrijving voor 11 Mei.\r\nDit is regel1.\r\n\r\nEn dit is regel 4 (geen regel 3).');
 
 -- --------------------------------------------------------
 
@@ -259,13 +264,13 @@ ALTER TABLE `gb_lolzone`
 -- AUTO_INCREMENT voor een tabel `gb_account`
 --
 ALTER TABLE `gb_account`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT voor een tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
-  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT voor een tabel `gb_lolrank`
