@@ -67,7 +67,7 @@
             $result = mysqli_stmt_get_result($stmt);
         }
 
-        header("Location: accountoptions.php");
+        header("Location: accountoptions.php#gamesdiv");
         exit; 
     }
     ?>

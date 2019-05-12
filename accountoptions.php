@@ -17,16 +17,44 @@
         <script>          
             function init(){
                 <?php 
-
+                $itot = 0;
                 //Get all the accountdata that is in the database
                 include 'php_getaccountdetails.php';
                 getAccountDetails();
+                //Get all the reviews written by this account
+                include "php_getreviews.php";
+                getMyReviews();
+
+                //Add title of reviews table
+                
+                echo 'var table = document.getElementById("reviewstable");';
+                echo 'table.innerHTML = "<table id=\'innerreviewstable\'><tr><th>Type</th><th>Accountnaam</th><th></th><th></th></tr>";';
+                if(isset($_SESSION['reviewsAmount']))
+                {
+                    echo 'var innertable = document.getElementById("innerreviewstable");';
+                    for($i = 0; $i < $_SESSION['reviewsAmount']; $i++)
+                    {
+                        //Create the Apex Legends change and delete buttons, and link them to their pages
+                        echo 'innertable.innerHTML += "<tr><td>'.$_SESSION["reviewdata"][$i][0].'</td><td>'.$_SESSION["reviewdata"][$i][1].'</td>';
+                        echo '<td>Bewerken</td>';
+                        echo '<td><form id=delreview'.$itot.' action=php_deletereview.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDeleteReview(\"'.$_SESSION["reviewdata"][$i][1].'\",\"'.$itot.'\");\'></input><input type=text name=toID value='.$_SESSION['reviewdata'][$i][3].' hidden></input></form></td></tr>";';
+                        $itot+= 1;
+                    }
+
+                    unset($_SESSION['reviewsAmount']);
+                    unset($_SESSION['reviewdata']);
+
+                    unset($_SESSION['$_SESSION["positiveReviewAmount"]']);
+                    unset($_SESSION['$_SESSION["negativeReviewAmount"]']);
+                }
+
+
                 //Get all the games that belong to this account
                 include 'php_getaccountgames.php';
                 getAccountGames();
 
 
-                //Add display names to table
+                //Add title to games table
                 echo 'var table = document.getElementById("gamestable");';
                 echo 'table.innerHTML = "<table id=\'innergamestable\'><tr><th>Spel</th><th>Accountnaam</th><th></th><th></th></tr>";';
 
@@ -120,6 +148,15 @@
                     unset($_SESSION['delpassworderror']);
                 }
                 ?>
+            }
+
+            function verifyDeleteReview(reviewToID, number)
+            {
+                //Throw confirmation message to delete account;
+                if(window.confirm("Bent u zeker dat u het review over " + reviewToID + " wil verwijderen?"))
+                {
+                    document.getElementById("delreview"+number).submit();
+                }
             }
 
             function verifyDelete(gamename, gameUsername, number)
@@ -224,12 +261,12 @@
         <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
         <div class="pagecenterdiv">
-                <p class="subjectheader">Beschrijving aanpassen</p>
+                <p class="subjectheader">Profielbeschrijving aanpassen</p>
                 <div id="namediv" class="pagecenterinnerdiv">
                     <hr>
                     <form id="bioform" action="php_setaccountbio.php" method="POST">
                         <br>
-                        <label class="">Beschrijving:</label><br>
+                        <label class="">Profielbeschrijving:</label><label class="hintText"> (Optioneel)</label><br>
                         <textarea id="bio" name="bio" class="bigtextarea"><?php if(isset($_SESSION['user_bio'])){echo $_SESSION["user_bio"]; unset($_SESSION["user_bio"]);} ?></textarea>
                         <p id="bioError" class="formError redErrorText" hidden></p>
                         
@@ -245,6 +282,40 @@
             </div>
 
             <div class="pagecenterdiv">
+                <span id="gamesdiv" class="spananchor"></span>
+                <div id="games">
+                    <p class="subjectheader">Mijn spellen</p>
+                    <div id="gamesinnerdiv" class="pagecenterinnerdiv">
+                        <hr>
+                        <!-- DISPLAY USER'S GAME HERE -->
+                        <div id="gamestable">
+                        </div>
+                        <hr>
+                        <div class="buttoncenterdiv">
+                            <form action="addgame.php" method="POST">
+                                <input type=submit value="Spel toevoegen" class="bigbutton"><br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagecenterdiv">
+                <span id="reviewsdiv" class="spananchor"></span>
+                <div id="reviews">
+                    <p class="subjectheader">Mijn reviews</p>
+                    <div id="reviewsinnerdiv" class="pagecenterinnerdiv">
+                        <hr>
+                        <!-- DISPLAY USER'S REVIEWS HERE -->
+                        <div id="reviewstable">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pagecenterdiv">
+            <span id="accountdetailsdiv" class="spananchor"></span>
                 <p class="subjectheader">Wijzig gegevens</p>
                 <div id="namediv" class="pagecenterinnerdiv">
                     <hr>
@@ -304,26 +375,6 @@
                         <p id="passwordUpdated" class="formError greenErrorText centerdiv" hidden></p>
 
                     </form>
-                </div>
-            </div>
-
-            <div class="pagecenterdiv">
-                <span id="gamesdiv" class="spananchor"></span>
-                <div id="games">
-                    <p class="subjectheader">Mijn spellen</p>
-                    <div id="gamesinnerdiv" class="pagecenterinnerdiv">
-                        <hr>
-
-                        <!-- DISPLAY USER'S GAME HERE -->
-                        <div id="gamestable">
-                        </div>
-                        <hr>
-                        <div class="buttoncenterdiv">
-                            <form action="addgame.php" method="POST">
-                                <input type=submit value="Spel toevoegen" class="bigbutton"><br>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
 

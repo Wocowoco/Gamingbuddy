@@ -62,6 +62,7 @@ session_start();
                 $stmt->bind_param("si",$username, $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
+                $_SESSION['name'] = $username;
             }
         }
 
@@ -79,7 +80,7 @@ session_start();
 
 
         $conn->close();
-        header("Location: accountoptions.php");
+        header("Location: accountoptions.php#accountdetailsdiv");
         exit;
     ?> 
 </body>

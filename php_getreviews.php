@@ -31,9 +31,11 @@
     if($id != null)
     {
         //Prepared statement
-        $stmt = $conn->prepare("SELECT type, text, toAccountID
+        $stmt = $conn->prepare("SELECT type, text, toAccountID, toAccount.Username AS username
         FROM gb_review
-        WHERE fromAccountID = ?");
+        INNER JOIN gb_account AS fromAccount ON gb_review.fromAccountID = fromAccount.ID
+        INNER JOIN gb_account AS toAccount ON gb_review.toAccountID = toAccount.ID
+        WHERE gb_review.fromAccountID = ?");
         $stmt->bind_param("i",$_SESSION["id"]);
 
             mysqli_stmt_execute($stmt);
@@ -42,9 +44,10 @@
                 while($row = $result->fetch_assoc()) {
                     $type = $row["type"];
                     $data = $row["text"];
-                    $to = $row["toAccountID"];
+                    $toID = $row["toAccountID"];
+                    $toName = $row["username"];
 
-                    $reviewdata = array($type, $to, $data);
+                    $reviewdata = array($type, $toName, $data, $toID);
                     $_SESSION["reviewdata"][$number] = $reviewdata;
                     $number++;
 
