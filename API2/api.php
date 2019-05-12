@@ -11,10 +11,11 @@ We don't want our API-key to be out in the wild, so we keep it safely on our ser
 
     if (isset($_GET['endpoint'])) {
         $url = "https://euw1.api.riotgames.com";
-        $apiKey = "RGAPI-f54addb3-aab2-4da1-9206-3436cd037bd5";
+        $apiKey = "RGAPI-e75cb3b8-52f6-44d4-b661-5d436e347067";
         $callUrl = "https://euw1.api.riotgames.com" . $_GET['endpoint'] . "?api_key=" . $apiKey;
         echo file_get_contents($callUrl);
 
     }
 
 ?>
+

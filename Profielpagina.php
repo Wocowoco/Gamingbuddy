@@ -142,7 +142,7 @@
             <img class="foto" src="matthias.png" alt="Wouter" >
             <h1 class="naam"><?php
                 getnaam();
-                $naam = $_SESSION["zelfUsername"];
+                $naam = $_SESSION["name"];
                 echo $naam ;
             ?>
             </h1>
@@ -192,13 +192,13 @@
                     }  
                         
                     else{
-                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\">";
+                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> <p>";
                         $k=0;
                         for($k; $k < 5; $k++){
                             print_r($_SESSION['loldata'][$i][$k]. "  ") ;
                         }
                         $i++;
-                        echo "</div>";
+                        echo "</p></div>";
                     }
                     
                     
