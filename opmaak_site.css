@@ -67,9 +67,9 @@ object{
 
 
  
-  .show {
-      display: block;
-    }  
+.show {
+    display: block;
+}  
 
 
 
@@ -198,15 +198,17 @@ ul{
     padding: 0px;
 }
 
-/*
-input[type=text] {
-    width: 93%;
-    padding: 12px 20px;
+
+
+
+.profieldata{
+    position: relative;
     margin: auto;
-    display: inline-block;
-    height: 30px;  
+    display: block;
 }
-*/
+
+
+
 
 
 

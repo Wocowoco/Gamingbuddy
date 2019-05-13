@@ -122,12 +122,19 @@ function getlolacounts(){
                         
                         $lolSummonerName = $row["SummonerName"];
                         $lolZone = $row["Zone"];
-                        $lolrankName = $row["rankNr"];
+                        $lolrankNr = $row["rankNr"];
                         $lolRole1 = $row["role1"];
                         $lolRole2 = $row["role2"];
+                        $rankname = $row["rankName"];
                         
-                        $loldata = array($lolSummonerName,$lolZone,$lolrankName,$lolRole1,$lolRole2);
-                        $_SESSION["loldata"][$number] = $loldata;
+                        $_SESSION["SummonerName"][$number] = $lolSummonerName;
+                        $_SESSION["zone"][$number] = $lolZone;
+                        $_SESSION["rankNr"][$number] = $lolrankNr;
+                        $_SESSION["role1"][$number] = $lolRole1;
+                        $_SESSION["role2"][$number] = $lolRole2;
+                        $_SESSION["rankNaam"][$number] = $rankname;
+
+                        
                         $number++;
 
                         

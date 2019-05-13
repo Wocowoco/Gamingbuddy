@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 } 
 
 $sql = "INSERT INTO gb_loldata (LolID,AccountID,SummonerName,RankID)
-VALUES (', 'Doe', 'john@example.com')";
+VALUES (, 'Doe', 'john@example.com')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

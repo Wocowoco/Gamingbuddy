@@ -14,6 +14,7 @@
         <meta charset="utf-8" />
         <title>Profielpagina</title>
         <link href="opmaak_site.css" rel="stylesheet" />
+        <script src="/javascript/jquery.js"></script>
 
         <script>
             var loldataArray = new Array();
@@ -38,6 +39,8 @@
 
             }
 
+            
+
             function init(){
                 <?php   
                 //Get profilebio from DB
@@ -49,80 +52,69 @@
                 getlolacounts();
 
 
-                    //Set amount of data
-                    if(isset($_SESSION["loldataAmount"]))
-                    {
-                         echo "amountOfLoldata = " . $_SESSION['loldataAmount'] . ";";
+                    
 
 
-                        //Loop through all the lol data
-                        for($i = 0; $i < $_SESSION['loldataAmount']; $i++)
-                        {
-                            echo "loldataArray.push([\"" . $_SESSION['loldata'][$i][0] . "\",\"" 
-                            . $_SESSION['loldata'][$i][1] . "\",\"" 
-                            . $_SESSION['loldata'][$i][2] . "\",\"" 
-                            . $_SESSION['loldata'][$i][3] . "\",\"" 
-                            . $_SESSION['loldata'][$i][4] . "\"]);";
-                        }
-                    }
-                    else
-                    {
-                        echo "amountOfLoldata = 0;";
-                    }
-
-
-
-                    for($waar=0; $waar < $_SESSION['loldataAmount']; $waar++){
-                        $rank = $_SESSION["lol_RankID"];
-                        if($rank >= 1 && $rank <= 4 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"red\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank >= 5 && $rank <= 8 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"blue\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank >= 9 && $rank <= 12 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"green\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank >= 13 && $rank <= 16 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"orange\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank >= 17 && $rank <= 20 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"yellow\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank >= 21 && $rank <= 24 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"brown\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank == 25  )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"pink\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        elseif($rank == 26 )
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"purple\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                        else
-                        {
-                            echo "document.getElementById(\"lol".$waar."\").style.color = \"gray\";" ;
-                            unset($_SESSION["user_firstname"]);
-                        }
-                    }
+                
                 ?>
+
+                
+
+
             }
 
+        </script>
+        <script>
+            var rank = new Array();
+            var plaats = 0;
+            var lengte = new Array();
+            <?php
+                    for($loop = 0; $loop < $_SESSION['loldataAmount']; $loop++){
+                        echo "rank.push([\"" . $_SESSION['rankNr'][$loop]."\"]);";
+                    }
+                    echo "lengte.push([\"" . $_SESSION['loldataAmount']."\"]);";
+            ?>
+            $(document).ready(
+                function pasblokaan(){
+                    for(plaats = 0; plaats < lengte; plaats++)
+                        if(rank[plaats] >= 1 && rank[plaats] <= 4 )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] >= 5 && rank[plaats] <= 8 )
+                        {
+                            $("#lol" + plaats).css("color", "blue", );
+                        }
+                        else if(rank[plaats] >= 9 && rank[plaats] <= 12 )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] >= 13 && rank[plaats] <= 16 )
+                        {
+                            $("#lol" + plaats).css("color", "red", );
+                        }
+                        else if(rank[plaats] >= 17 && rank[plaats] <= 20 )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] >= 21 && rank[plaats] <= 24 )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] == 25  )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] == 26 )
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        else if(rank[plaats] == 27)
+                        {
+                            $("#lol" + plaats).css("border-style", "dotted", );
+                        }
+                        plaats++;
+                    });
         </script>
     </head>
     <body onload="init()">
@@ -139,7 +131,7 @@
         
     <div class="wvg" id="wvg">
         <div class="blokken">
-            <img class="foto" src="matthias.png" alt="Wouter" >
+            <img class="foto" src="matthias.png" alt="Wouter" onclick="pasblokaan()" >
             <h1 class="naam"><?php
                 getnaam();
                 $naam = $_SESSION["name"];
@@ -192,19 +184,28 @@
                     }  
                         
                     else{
-                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> <p>";
+                        
+                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
                         $k=0;
-                        for($k; $k < 5; $k++){
-                            print_r($_SESSION['loldata'][$i][$k]. "  ") ;
-                        }
+
+                        print_r("naam = ".$_SESSION["SummonerName"][$i]);
+                        print_r($_SESSION["zone"][$i]);
+                        
+                        print_r($_SESSION["role1"][$i]);
+                        print_r($_SESSION["role2"][$i]);
+                        print_r($_SESSION["rankNaam"][$i]);
+                        
+                        
+
+                        
                         $i++;
-                        echo "</p></div>";
+                        echo "</div>";
                     }
                     
                     
                 }
                 ?>
-                <div  class="blokkenvanbinnen"><p>voorstel</p></div>
+                <div  class="blokkenvanbinnen"></div>
                 <div class="blokkenvanbinnen"></div>
                 
                 

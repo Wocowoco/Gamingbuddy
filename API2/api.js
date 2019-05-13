@@ -25,7 +25,7 @@ function apiCall() {
 }
 
 function shrijfindatabank(naam){
-    $get(
+    $.get(
       "rank.php",
       /*hier de php file oproepen en zo de rank teweten komen van de speler*/
       {endpoint: naam},
