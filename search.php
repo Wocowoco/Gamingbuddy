@@ -489,6 +489,7 @@
 
                 var amountOfusernamedata;
                 var usernamedataArray = new Array();
+                var usernameIdArray = new Array();
 
                 //Get all the usernamedata
                 <?php 
@@ -497,11 +498,11 @@
                     {
                          echo "amountOfusernamedata = " . $_SESSION['usernamedataAmount'] . ";";
 
-
                         //Loop through all the username data
                         for($i = 0; $i < $_SESSION['usernamedataAmount']; $i++)
                         {
                             echo "usernamedataArray.push([\"" . $_SESSION['usernamedata'][$i] . "\"]);"; 
+                            echo "usernameIdArray.push([\"" . $_SESSION['usernameID'][$i] . "\"]);";
                         }
                     }
                     else
@@ -541,7 +542,27 @@
                     var naam = usernamedataArray[i];
                     p.innerHTML = "Gebruiker: " + naam;
                     div.appendChild(p);
+
+                    //Button to profile page
+                    var form = document.createElement("FORM");
+                    form.setAttribute("action", "php_otherprofile.php");
+                    form.setAttribute("class","buttonright");
+                    form.setAttribute("method","POST");
+                    p.appendChild(form);
                     
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","submit");
+                    button.setAttribute("id","usernameresultbutton");
+                    button.setAttribute("value","Profiel");
+                    form.appendChild(button);
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","text");
+                    button.setAttribute("name","otherID");
+                    button.setAttribute("id","otherID");
+                    button.setAttribute("hidden","");
+                    button.setAttribute("value",usernameIdArray[i]);
+                    form.appendChild(button);
+
 
                 }  
             }
@@ -557,6 +578,7 @@
 
                 var amountOfApexdata;
                 var apexdataArray = new Array();
+                var apexIdArray = new Array();
 
                 //Get all the apexdata
                 <?php 
@@ -572,6 +594,8 @@
                             echo "apexdataArray.push([\"" . $_SESSION['apexdata'][$i][0] . "\",\"" 
                             . $_SESSION['apexdata'][$i][1] . "\",\"" 
                             . $_SESSION['apexdata'][$i][2] . "\"]);";
+                            echo "apexIdArray.push([\"" . $_SESSION['apexAccountID'][$i] . "\"]);";
+
                         }
                     }
                     else
@@ -599,6 +623,8 @@
                 //Set attribute after the div has been made
                 button.setAttribute("onclick","toggleResults(document.getElementById('apexresultbutton'),document.getElementById('apexresultdiv'), true)");
 
+                
+
                 //Print all the Apex data
                 for(i = 0; i < amountOfApexdata; i++)
                 {
@@ -619,6 +645,27 @@
                     var rank = apexdataArray[i][2];
                     p.innerHTML += "Tweede Legend: " + rank + "<br>";
                     div.appendChild(p);
+
+                    //Button to profile page
+                    var form = document.createElement("FORM");
+                    form.setAttribute("action", "php_otherprofile.php");
+                    form.setAttribute("class","buttonright");
+                    form.setAttribute("method","POST");
+                    p.appendChild(form);
+                    
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","submit");
+                    button.setAttribute("value","Profiel");
+                    form.appendChild(button);
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","text");
+                    button.setAttribute("name","otherID");
+                    button.setAttribute("id","otherID");
+                    button.setAttribute("hidden","");
+                    button.setAttribute("value",apexIdArray[i]);
+                    form.appendChild(button);
+
+                    
                 }  
             }
 
@@ -633,6 +680,7 @@
 
                 var amountOfLoldata;
                 var loldataArray = new Array();
+                var lolIdArray = new Array();
 
                 //Get all the loldata
                 <?php 
@@ -650,6 +698,7 @@
                             . $_SESSION['loldata'][$i][2] . "\",\"" 
                             . $_SESSION['loldata'][$i][3] . "\",\"" 
                             . $_SESSION['loldata'][$i][4] . "\"]);";
+                            echo "lolIdArray.push([\"" . $_SESSION['lolAccountID'][$i] . "\"]);";
                         }
                     }
                     else
@@ -706,6 +755,27 @@
                     var role2 = loldataArray[i][4];
                     p.innerHTML += "Tweede voorkeursrol: " + role2 + "<br>";
 
+                    //Button to profile page
+                    var form = document.createElement("FORM");
+                    form.setAttribute("action", "php_otherprofile.php");
+                    form.setAttribute("class","buttonright");
+                    form.setAttribute("method","POST");
+                    p.appendChild(form);
+                    
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","submit");
+                    button.setAttribute("value","Profiel");
+
+                    form.appendChild(button);
+                    var button = document.createElement("INPUT");
+                    button.setAttribute("type","text");
+                    button.setAttribute("name","otherID");
+                    button.setAttribute("id","otherID");
+                    button.setAttribute("hidden","");
+                    button.setAttribute("value",lolIdArray[i]);
+                    form.appendChild(button);
+
+
 
 
                     div.appendChild(p);
@@ -748,13 +818,16 @@
             //Reset all search variables
             <?php
             unset($_SESSION['usernamedata']);
+            unset($_SESSION['usernameID']);
             unset($_SESSION['usernamedataAmount']);
 
             unset($_SESSION['apexdata']);
             unset($_SESSION['apexdataAmount']);
+            unset($_SESSION['apexAccountID']);
 
             unset($_SESSION['loldata']);
             unset($_SESSION['loldataAmount']);
+            unset($_SESSION['lolAccountID']);
 
             unset($_SESSION['searchresultsfound']);
             unset($_SESSION['searchresultsfailed']);

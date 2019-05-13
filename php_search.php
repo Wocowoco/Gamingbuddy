@@ -189,7 +189,7 @@ session_start();
             {
                 $number = 0;
                 //Prepared statement
-                $stmt = $conn->prepare("SELECT Username
+                $stmt = $conn->prepare("SELECT Username, ID
                 FROM gb_account
                 WHERE Username LIKE ?");
                 $stmt->bind_param("s",$name);
@@ -199,8 +199,8 @@ session_start();
                     //Output data of each row    
                     while($row = $result->fetch_assoc())
                     {   
-                        $username = $row["Username"];
-                        $_SESSION["usernamedata"][$number] = $username;
+                        $_SESSION["usernamedata"][$number] = $row["Username"];
+                        $_SESSION['usernameID'][$number] = $row["ID"];
                         $number++;
                     }
                     
@@ -217,10 +217,11 @@ session_start();
             {
                 $number = 0;
                 //Prepared statement
-                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
+                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2, account.ID AS accountID
                 FROM gb_apexdata AS apexdat
                 INNER JOIN gb_apexrole AS apexrole1 ON apexdat.PrefRole1 = apexrole1.roleID
                 INNER JOIN gb_apexrole AS apexrole2 ON apexdat.PrefRole2 = apexrole2.roleID
+                INNER JOIN gb_account AS account ON apexdat.AccountID = account.ID
                 WHERE originName LIKE ?");
                 $stmt->bind_param("s",$name);
                 mysqli_stmt_execute($stmt);
@@ -235,10 +236,11 @@ session_start();
                         $apexName = $row["originName"];
                         $apexRole1 = $row["role1"];
                         $apexRole2 = $row["role2"]; 
-
+                        $apexAccountId = $row["accountID"]; 
 
                         $apexdata = array($apexName,$apexRole1,$apexRole2);
                         $_SESSION["apexdata"][$number] = $apexdata;
+                        $_SESSION["apexAccountID"][$number] = $apexAccountId;
                         $number++;
                     }
                     
@@ -251,10 +253,11 @@ session_start();
             {
                 $number = 0;
                 //Prepared statement
-                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2
+                $stmt = $conn->prepare("SELECT originName, apexrole1.Name AS role1, apexrole2.Name AS role2, account.ID AS accountID
                 FROM gb_apexdata AS apexdat
                 INNER JOIN gb_apexrole AS apexrole1 ON apexdat.PrefRole1 = apexrole1.roleID
                 INNER JOIN gb_apexrole AS apexrole2 ON apexdat.PrefRole2 = apexrole2.roleID
+                INNER JOIN gb_account AS account ON apexdat.AccountID = account.ID
                 WHERE originName LIKE ?");
                 $stmt->bind_param("s",$name);
                 mysqli_stmt_execute($stmt);
@@ -268,7 +271,7 @@ session_start();
                         $apexName = $row["originName"];
                         $apexRole1 = $row["role1"];
                         $apexRole2 = $row["role2"]; 
-
+                        $apexAccountId = $row["accountID"]; 
                         if($searchByApexLegend == true)
                         {
                             $validrole = false;
@@ -402,6 +405,7 @@ session_start();
 
                         $apexdata = array($apexName,$apexRole1,$apexRole2);
                         $_SESSION["apexdata"][$number] = $apexdata;
+                        $_SESSION["apexAccountID"][$number] = $apexAccountId;
                         $number++;
                     }
                     
@@ -419,11 +423,12 @@ session_start();
                 $number = 0;
 
                 //Prepared statement
-                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rank, lolrole1.Name AS role1, lolrole2.Name AS role2
+                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rank, lolrole1.Name AS role1, lolrole2.Name AS role2, account.ID AS accountID
                 FROM gb_loldata AS loldat
                 INNER JOIN gb_lolrank AS lolrank ON loldat.RankID = lolrank.rankID
                 INNER JOIN gb_lolRole AS lolrole1 ON loldat.PrefRole1 = lolrole1.roleID
                 INNER JOIN gb_lolRole AS lolrole2 ON loldat.PrefRole2 = lolrole2.roleID
+                INNER JOIN gb_account AS account ON loldat.AccountID = account.ID
                 WHERE loldat.summonerName LIKE ?");
                 $stmt->bind_param("s",$name);
                 mysqli_stmt_execute($stmt);
@@ -440,9 +445,11 @@ session_start();
                         $lolRank = $row["rank"]; 
                         $lolRole1 = $row["role1"];
                         $lolRole2 = $row["role2"];
+                        $lolAccountId = $row["accountID"];
 
                         $loldata = array($lolSummonerName,$lolZone,$lolRank,$lolRole1,$lolRole2);
                         $_SESSION["loldata"][$number] = $loldata;
+                        $_SESSION["lolAccountID"][$number] = $lolAccountId;
                         $number++;
                     }
                     
@@ -455,11 +462,12 @@ session_start();
             {
                 $number = 0;
                 //Prepared statement
-                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2
+                $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2, account.ID AS accountID
                 FROM gb_loldata AS loldat
                 INNER JOIN gb_lolrank AS lolrank ON loldat.RankID = lolrank.rankID
                 INNER JOIN gb_lolRole AS lolrole1 ON loldat.PrefRole1 = lolrole1.roleID
                 INNER JOIN gb_lolRole AS lolrole2 ON loldat.PrefRole2 = lolrole2.roleID
+                INNER JOIN gb_account AS account ON loldat.AccountID = account.ID
                 WHERE loldat.summonerName LIKE ?");
                 $stmt->bind_param("s",$name);
                 mysqli_stmt_execute($stmt);
@@ -473,6 +481,8 @@ session_start();
                         
                         $lolSummonerName = $row["SummonerName"];
                         $lolZone = $row["Zone"];
+                        $lolAccountId = $row["accountID"];
+
                         //Check if there is a need to filter on zone/region
                         if($searchLolRegion != "none")
                         {
@@ -603,8 +613,10 @@ session_start();
 
                         }
 
+
                         $loldata = array($lolSummonerName,$lolZone,$lolrankName,$lolRole1,$lolRole2);
                         $_SESSION["loldata"][$number] = $loldata;
+                        $_SESSION["lolAccountID"][$number] = $lolAccountId;
                         $number++;
 
 

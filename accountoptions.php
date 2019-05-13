@@ -23,7 +23,7 @@
                 getAccountDetails();
                 //Get all the reviews written by this account
                 include "php_getreviews.php";
-                getMyReviews();
+                getMyWrittenReviews();
 
                 //Add title of reviews table
                 
@@ -44,8 +44,8 @@
                     unset($_SESSION['reviewsAmount']);
                     unset($_SESSION['reviewdata']);
 
-                    unset($_SESSION['$_SESSION["positiveReviewAmount"]']);
-                    unset($_SESSION['$_SESSION["negativeReviewAmount"]']);
+                    unset($_SESSION['positiveReviewAmount']);
+                    unset($_SESSION['negativeReviewAmount']);
                 }
 
 

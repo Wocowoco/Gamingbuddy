@@ -349,12 +349,34 @@ input.bigbutton{
 }
 
 .formborder{
+    display: flow-root;
     border: 3px;
     border-style: solid;
     border-color: black;
     background-color: rgb(194, 194, 194);
     margin: 5px;
     padding: 4px;
+}
+
+.good{
+    background-color: rgb(168, 216, 117);
+}
+
+.bad{
+    background-color: rgb(216, 125, 117);
+}
+
+.reviewauthor{
+    float: right;
+    margin: 0px;
+    padding: 0px;
+}
+
+.reviewtype{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+    font-size: 18px; 
 }
 
 div.formparagraph{
