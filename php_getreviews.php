@@ -50,16 +50,6 @@
                     $reviewdata = array($type, $toName, $data, $toID);
                     $_SESSION["reviewdata"][$number] = $reviewdata;
                     $number++;
-
-                    //Check if review is positive or negative
-                    if($type == 0)
-                    {
-                        $_SESSION["negativeReviewAmount"]++;
-                    }
-                    else
-                    {
-                        $_SESSION["positiveReviewAmount"]++;
-                    }
                 }
                 $_SESSION['reviewsAmount'] = $number;
             }
@@ -76,19 +66,19 @@
     $dbpassword = "";
     $dbname = "gamingbuddy";
     $number = 0;
-    
-    $_SESSION["negativeReviewAmount"] = 0;
-    $_SESSION["positiveReviewAmount"] = 0;
+
+    $_SESSION["positiveReviewPercent"] = 0;
+    $posReview = 0;
 
 
-    //Get the current logged in user's ID
+    //Get the other accounts ID, if none is set, use your own
     if(isset($_SESSION['otherID']))
     {
         $id = $_SESSION['otherID'];
     }
     else
     {
-        $id = 0;
+        $id = $_SESSION['id'];
     }
 
     
@@ -125,18 +115,19 @@
                     $number++;
 
                     //Check if review is positive or negative
-                    if($type == 0)
+                    if($type == 1)
                     {
-                        $_SESSION["negativeReviewAmount"]++;
-                    }
-                    else
-                    {
-                        $_SESSION["positiveReviewAmount"]++;
+                        $posReview++;
                     }
                 }
                 $_SESSION['reviewsAmount'] = $number;
             }
         }
-    $conn->close();
+
+        if($number > 0)
+        {
+        $_SESSION["positiveReviewPercent"] = ($posReview/($number))*100;
+        }
+        $conn->close();
     }
 ?> 

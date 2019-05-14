@@ -10,6 +10,7 @@
 
 
     $otherID = filter_input(INPUT_POST,'otherID');
+    $isReview = filter_input(INPUT_POST,'review');
 
     //If no otherID was given, make it your own ID
     if($otherID == null)
@@ -21,11 +22,24 @@
     if($otherID != $id)
     {
         $_SESSION['otherID'] = $otherID;
+
+
     }
     else
     {
         unset($_SESSION['otherID']);
     }
-    header("Location: profielpagina.php");
-    exit;
+
+
+    //If review needs to be edited, show that part of the page
+    if($isReview != null)
+    {
+        header("Location: profielpagina.php#reviewedit");
+        exit;
+    }
+    else
+    {
+        header("Location: profielpagina.php");
+        exit;     
+    }
 ?>

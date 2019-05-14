@@ -18,11 +18,14 @@ session_start();
                     if(isset($_SESSION["id"]))
                     {
                         echo "isLoggedIn = true;";
+                        header("Location: php_otherprofile.php");
+                        exit;
                     }
                     else
                     {
                         echo "isLoggedIn = false;";
                         unset($_SESSION["name"]);
+
                     }
                     //Check if account was just deleted
 

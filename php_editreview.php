@@ -17,8 +17,8 @@ else
     $id = 0;
 }
 
-$type = filter_input(INPUT_POST,'reviewtype');
-$text = filter_input(INPUT_POST,'reviewtext');
+$type = filter_input(INPUT_POST,'editreviewtype');
+$text = filter_input(INPUT_POST,'editreviewtext');
 $toID = $_SESSION['otherID'];
 
 $host = "localhost";
@@ -37,9 +37,10 @@ else{
 
     //Add review to DB
     //Prepared statement
-    $stmt = $conn->prepare("INSERT INTO gb_review (fromAccountID, toAccountID, type, text)
-    VALUES (?,?,?,?)");
-    $stmt->bind_param("iiis",$id,$toID,$type,$text);
+    $stmt = $conn->prepare("UPDATE gb_review
+    SET type = ?, text = ?
+    WHERE toAccountID = ? AND fromAccountID = ?");
+    $stmt->bind_param("isii",$type,$text,$toID,$id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
