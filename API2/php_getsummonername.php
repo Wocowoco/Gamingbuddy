@@ -8,7 +8,7 @@
 
 
 <?php
-    function getregio(){
+    function getsummonername(){
         $servername = "localhost";
         $dbusername = "root";
         $dbpassword = "";
@@ -32,13 +32,13 @@
         if(1)
         {
             $aantal = 0;
-            $sql = "SELECT Zone
+            $sql = "SELECT SummonerName
             FROM gb_loldata 
             WHERE accountID = '83'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $_SESSION['regio'] = $row['Zone'];
+                    $_SESSION[''] = $row['Summonername'];
                    }
                     $_SESSION['aantal'] = strlen($_SESSION['regio']);
             }

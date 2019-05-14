@@ -1,8 +1,6 @@
-
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
 $dbname = "gamingbuddy";
 
 // Create connection
@@ -12,8 +10,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO gb_loldata (LolID,AccountID,SummonerName,RankID)
-VALUES (, 'Doe', 'john@example.com')";
+$sql = "INSERT INTO gb_loldata (rankID)
+VALUES ($_session[rank])";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
