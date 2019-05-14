@@ -130,6 +130,23 @@
                 }
             }
 
+            function verifyReviewEdit()
+            {
+                var form = document.getElementById("editreview");
+                form.setAttribute("action","php_editreview.php");
+                form.submit();
+            }
+
+            function verifyReviewDelete()
+            {
+                if(window.confirm("Bent u zeker dat u de review wil verwijderen?"))
+                {
+                    var form = document.getElementById("editreview");
+                    form.setAttribute("action","php_deletereview.php");
+                    form.submit();
+                }
+            }
+
             var rank = new Array();
             var plaats = 0;
             var lengte = new Array();
@@ -192,7 +209,6 @@
    
     <div class="wvg" id="wvg">
         <div class="blokken">
-            <!--<img class="foto" src="matthias.png" alt="Wouter" onclick="pasblokaan()" >        FOTO UITGECOMMENT VOOR NU               -->
             <h1 class="naam"><?php
                 if(isset($_SESSION['otherID']))
                 {
@@ -273,51 +289,59 @@
             </div>
         </div>
 
+        <?php
+            include 'php_getreviews.php';
+            getReviewsAboutAccount();
+        ?>
         <div class="blokken"> 
             <span id="reviews" class="spananchor"></span>
             <p class="subjectheader">Reviews</p>
-            <hr>
-            <!-- LOAD REVIEWS HERE -->
-            <?php 
-            
-                if(isset($_SESSION['otherID']))
+            <?php   
+                //Display amount of good and bad review, only if there are any
+                if(isset($_SESSION['reviewsAmount']))
                 {
-                    include 'php_getreviews.php';
-                    getReviewsAboutAccount();
-
-                    //Check if any reviews are found
-                    if(isset($_SESSION['reviewsAmount']))
+                    echo '<p class="subjectheader"><img src=../pics/positive.png alt=positive>'.(int)$_SESSION["positiveReviewPercent"].'%   <img src=../pics/negative.png alt=negatief>'. (int)(100 - $_SESSION["positiveReviewPercent"]).'%</p>';
+                }
+                echo '<hr>'; 
+                //Check if any reviews are found
+                if(isset($_SESSION['reviewsAmount']))
+                {
+                    //Create reviews
+                    for($i = 0; $i < $_SESSION["reviewsAmount"]; $i++)
                     {
-                        //Create reviews
-                        for($i = 0; $i < $_SESSION["reviewsAmount"]; $i++)
+                        //Check if positive or negative review
+                        if($_SESSION["reviewdata"][$i][0] == 0) //Bad review
                         {
-                            //Check if positive or negative review
-                            if($_SESSION["reviewdata"][$i][0] == 0) //Bad review
-                            {
-                                echo "<div class='formborder bad'>";
-                            }
-                            else //Good review
-                            {
-                                echo "<div class='formborder good'>";
-                            }
+                            echo "<div class='formborder bad'>";
+                        }
+                        else //Good review
+                        {
+                            echo "<div class='formborder good'>";
+                        }
 
-                            //Review text
-                            echo "<p>";
-                            echo $_SESSION["reviewdata"][$i][2] . "</p>";
-                            //Review writer
-                            echo "<p class=reviewauthor>";
-                            echo $_SESSION["reviewdata"][$i][1]. "</p></div>";
+                        //Review text
+                        echo "<p>";
+                        echo $_SESSION["reviewdata"][$i][2] . "</p>";
+                        //Review writer
+                        echo "<p class=reviewauthor>";
+                        echo $_SESSION["reviewdata"][$i][1]. "</p></div>";
+
+                        //Check if review is written by yourself, of so, show edit review instead of write review
+                        if($_SESSION['id'] == $_SESSION["reviewdata"][$i][3]) 
+                        {
+                            $_SESSION['writtenreview'] = $i;
+
                         }
                     }
-                    else
-                    {
-                        echo "Er zijn nog geen reviews geschreven over deze gebruiker.<br>";
-                    }
+                }
+                else
+                {
+                    echo "Er zijn nog geen reviews geschreven over deze gebruiker.<br>";
                 }
             ?>
         </div>
 
-        <div class="pagecenterdiv"> 
+        <div class="pagecenterdiv" <?php if(!isset($_SESSION['otherID']) || isset($_SESSION['writtenreview'])){echo 'hidden';}?>>
             <div class= "pagecenterinnerdiv">
                 <p class="subjectheader">Schrijf een review</p>
                 <hr>
@@ -336,21 +360,22 @@
             </div>
         </div>
 
-        <div class="pagecenterdiv"> 
+        <div class="pagecenterdiv" <?php if(!isset($_SESSION['otherID']) || !isset($_SESSION['writtenreview'])){echo 'hidden';}?>> 
+            <span id="reviewedit" class="spananchor"></span>
             <div class= "pagecenterinnerdiv">
                 <p class="subjectheader">Bewerk je review</p>
                 <hr>
-                <form action="php_addreview.php" id="addreview" method="post">
+                <form id="editreview" method="post">
                     <div class="reviewtype">
-                        <input onclick="changeReviewEdit(1);" type="radio" name="editreviewtype" id="goodreview" value="1"> Positief
-                        <input onclick="changeReviewEdit(0);" type="radio" name="editreviewtype" id="badreview" value="0"> Negatief
+                        <input onclick="changeReviewEdit(1);" type="radio" name="editreviewtype" id="goodreview" value="1" <?php if(isset($_SESSION['writtenreview'])){if($_SESSION['reviewdata'][$_SESSION['writtenreview']][0] == 1){echo 'checked';}}?>> Positief
+                        <input onclick="changeReviewEdit(0);" type="radio" name="editreviewtype" id="badreview" value="0" <?php if(isset($_SESSION['writtenreview'])){if($_SESSION['reviewdata'][$_SESSION['writtenreview']][0] == 0){echo 'checked';}}?>> Negatief
                     </div>
-                    <textarea name="editreviewtext" id="editreviewtext" class="bigtextarea"></textarea>
+                    <textarea name="editreviewtext" id="editreviewtext" class="bigtextarea"><?php if(isset($_SESSION['writtenreview'])){echo $_SESSION['reviewdata'][$_SESSION['writtenreview']][2];}?></textarea>
                     <p class="formError redErrorText" id="editreviewerror"></p>
                     <hr>
                     <div class="buttoncenterdiv">
-                        <input class="bigbutton" type="button" value="Bewerk review" onclick="">
-                        <input class="bigbutton redErrorText" type="button" value="Verwijder review" onclick="">
+                        <input class="bigbutton" type="button" value="Bewerk review" onclick="verifyReviewEdit();">
+                        <input class="bigbutton redErrorText" type="button" value="Verwijder review" onclick="verifyReviewDelete();">
                     </div>
                 </form>
             </div>
@@ -361,8 +386,9 @@
             unset($_SESSION['reviewsAmount']);
             unset($_SESSION['reviewdata']);
 
-            unset($_SESSION['positiveReviewAmount']);
-            unset($_SESSION['negativeReviewAmount']);
+            unset($_SESSION['writtenreview']);
+
+            unset($_SESSION['positiveReviewPercent']);
         ?>
     </div>
     <div class="buttoncenterdiv">
@@ -373,11 +399,19 @@
         echo "<b>NIET UNSETTE VARIABELEN, ZIE ONDERAAN CODE        -Wouter</b><br><br>";
         // Dit zijn variabelen die gij nergens unset na gebruik, dus doe ik het ff op het einde van uw PHP  -Wouter
         print_r($_SESSION);
+
+        unset($_SESSION["SummonerName"]);
+        unset($_SESSION["zone"]);
+        unset($_SESSION["role1"]);
+        unset($_SESSION["role2"]);
+        unset($_SESSION["rankNaam"]);
+        unset($_SESSION["rankNr"]);
         unset($_SESSION['loldata']);
         unset($_SESSION['zelfUsername']);
         unset($_SESSION['loldataAmount']);
         unset($_SESSION['lol_RankID']);
         //print_r($_SESSION);
+        
     ?>
     </div>
     </body>

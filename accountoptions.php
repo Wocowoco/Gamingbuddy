@@ -1,5 +1,7 @@
 <?php
     session_start();
+    //Remove otherID, so that the user sees it's own settings
+    unset($_SESSION["otherID"]);
     //If not logged in, return to mainpage
     if(!isset($_SESSION["id"]))
     {
@@ -24,29 +26,43 @@
                 //Get all the reviews written by this account
                 include "php_getreviews.php";
                 getMyWrittenReviews();
-
-                //Add title of reviews table
-                
                 echo 'var table = document.getElementById("reviewstable");';
-                echo 'table.innerHTML = "<table id=\'innerreviewstable\'><tr><th>Type</th><th>Accountnaam</th><th></th><th></th></tr>";';
-                if(isset($_SESSION['reviewsAmount']))
+
+                //Only create table if any entries
+                if(isset($_SESSION['reviewsAmount']) && $_SESSION['reviewsAmount'] > 0)
                 {
+                    //Add title of reviews table
+                    echo 'table.innerHTML = "<table id=\'innerreviewstable\'><tr><th></th><th>Accountnaam</th><th></th><th></th></tr>";';
+
                     echo 'var innertable = document.getElementById("innerreviewstable");';
                     for($i = 0; $i < $_SESSION['reviewsAmount']; $i++)
                     {
                         //Create the Apex Legends change and delete buttons, and link them to their pages
-                        echo 'innertable.innerHTML += "<tr><td>'.$_SESSION["reviewdata"][$i][0].'</td><td>'.$_SESSION["reviewdata"][$i][1].'</td>';
-                        echo '<td>Bewerken</td>';
+                        if($_SESSION["reviewdata"][$i][0] == 0) //Bad review
+                        {
+                            echo 'innertable.innerHTML += "<tr><td><img src=../pics/negative.png alt=negatief></td>';
+                        }
+                        else //Good review
+                        {
+                            echo 'innertable.innerHTML += "<tr><td><img src=../pics/positive.png alt=positief></td>';
+                        }
+                        echo '<td>'.$_SESSION["reviewdata"][$i][1].'</td>';
+                        echo '<td><form action=php_otherprofile.php method=POST><input type=submit value=Bewerken><input type=text name=otherID value='.$_SESSION["reviewdata"][$i][3].' hidden> <input type=text name=review value=1 hidden></td>';
                         echo '<td><form id=delreview'.$itot.' action=php_deletereview.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDeleteReview(\"'.$_SESSION["reviewdata"][$i][1].'\",\"'.$itot.'\");\'></input><input type=text name=toID value='.$_SESSION['reviewdata'][$i][3].' hidden></input></form></td></tr>";';
                         $itot+= 1;
                     }
-
-                    unset($_SESSION['reviewsAmount']);
-                    unset($_SESSION['reviewdata']);
-
-                    unset($_SESSION['positiveReviewAmount']);
-                    unset($_SESSION['negativeReviewAmount']);
                 }
+                else
+                {
+                    echo 'table.innerHTML = "Je hebt nog geen reviews geschreven.";';
+                }
+
+                unset($_SESSION['reviewsAmount']);
+                unset($_SESSION['reviewdata']);
+
+                unset($_SESSION['positiveReviewAmount']);
+                unset($_SESSION['negativeReviewAmount']);
+
 
 
                 //Get all the games that belong to this account

@@ -16,7 +16,11 @@
     $dbpassword = "";
     $dbname = "gamingbuddy";
     $toID = filter_input(INPUT_POST,'toID');
-
+    
+    if(isset($_SESSION['otherID']))
+    {
+        $toID = $_SESSION['otherID'];
+    }
 
     $conn = new mysqli ($host,$dbusername,$dbpassword,$dbname);
 
@@ -35,7 +39,15 @@
         $stmt->bind_param("ii",$toID, $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+    }
 
+    if(isset($_SESSION['otherID']))
+    {
+        header("Location: profielpagina.php#reviews");
+        exit;    
+    }
+    else
+    {
         header("Location: accountoptions.php#reviewsdiv");
         exit; 
     }
