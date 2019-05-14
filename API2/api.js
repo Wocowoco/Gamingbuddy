@@ -1,20 +1,19 @@
-$(document).ready(function(e) {
+ $(document).ready(function(e) {
   apiCall();
 });
 
 function apiCall() {
+  $k = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/joeki6"
   $.get(
-    "api.php",
-    { endpoint: "/lol/summoner/v4/summoners/by-name/joeki6" },
+    "summoner.php",
+    { endpoint: $k },
     function(data, status) {
-      if (status.trim() == "success") {
+      if (status.trim() === "success") {
         data = JSON.parse(data);
-        schrijfindatabank(data);
         var profile = createCardWithImage(
           "",
-          naam = data.name,
-          
-          level = data.summonerLevel
+          data.name,
+          "summonerlevel: " + data.summonerLevel
         );
         $("#content").append(profile);
       } else {
@@ -23,19 +22,6 @@ function apiCall() {
     }
   );
 }
-
-function shrijfindatabank(naam){
-    $.get(
-      "rank.php",
-      /*hier de php file oproepen en zo de rank teweten komen van de speler*/
-      {endpoint: naam},
-    )
-
-}
-
-
-
-
 
 function createCardWithImage(imagePath, cardTitle, cardText) {
   var fragment = '<div class="card" style="width: 18rem;">';
@@ -46,3 +32,4 @@ function createCardWithImage(imagePath, cardTitle, cardText) {
   fragment += '<p class="card-text">' + cardText + "</p></div>";
   return fragment;
 }
+
