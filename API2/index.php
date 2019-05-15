@@ -74,7 +74,7 @@
                   
                    /*hier snap ik niet wat er fout gaat*/
                    document.getElementById("demo").innerHTML = helerank;
-                   zetomnaarrankID(helerank);
+                   zetomnaardatabaserankID(helerank);
                 }
 
                 else{
@@ -87,117 +87,118 @@
 
     }
 
-    var rankID = "";
-    function zetomnaarrankID(helerank){
+    var databaserankID = "";
+    function zetomnaardatabaserankID(helerank){
       if (helerank == "ironIV"){
-        rankID = "1"
+        databaserankID = "1"
       }
       else if (helerank == "ironIII"){
-        rankID = "2"
+        databaserankID = "2"
       }
       else if (helerank == "ironII"){
-        rankID = "3"
+        databaserankID = "3"
       }
       else if (helerank == "ironI"){
-        rankID = "4"
+        databaserankID = "4"
       }
 
       else if (helerank == "bronzeIV"){
-        rankID = "6"
+        databaserankID = "6"
       }
       else if (helerank == "bronzeIII"){
-        rankID = "7"
+        databaserankID = "7"
       }
       else if (helerank == "bronzeII"){
-        rankID = "8";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "8";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "bronzeI"){
-        rankID = "9";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "9";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "SILVERIV"){
-        rankID = "10";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "10";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "silverIII"){
-        rankID = "11";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "11";
+        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "silverII"){
-        rankID = "12";
-        document.getElementById("test").innerHTML = rankID;
+      else if (helerank == "SILVERII"){
+        databaserankID = "12";
+        document.getElementById("test").innerHTML = databaserankID;
+        databankaanpas(databaserankID);
       }
-      else if (helerank == "silverII"){
-        rankID = "13";
-        document.getElementById("test").innerHTML = rankID;
+      else if (helerank == "SILVERI"){
+        databaserankID = "13";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "goldIV"){
-        rankID = "14";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "14";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "goldIII"){
-        rankID = "15";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "15";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "goldII"){
-        rankID = "16";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "16";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "goldI"){
-        rankID = "17";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "17";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "platinumIV"){
-        rankID = "18";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "18";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "platinumIII"){
-        rankID = "19";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "19";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "platinumII"){
-        rankID = "20";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "20";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "platinumI"){
-        rankID = "21";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "21";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "diamondIV"){
-        rankID = "22";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "22";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "diamondIII"){
-        rankID = "23";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "23";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "diamondII"){
-        rankID = "24";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "24";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "diamondI"){
-        rankID = "25";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "25";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "masterI"){
-        rankID = "26";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "26";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "grandmasterI"){
-        rankID = "27";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "27";
+        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "challengerI"){
-        rankID = "28";
-        document.getElementById("test").innerHTML = rankID;
+        databaserankID = "28";
+        document.getElementById("test").innerHTML = databaserankID;
       }
       else{
         document.getElementById("test").innerHTML = "faal";
@@ -216,6 +217,14 @@
     }
 
   });
+
+
+  function databankaanpas(databaserankID){
+    $.get(
+              "php_databankschrijf.php",
+              {endpoint: databaserankID}
+    )
+  }
     </script>
     
 

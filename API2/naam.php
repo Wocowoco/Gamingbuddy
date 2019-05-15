@@ -24,7 +24,7 @@ function getnaam(){
     {
         $sql = "SELECT Username
         FROM gb_account 
-        WHERE ID = '84'";
+        WHERE ID = '85'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {       // zorgt dat ge 1 lijn hebt
