@@ -35,7 +35,7 @@
         "summoner.php",
         { endpoint: $k },
         function(data, status) {
-          if (status.trim() === "success") {
+          if (status.trim() == "success") {
             data = JSON.parse(data);
             var spelerid = data.id;
             var profile = createCardWithImage(
@@ -58,7 +58,6 @@
       );      
     }
 
-
     function rankcall($tier){
 
       $.get(
@@ -66,12 +65,16 @@
               {endpoint: $tier},
               function(info, status) {
 
-                if (status.trim() === "success") {
+                if (status.trim() == "success") {
+                  info = info.replace('[','');
+                  info = info.replace(']','');
                   info = JSON.parse(info);
-                  var helerank = info.rank; 
-                  helerank .= info.tier;
+                  var helerank = info.tier;
+                  helerank += info.rank; 
+                  
                    /*hier snap ik niet wat er fout gaat*/
-                  document.getElementById("demo").innerHTML = test;
+                   document.getElementById("demo").innerHTML = helerank;
+                   zetomnaarrankID(helerank);
                 }
 
                 else{
@@ -84,97 +87,122 @@
 
     }
 
-    var rankID;
-    function zetomnaarrankID(){
-      if (helerank = "ironIV"){
+    var rankID = "";
+    function zetomnaarrankID(helerank){
+      if (helerank == "ironIV"){
         rankID = "1"
       }
-      else if (helerank = "ironIII"){
+      else if (helerank == "ironIII"){
         rankID = "2"
       }
-      else if (helerank = "ironII"){
+      else if (helerank == "ironII"){
         rankID = "3"
       }
-      else if (helerank = "ironI"){
+      else if (helerank == "ironI"){
         rankID = "4"
       }
 
-      else if (helerank = "bronzeIV"){
+      else if (helerank == "bronzeIV"){
         rankID = "6"
       }
-      else if (helerank = "bronzeIII"){
+      else if (helerank == "bronzeIII"){
         rankID = "7"
       }
-      else if (helerank = "bronzeII"){
-        rankID = "8"
+      else if (helerank == "bronzeII"){
+        rankID = "8";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "bronzeI"){
-        rankID = "9"
-      }
-
-      else if (helerank = "silverIV"){
-        rankID = "10"
-      }
-      else if (helerank = "silverIII"){
-        rankID = "11"
-      }
-      else if (helerank = "silverII"){
-        rankID = "12"
-      }
-      else if (helerank = "silverII"){
-        rankID = "13"
+      else if (helerank == "bronzeI"){
+        rankID = "9";
+        document.getElementById("test").innerHTML = rankID;
       }
 
-      else if (helerank = "goldIV"){
-        rankID = "14"
+      else if (helerank == "SILVERIV"){
+        rankID = "10";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "goldIII"){
-        rankID = "15"
+      else if (helerank == "silverIII"){
+        rankID = "11";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "goldII"){
-        rankID = "16"
+      else if (helerank == "silverII"){
+        rankID = "12";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "goldI"){
-        rankID = "17"
-      }
-
-      else if (helerank = "platinumIV"){
-        rankID = "18"
-      }
-      else if (helerank = "platinumIII"){
-        rankID = "19"
-      }
-      else if (helerank = "platinumII"){
-        rankID = "20"
-      }
-      else if (helerank = "platinumI"){
-        rankID = "21"
+      else if (helerank == "silverII"){
+        rankID = "13";
+        document.getElementById("test").innerHTML = rankID;
       }
 
-      else if (helerank = "diamondIV"){
-        rankID = "22"
+      else if (helerank == "goldIV"){
+        rankID = "14";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "diamondIII"){
-        rankID = "23"
+      else if (helerank == "goldIII"){
+        rankID = "15";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "diamondII"){
-        rankID = "24"
+      else if (helerank == "goldII"){
+        rankID = "16";
+        document.getElementById("test").innerHTML = rankID;
       }
-      else if (helerank = "diamondI"){
-        rankID = "25"
-      }
-
-      else if (helerank = "masterI"){
-        rankID = "26"
-      }
-
-      else if (helerank = "grandmasterI"){
-        rankID = "27"
+      else if (helerank == "goldI"){
+        rankID = "17";
+        document.getElementById("test").innerHTML = rankID;
       }
 
-      else if (helerank = "challengerI"){
-        rankID = "28"
+      else if (helerank == "platinumIV"){
+        rankID = "18";
+        document.getElementById("test").innerHTML = rankID;
       }
+      else if (helerank == "platinumIII"){
+        rankID = "19";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else if (helerank == "platinumII"){
+        rankID = "20";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else if (helerank == "platinumI"){
+        rankID = "21";
+        document.getElementById("test").innerHTML = rankID;
+      }
+
+      else if (helerank == "diamondIV"){
+        rankID = "22";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else if (helerank == "diamondIII"){
+        rankID = "23";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else if (helerank == "diamondII"){
+        rankID = "24";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else if (helerank == "diamondI"){
+        rankID = "25";
+        document.getElementById("test").innerHTML = rankID;
+      }
+
+      else if (helerank == "masterI"){
+        rankID = "26";
+        document.getElementById("test").innerHTML = rankID;
+      }
+
+      else if (helerank == "grandmasterI"){
+        rankID = "27";
+        document.getElementById("test").innerHTML = rankID;
+      }
+
+      else if (helerank == "challengerI"){
+        rankID = "28";
+        document.getElementById("test").innerHTML = rankID;
+      }
+      else{
+        document.getElementById("test").innerHTML = "faal";
+      }
+      
     }
 
     function createCardWithImage(imagePath, cardTitle, cardText) {
@@ -211,7 +239,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <!-- example of menu item that is active -->
-              <a class="nav-link" href="index.php" onclick="apicall()">Overzicht</a>
+              <a class="nav-link" href="index.php" >Overzicht</a>
             </li>
             <li class="nav-item">
               <!-- example of menu item that is not active (other page..)-->
@@ -219,6 +247,8 @@
             </li>
             <li>
               <p id="demo"></p>
+              <p id="test"></p>
+              
             </li>
           </ul>
         </div>
