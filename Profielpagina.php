@@ -161,39 +161,39 @@
                     for(plaats = 0; plaats < lengte; plaats++)
                         if(rank[plaats] >= 1 && rank[plaats] <= 4 )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "#cbcdcd ", );
                         }
                         else if(rank[plaats] >= 5 && rank[plaats] <= 8 )
                         {
-                            $("#lol" + plaats).css("color", "blue", );
+                            $("#lol" + plaats).css("border-color", "#cd7f32", );
                         }
                         else if(rank[plaats] >= 9 && rank[plaats] <= 12 )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "#C0C0C0", );
                         }
                         else if(rank[plaats] >= 13 && rank[plaats] <= 16 )
                         {
-                            $("#lol" + plaats).css("color", "red", );
+                            $("#lol" + plaats).css("border-color", "gold", );
                         }
                         else if(rank[plaats] >= 17 && rank[plaats] <= 20 )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "#e5e4e2", );
                         }
                         else if(rank[plaats] >= 21 && rank[plaats] <= 24 )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "#b9f2ff", );
                         }
                         else if(rank[plaats] == 25  )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "black", );
                         }
                         else if(rank[plaats] == 26 )
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "green", );
                         }
                         else if(rank[plaats] == 27)
                         {
-                            $("#lol" + plaats).css("border-style", "dotted", );
+                            $("#lol" + plaats).css("border-color", "red", );
                         }
                         plaats++;
                     });
@@ -270,13 +270,25 @@
                     else{         
                         echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
                         $k=0;
-
+                        echo "<span class=\"lolnaam\">";
                         print_r("naam = ".$_SESSION["SummonerName"][$i]);
-                        print_r($_SESSION["zone"][$i]);
+                        echo "</span>";
+
+                        echo "<span class=\"regio\">";
+                        print_r("regio = ".$_SESSION["zone"][$i]);
+                        echo "</span>";
                         
-                        print_r($_SESSION["role1"][$i]);
-                        print_r($_SESSION["role2"][$i]);
-                        print_r($_SESSION["rankNaam"][$i]);
+                        echo "<span class=\"rol1\">";
+                        print_r("voorkeursrol = ".$_SESSION["role1"][$i]);
+                        echo "</span>";
+
+                        echo "<span class=\"rol2\">";
+                        print_r("tweederol = ".$_SESSION["role2"][$i]);
+                        echo "</span>";
+
+                        echo "<sanp class=\"rank\">";
+                        print_r("rank = ".$_SESSION["rankNaam"][$i]);
+                        echo "</span>";
                         
                         $i++;
                         echo "</div>";

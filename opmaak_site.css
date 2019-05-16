@@ -208,8 +208,42 @@ ul{
 }
 
 
+.lolnaam{
+    color: red;
+    display: block;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
 
+.regio{
+    color: blue;
+    display: block;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
 
+.rol1{
+    display: block;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.rol2{
+    display: block;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.rank{
+    display: block;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
 
 
 
