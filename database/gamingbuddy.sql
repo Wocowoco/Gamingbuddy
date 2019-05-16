@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 mei 2019 om 10:02
+-- Gegenereerd op: 16 mei 2019 om 12:11
 -- Serverversie: 10.1.38-MariaDB
 -- PHP-versie: 7.3.2
 
@@ -72,67 +72,7 @@ INSERT INTO `gb_account` (`ID`, `Username`, `Password`, `Name`, `LastName`, `Bio
 (81, '9mei', '$2y$10$Us8ltwtPB.Fj7iGskFHQWO9Wgnxga/C7vdZ8Oy4uOJbwEPPM4Sw5a', '9', 'mei', 'Dit is een test.\r\nDit is een tweede test.'),
 (82, '11mei', '$2y$10$rCC2YWCQAuwVe1ntbVW2h.a0EPBC0QjOXRE9tHreQZkzQwuBrx6/.', '11', 'mei', 'Het profiel aangemaakt op 11 Mei.\r\nHeeft zowel LoL als Apex account met beschrijving.'),
 (84, 'test2', '$2y$10$c2m5TRWv//cGoCqga6u9huXeuiLt7l0Dw1lo0KRjXMtgHtZM4R7iy', 'test2', 'test2', NULL),
-(85, 'TopReviews', '$2y$10$fBGEhu2RYNLdWXyIFGHjSuHVmc.M/Pb6vEbPErHI1AgnoVzDVFAYi', 'top', 'reviews', NULL);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `gb_apexdata`
---
-
-CREATE TABLE `gb_apexdata` (
-  `ApexID` int(11) NOT NULL,
-  `AccountID` int(11) NOT NULL,
-  `OriginName` varchar(30) NOT NULL,
-  `PrefRole1` int(11) NOT NULL,
-  `PrefRole2` int(11) NOT NULL,
-  `Bio` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gb_apexdata`
---
-
-INSERT INTO `gb_apexdata` (`ApexID`, `AccountID`, `OriginName`, `PrefRole1`, `PrefRole2`, `Bio`) VALUES
-(1, 1, 'WocoOrigin', 6, 5, NULL),
-(2, 45, '123Origin', 6, 5, NULL),
-(7, 1, 'Apex18April', 9, 8, NULL),
-(9, 56, '22april', 4, 1, NULL),
-(10, 73, 'bloodbang', 2, 1, NULL),
-(11, 75, '23aprilApex', 6, 3, NULL),
-(12, 78, '29aprildbtest', 9, 6, NULL),
-(14, 79, '3MeiApex', 5, 8, NULL),
-(16, 79, '3ApexMei2', 2, 3, NULL),
-(17, 80, '5MeiApexDel', 5, 2, 'Test'),
-(18, 81, '9mei', 1, 2, 'Test5\r\nEn een 2de testlijn!!'),
-(19, 81, '9meibio', 2, 1, 'Apex Legends bio test.\r\nIn 2 regels.'),
-(20, 82, '11mei', 4, 5, '11Mei Apex beschrijving.');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `gb_apexrole`
---
-
-CREATE TABLE `gb_apexrole` (
-  `roleID` int(11) NOT NULL,
-  `Name` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gb_apexrole`
---
-
-INSERT INTO `gb_apexrole` (`roleID`, `Name`) VALUES
-(1, 'Bangalore'),
-(2, 'Bloodhound'),
-(3, 'Caustic'),
-(4, 'Gibraltar'),
-(5, 'Lifeline'),
-(6, 'Mirage'),
-(7, 'Octane'),
-(8, 'Pathfinder'),
-(9, 'Wraith');
+(85, 'woco', '$2y$10$fBGEhu2RYNLdWXyIFGHjSuHVmc.M/Pb6vEbPErHI1AgnoVzDVFAYi', 'top', 'reviews', NULL);
 
 -- --------------------------------------------------------
 
@@ -145,6 +85,7 @@ CREATE TABLE `gb_loldata` (
   `AccountID` int(11) NOT NULL,
   `SummonerName` varchar(40) NOT NULL,
   `RankID` int(11) NOT NULL,
+  `Level` int(11) NOT NULL DEFAULT '1',
   `PrefRole1` int(11) NOT NULL,
   `PrefRole2` int(11) NOT NULL,
   `Zone` varchar(4) NOT NULL,
@@ -155,33 +96,34 @@ CREATE TABLE `gb_loldata` (
 -- Gegevens worden geëxporteerd voor tabel `gb_loldata`
 --
 
-INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `PrefRole1`, `PrefRole2`, `Zone`, `Bio`) VALUES
-(1, 1, 'Woco', 9, 3, 5, 'EUW', NULL),
-(2, 2, 'SummonerMatthias', 11, 4, 5, 'EUW', NULL),
-(3, 4, 'EenNaam', 22, 2, 6, 'NA', NULL),
-(4, 3, 'test', 27, 5, 2, 'NA', NULL),
-(57, 2, 'aanmaaktest2', 27, 1, 2, 'LAN', NULL),
-(58, 38, 'Aanmaaktest', 27, 1, 6, 'EUW', NULL),
-(63, 1, 'BRWocoTest', 14, 1, 5, 'BR', NULL),
-(64, 1, 'WocoLan', 7, 3, 1, 'LAN', NULL),
-(65, 41, 'NATabtest', 26, 5, 6, 'NA', NULL),
-(66, 1, 'WocoJap', 18, 2, 6, 'JP', NULL),
-(67, 42, 'naamKR', 8, 5, 2, 'KR', NULL),
-(68, 43, 'testnaam', 1, 3, 4, 'EUW', NULL),
-(69, 1, 'WocEUNE', 23, 5, 2, 'EUNE', NULL),
-(71, 1, 'qwertyuio', 6, 2, 3, 'EUNE', NULL),
-(72, 1, 'testform', 25, 4, 2, 'EUW', NULL),
-(73, 1, 'WocoOCE', 24, 3, 6, 'OCE', NULL),
-(74, 46, 'jnjn', 14, 4, 2, 'KR', NULL),
-(75, 46, 'lala', 19, 2, 4, 'JP', NULL),
-(77, 56, '22april', 22, 2, 6, 'LAS', NULL),
-(78, 73, 'silversea3', 10, 4, 2, 'SEA', NULL),
-(79, 80, '5MeiLolDel', 13, 1, 5, 'SEA', NULL),
-(81, 80, '5Mei6MeiDelTest', 19, 2, 1, 'EUNE', NULL),
-(82, 81, '9meiLolbio', 1, 5, 6, 'EUNE', 'Test11'),
-(83, 81, '9meibio', 6, 1, 2, 'CN', 'Test1\r\nTest2\r\nTest3'),
-(84, 82, '11mei', 15, 3, 4, 'EUW', 'Testbeschrijving voor 11 Mei.\r\nDit is regel1.\r\n\r\nEn dit is regel 4 (geen regel 3).'),
-(85, 84, 'Dragoonix', 10, 3, 5, 'EUW', 'Kan elke rol spelen');
+INSERT INTO `gb_loldata` (`LoLID`, `AccountID`, `SummonerName`, `RankID`, `Level`, `PrefRole1`, `PrefRole2`, `Zone`, `Bio`) VALUES
+(1, 1, 'Woco', 0, 1, 3, 5, 'EUW', 'Main League Account'),
+(2, 2, 'SummonerMatthias', 11, 1, 4, 5, 'EUW', NULL),
+(3, 4, 'EenNaam', 22, 1, 2, 6, 'NA', NULL),
+(4, 3, 'test', 27, 1, 5, 2, 'NA', NULL),
+(57, 2, 'aanmaaktest2', 27, 1, 1, 2, 'LAN', NULL),
+(58, 38, 'Aanmaaktest', 27, 1, 1, 6, 'EUW', NULL),
+(63, 1, 'BRWocoTest', 14, 1, 1, 5, 'BR', NULL),
+(64, 1, 'WocoLan', 7, 1, 3, 1, 'LAN', NULL),
+(65, 41, 'NATabtest', 26, 1, 5, 6, 'NA', NULL),
+(66, 1, 'WocoJap', 18, 1, 2, 6, 'JP', NULL),
+(67, 42, 'naamKR', 8, 1, 5, 2, 'KR', NULL),
+(68, 43, 'testnaam', 1, 1, 3, 4, 'EUW', NULL),
+(69, 1, 'WocEUNE', 23, 1, 5, 2, 'EUNE', NULL),
+(71, 1, 'qwertyuio', 6, 1, 2, 3, 'EUNE', NULL),
+(72, 1, 'testform', 25, 1, 4, 2, 'EUW', NULL),
+(73, 1, 'WocoOCE', 24, 1, 3, 6, 'OCE', NULL),
+(74, 46, 'jnjn', 14, 1, 4, 2, 'KR', NULL),
+(75, 46, 'lala', 19, 1, 2, 4, 'JP', NULL),
+(77, 56, '22april', 22, 1, 2, 6, 'LAS', NULL),
+(78, 73, 'silversea3', 10, 1, 4, 2, 'SEA', NULL),
+(79, 80, '5MeiLolDel', 13, 1, 1, 5, 'SEA', NULL),
+(81, 80, '5Mei6MeiDelTest', 19, 1, 2, 1, 'EUNE', NULL),
+(82, 81, '9meiLolbio', 1, 1, 5, 6, 'EUNE', 'Test11'),
+(83, 81, '9meibio', 6, 1, 1, 2, 'CN', 'Test1\r\nTest2\r\nTest3'),
+(84, 82, '11mei', 15, 1, 3, 4, 'EUW', 'Testbeschrijving voor 11 Mei.\r\nDit is regel1.\r\n\r\nEn dit is regel 4 (geen regel 3).'),
+(85, 84, 'Dragoonix', 10, 1, 3, 5, 'EUW', 'Kan elke rol spelen'),
+(86, 85, 'Woco', 27, 1, 6, 4, 'EUW', 'dszgfh;uli\'[\r\ni;ulyksz');
 
 -- --------------------------------------------------------
 
@@ -199,6 +141,7 @@ CREATE TABLE `gb_lolrank` (
 --
 
 INSERT INTO `gb_lolrank` (`rankID`, `Name`) VALUES
+(0, 'Kon rank niet vinden.'),
 (1, 'Iron IV'),
 (2, 'Iron III'),
 (3, 'Iron II'),
@@ -280,52 +223,6 @@ INSERT INTO `gb_lolzone` (`zoneID`, `Name`) VALUES
 ('SEA', 'South East Asia'),
 ('TR', 'Turkey');
 
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `gb_review`
---
-
-CREATE TABLE `gb_review` (
-  `fromAccountID` int(11) NOT NULL,
-  `toAccountID` int(11) NOT NULL,
-  `type` int(11) NOT NULL,
-  `text` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gb_review`
---
-
-INSERT INTO `gb_review` (`fromAccountID`, `toAccountID`, `type`, `text`) VALUES
-(1, 82, 0, 'Test'),
-(2, 1, 0, 'Test slechte review'),
-(64, 1, 1, 'Test goede review'),
-(77, 1, 1, 'Test positieve review\r\n'),
-(80, 1, 1, 'Testreview'),
-(82, 1, 1, 'Dit is een testreview voor het verwijderen van reviews'),
-(82, 80, 0, 'Negatief review test'),
-(85, 1, 1, 'Zeer leuk om met samen te spelen. Zeer sportief!');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `gb_reviewtype`
---
-
-CREATE TABLE `gb_reviewtype` (
-  `typeID` int(11) NOT NULL,
-  `typeText` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gb_reviewtype`
---
-
-INSERT INTO `gb_reviewtype` (`typeID`, `typeText`) VALUES
-(0, 'Negative'),
-(1, 'Postive');
-
 --
 -- Indexen voor geëxporteerde tabellen
 --
@@ -335,21 +232,6 @@ INSERT INTO `gb_reviewtype` (`typeID`, `typeText`) VALUES
 --
 ALTER TABLE `gb_account`
   ADD PRIMARY KEY (`ID`);
-
---
--- Indexen voor tabel `gb_apexdata`
---
-ALTER TABLE `gb_apexdata`
-  ADD PRIMARY KEY (`ApexID`),
-  ADD KEY `AccountID` (`AccountID`),
-  ADD KEY `PrefRole1` (`PrefRole1`),
-  ADD KEY `PrefRole2` (`PrefRole2`);
-
---
--- Indexen voor tabel `gb_apexrole`
---
-ALTER TABLE `gb_apexrole`
-  ADD PRIMARY KEY (`roleID`);
 
 --
 -- Indexen voor tabel `gb_loldata`
@@ -381,20 +263,6 @@ ALTER TABLE `gb_lolzone`
   ADD PRIMARY KEY (`zoneID`);
 
 --
--- Indexen voor tabel `gb_review`
---
-ALTER TABLE `gb_review`
-  ADD PRIMARY KEY (`fromAccountID`,`toAccountID`),
-  ADD KEY `toAccountID` (`toAccountID`),
-  ADD KEY `type` (`type`);
-
---
--- Indexen voor tabel `gb_reviewtype`
---
-ALTER TABLE `gb_reviewtype`
-  ADD PRIMARY KEY (`typeID`);
-
---
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -405,22 +273,10 @@ ALTER TABLE `gb_account`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
--- AUTO_INCREMENT voor een tabel `gb_apexdata`
---
-ALTER TABLE `gb_apexdata`
-  MODIFY `ApexID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT voor een tabel `gb_apexrole`
---
-ALTER TABLE `gb_apexrole`
-  MODIFY `roleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- AUTO_INCREMENT voor een tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
-  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `LoLID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT voor een tabel `gb_lolrank`
@@ -439,14 +295,6 @@ ALTER TABLE `gb_lolrole`
 --
 
 --
--- Beperkingen voor tabel `gb_apexdata`
---
-ALTER TABLE `gb_apexdata`
-  ADD CONSTRAINT `gb_apexdata_ibfk_1` FOREIGN KEY (`AccountID`) REFERENCES `gb_account` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `gb_apexdata_ibfk_2` FOREIGN KEY (`PrefRole1`) REFERENCES `gb_apexrole` (`roleID`),
-  ADD CONSTRAINT `gb_apexdata_ibfk_3` FOREIGN KEY (`PrefRole2`) REFERENCES `gb_apexrole` (`roleID`);
-
---
 -- Beperkingen voor tabel `gb_loldata`
 --
 ALTER TABLE `gb_loldata`
@@ -455,14 +303,6 @@ ALTER TABLE `gb_loldata`
   ADD CONSTRAINT `gb_loldata_ibfk_3` FOREIGN KEY (`PrefRole2`) REFERENCES `gb_lolrole` (`roleID`),
   ADD CONSTRAINT `gb_loldata_ibfk_4` FOREIGN KEY (`RankID`) REFERENCES `gb_lolrank` (`rankID`),
   ADD CONSTRAINT `gb_loldata_ibfk_7` FOREIGN KEY (`AccountID`) REFERENCES `gb_account` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Beperkingen voor tabel `gb_review`
---
-ALTER TABLE `gb_review`
-  ADD CONSTRAINT `gb_review_ibfk_1` FOREIGN KEY (`fromAccountID`) REFERENCES `gb_account` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `gb_review_ibfk_2` FOREIGN KEY (`toAccountID`) REFERENCES `gb_account` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `gb_review_ibfk_3` FOREIGN KEY (`type`) REFERENCES `gb_reviewtype` (`typeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
