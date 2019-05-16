@@ -23,14 +23,41 @@
        $(document).ready(function(e) {
       apiCall();
     
-    
+      function apiCall() {
+      if(regio[0] == "EUW"){
+        regio[0] = "EUW1"
+      }
+      else if(regio[0] == "BR"){
+        regio[0] = "BR1"
+      }
+      else if(regio[0] == "OCE"){
+        regio[0] = "OC1"
+      }
+      else if(regio[0] == "JP"){
+        regio[0] = "JP1"
+      }
+      else if(regio[0] == "NA"){
+        regio[0] = "NA1"
+      }
+      else if(regio[0] == "EUNE"){
+        regio[0] = "EUN1"
+      }
+      else if(regio[0] == "TR"){
+        regio[0] = "TR1"
+      }
+      else if(regio[0] == "LAN"){
+        regio[0] = "LA1"
+      }
+      else if(regio[0] == "LAS"){
+        regio[0] = "LA1"
+      }
     
 
     function apiCall() {
       document.getElementById("demo").innerHTML = regio[0];
       document.getElementById("demo").innerHTML = naam[0];
       var $tier="";
-      $k = "https://" + regio[0] + "1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam[0];
+      $k = "https://" + regio[0] + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam[0];
       $.get(
         "summoner.php",
         { endpoint: $k },
