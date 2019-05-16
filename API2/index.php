@@ -30,7 +30,7 @@
       document.getElementById("demo").innerHTML = regio[0];
       document.getElementById("demo").innerHTML = naam[0];
       var $tier="";
-      $k = "https://" + regio[0] + "1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam[0]
+      $k = "https://" + regio[0] + "1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam[0];
       $.get(
         "summoner.php",
         { endpoint: $k },

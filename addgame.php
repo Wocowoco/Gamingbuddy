@@ -510,6 +510,7 @@
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
+                /*
                 //Rank
                 div = document.createElement("div");
                 gameDetails.appendChild(div);
@@ -620,6 +621,7 @@
                     option.value = "0";
                     option.text = "IV";
                     field.appendChild(option);
+                */
 
                 //Prefered Main Role
                 div = document.createElement("div");
@@ -803,7 +805,6 @@
 
 
 
-
                 //Check summoner name not blank
                 if(document.getElementById("summonerName").value.length == 0)
                 {
@@ -822,7 +823,7 @@
 
 
 
-
+                /*
                 //Check if rank is chosen
                 if(document.getElementById("rank").value == "invalid")
                 {
@@ -857,6 +858,7 @@
                 errorMessage.setAttribute("hidden","");
                 errorMessage.innerHTML = "";
                 }
+                */
 
 
 
@@ -897,6 +899,7 @@
                     errorMessage.removeAttribute("hidden");
                     errorMessage.innerHTML = "Gelieve een tweede rol te selecteren."; 
                 } 
+
 
                 //If role1 is valid, check if role2 is duplicate
                 else

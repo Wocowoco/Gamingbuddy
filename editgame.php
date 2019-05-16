@@ -519,6 +519,7 @@
                 innerP.setAttribute("hidden","");
                 div.appendChild(innerP);
 
+                /*
                 //Rank
                 div = document.createElement("div");
                 gameDetails.appendChild(div);
@@ -660,7 +661,7 @@
                         option.value = "27";
                         option.text = "Challenger";
                         select.appendChild(option);
-                
+                */
                 
                 //Prefered Main Role
                 div = document.createElement("div");
@@ -793,7 +794,7 @@
                         //Set role2
                         echo 'document.getElementById("role2").value = "' . $_SESSION["editLol_role2"] . '";';
                         //Set rank
-                        echo 'document.getElementById("rank").value = "' . $_SESSION["editLol_rank"] . '";';
+                        //echo 'document.getElementById("rank").value = "' . $_SESSION["editLol_rank"] . '";';
 
 
                         //Unset vars
@@ -847,7 +848,7 @@
 
 
 
-
+                /*
                 //Check if rank is chosen
                 if(document.getElementById("rank").value == "invalid")
                 {
@@ -862,7 +863,7 @@
                 errorMessage.setAttribute("hidden","");
                 errorMessage.innerHTML = "";
                 }
-
+                */
 
 
 

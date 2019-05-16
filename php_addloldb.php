@@ -6,14 +6,6 @@
         header("Location: index.php");
         exit;  
     }
-?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-<body>
-    <?php
 
     if(isset($_SESSION["id"]))
     {
@@ -25,14 +17,11 @@
     }
 
     $username = filter_input(INPUT_POST,'summonerName');
-    $username = filter_input(INPUT_POST,'summonerName');
-    $region = filter_input(INPUT_POST,'region');
-    $rank = filter_input(INPUT_POST,'rank');
-    $division = filter_input(INPUT_POST,'division');
-    $rank += $division;
+    $region = filter_input(INPUT_POST,'region');;
     $prefrole1 = filter_input(INPUT_POST,'role1');
     $prefrole2 = filter_input(INPUT_POST,'role2');
     $bio = filter_input(INPUT_POST,'bio');
+    $rank = 0;
 
     $host = "localhost";
     $dbusername = "root";
@@ -55,7 +44,18 @@
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
-        header("Location: index.php");
+        //----------------------------
+        //INCLUDE API CALL STUFF HERE
+        //----------------------------
+
+
+
+
+
+
+
+
+        header("Location: accountoptions.php#gamesdiv");
         exit; 
     }
     ?>
