@@ -126,8 +126,8 @@ object{
 }
 
 .blokken{
-    max-width: 700px;
-    min-width: 500px;
+    max-width: 900px;
+    min-width: 900px;
 
     margin-top: 5px;
     margin-bottom: 5px;
@@ -147,13 +147,13 @@ object{
     max-width: 500px;
     min-width: 500px;
 
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
 
-    border: 3px;
-    border-style: solid;
+    border: 7px;
+    border-style: groove;
     border-color: black;
     background-color: rgb(220, 220, 220);
     padding: 4px;
@@ -209,15 +209,16 @@ ul{
 
 
 .lolnaam{
-    color: red;
+   
     display: block;
     margin: auto;
     width: 80%;
     text-align: center;
+    font-size: 25px;
 }
 
 .regio{
-    color: blue;
+    
     display: block;
     margin: auto;
     width: 80%;
@@ -246,11 +247,39 @@ ul{
 }
 
 
+.iron{
+    border-color: #cbcdcd;
+}
+.bronze{
+    border-color: #cd7f32;
+}
+.silver{
+    border-color: #C0C0C0;
+}
+.gold{
+    border-color: gold;
+}
+.platinum{
+    border-color: #003366;
+}
+.diamond{
+    border-color: #b9f2ff;
+}
+.master{
+    border-color: black;
+}
+.grandmaster{
+    border-color: green;
+}
+.challenger{
+    border-color: red;
+}
+
 
 /* MULTIPAGE STYLES */ 
 div.pagecenterdiv{
-    max-width: 500px;
-    min-width: 500px;
+    max-width: 900px;
+    min-width: 900px;
 
     margin-top: 5px;
     margin-bottom: 5px;

@@ -23,40 +23,40 @@
        $(document).ready(function(e) {
       apiCall();
     
-      function apiCall() {
-      if(regio[0] == "EUW"){
-        regio[0] = "EUW1"
-      }
-      else if(regio[0] == "BR"){
-        regio[0] = "BR1"
-      }
-      else if(regio[0] == "OCE"){
-        regio[0] = "OC1"
-      }
-      else if(regio[0] == "JP"){
-        regio[0] = "JP1"
-      }
-      else if(regio[0] == "NA"){
-        regio[0] = "NA1"
-      }
-      else if(regio[0] == "EUNE"){
-        regio[0] = "EUN1"
-      }
-      else if(regio[0] == "TR"){
-        regio[0] = "TR1"
-      }
-      else if(regio[0] == "LAN"){
-        regio[0] = "LA1"
-      }
-      else if(regio[0] == "LAS"){
-        regio[0] = "LA1"
-      }
+      
     
 
     function apiCall() {
       document.getElementById("demo").innerHTML = regio[0];
       document.getElementById("demo").innerHTML = naam[0];
       var $tier="";
+      if(regio[0] == "EUW"){
+          regio[0] = "EUW1"
+        }
+        else if(regio[0] == "BR"){
+          regio[0] = "BR1"
+        }
+        else if(regio[0] == "OCE"){
+          regio[0] = "OC1"
+        }
+        else if(regio[0] == "JP"){
+          regio[0] = "JP1"
+        }
+        else if(regio[0] == "NA"){
+          regio[0] = "NA1"
+        }
+        else if(regio[0] == "EUNE"){
+          regio[0] = "EUN1"
+        }
+        else if(regio[0] == "TR"){
+          regio[0] = "TR1"
+        }
+        else if(regio[0] == "LAN"){
+          regio[0] = "LA1"
+        }
+        else if(regio[0] == "LAS"){
+          regio[0] = "LA1"
+        }
       $k = "https://" + regio[0] + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam[0];
       $.get(
         "summoner.php",
@@ -71,7 +71,7 @@
               "summonerlevel: " + data.summonerLevel
             );
             
-           $tier = "https://" + regio[0] + "1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + spelerid
+           $tier = "https://" + regio[0] + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + spelerid
            rankcall($tier);
            $("#content").append(profile);
           } 
@@ -99,7 +99,7 @@
                   var helerank = info.tier;
                   helerank += info.rank; 
                   
-                   /*hier snap ik niet wat er fout gaat*/
+                   
                    document.getElementById("demo").innerHTML = helerank;
                    zetomnaardatabaserankID(helerank);
                 }
@@ -116,121 +116,101 @@
 
     var databaserankID = "";
     function zetomnaardatabaserankID(helerank){
-      if (helerank == "ironIV"){
+      if (helerank == "IRONIV"){
         databaserankID = "1"
       }
-      else if (helerank == "ironIII"){
+      else if (helerank == "IRONIII"){
         databaserankID = "2"
       }
-      else if (helerank == "ironII"){
+      else if (helerank == "IRONII"){
         databaserankID = "3"
       }
-      else if (helerank == "ironI"){
+      else if (helerank == "IRONI"){
         databaserankID = "4"
       }
 
-      else if (helerank == "bronzeIV"){
+      else if (helerank == "BRONZEIV"){
         databaserankID = "6"
       }
-      else if (helerank == "bronzeIII"){
+      else if (helerank == "BRONZEIII"){
         databaserankID = "7"
       }
-      else if (helerank == "bronzeII"){
+      else if (helerank == "BRONZEII"){
         databaserankID = "8";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "bronzeI"){
+      else if (helerank == "BRONZEI"){
         databaserankID = "9";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
       else if (helerank == "SILVERIV"){
         databaserankID = "10";
-        document.getElementById("test").innerHTML = databaserankID;
+        
       }
-      else if (helerank == "silverIII"){
+      else if (helerank == "SILVERIII"){
         databaserankID = "11";
-        document.getElementById("test").innerHTML = databaserankID;
       }
       else if (helerank == "SILVERII"){
         databaserankID = "12";
-        document.getElementById("test").innerHTML = databaserankID;
         databankaanpas(databaserankID);
       }
       else if (helerank == "SILVERI"){
         databaserankID = "13";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "goldIV"){
+      else if (helerank == "GOLDIV"){
         databaserankID = "14";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "goldIII"){
+      else if (helerank == "GOLDIII"){
         databaserankID = "15";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "goldII"){
+      else if (helerank == "GOLDII"){
         databaserankID = "16";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "goldI"){
+      else if (helerank == "GOLDI"){
         databaserankID = "17";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "platinumIV"){
+      else if (helerank == "PLATINUMIV"){
         databaserankID = "18";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "platinumIII"){
+      else if (helerank == "PLATINUMIII"){
         databaserankID = "19";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "platinumII"){
+      else if (helerank == "PLATINUMII"){
         databaserankID = "20";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "platinumI"){
+      else if (helerank == "PLATINUMI"){
         databaserankID = "21";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "diamondIV"){
+      else if (helerank == "DIAMONDIV"){
         databaserankID = "22";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "diamondIII"){
+      else if (helerank == "DIAMONDIII"){
         databaserankID = "23";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "diamondII"){
+      else if (helerank == "DIAMONDII"){
         databaserankID = "24";
-        document.getElementById("test").innerHTML = databaserankID;
       }
-      else if (helerank == "diamondI"){
+      else if (helerank == "DIAMONDI"){
         databaserankID = "25";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "masterI"){
+      else if (helerank == "MASTERI"){
         databaserankID = "26";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "grandmasterI"){
+      else if (helerank == "GRANDMASTERI"){
         databaserankID = "27";
-        document.getElementById("test").innerHTML = databaserankID;
       }
 
-      else if (helerank == "challengerI"){
+      else if (helerank == "CHALLENGERI"){
         databaserankID = "28";
-        document.getElementById("test").innerHTML = databaserankID;
       }
       else{
         document.getElementById("test").innerHTML = "faal";
       }
-      
+      databankaanpas(databaserankID);
     }
 
     function createCardWithImage(imagePath, cardTitle, cardText) {
@@ -244,12 +224,13 @@
     }
 
   });
+  
 
 
   function databankaanpas(databaserankID){
     $.get(
               "php_databankschrijf.php",
-              {endpoint: databaserankID}
+              {ranknr: databaserankID}
     )
   }
     </script>

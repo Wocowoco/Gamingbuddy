@@ -22,13 +22,13 @@ function getnaam(){
     //If logged in
     if(1)
     {
-        $sql = "SELECT Username
-        FROM gb_account 
-        WHERE ID = '85'";
+        $sql = "SELECT SummonerName
+        FROM gb_loldata
+        WHERE LoLID = '85'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {       // zorgt dat ge 1 lijn hebt
-                $_SESSION['zelfUsername'] = $row['Username'];
+                $_SESSION['zelfUsername'] = $row['SummonerName'];
             }
         }
     }

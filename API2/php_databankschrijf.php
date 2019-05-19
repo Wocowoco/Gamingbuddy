@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['endpoint'])) {
+
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -11,7 +11,7 @@ if (isset($_GET['endpoint'])) {
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } 
-        $nr = $_GET['endpoint']
+        $nr = $_GET['ranknr'];
         $sql = "UPDATE gb_loldata
         SET  RankID = $nr
         WHERE AccountID=85";
@@ -23,5 +23,5 @@ if (isset($_GET['endpoint'])) {
         }
 
         $conn->close();
-    }
+    
 ?>

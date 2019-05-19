@@ -161,39 +161,49 @@
                     for(plaats = 0; plaats < lengte; plaats++)
                         if(rank[plaats] >= 1 && rank[plaats] <= 4 )
                         {
-                            $("#lol" + plaats).css("border-color", "#cbcdcd ", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("iron");
                         }
                         else if(rank[plaats] >= 5 && rank[plaats] <= 8 )
                         {
-                            $("#lol" + plaats).css("border-color", "#cd7f32", );
+                            
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("bronze");
                         }
                         else if(rank[plaats] >= 9 && rank[plaats] <= 12 )
                         {
-                            $("#lol" + plaats).css("border-color", "#C0C0C0", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("silver");
                         }
                         else if(rank[plaats] >= 13 && rank[plaats] <= 16 )
                         {
-                            $("#lol" + plaats).css("border-color", "gold", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("gold");
                         }
                         else if(rank[plaats] >= 17 && rank[plaats] <= 20 )
                         {
-                            $("#lol" + plaats).css("border-color", "#e5e4e2", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("platinum");
                         }
                         else if(rank[plaats] >= 21 && rank[plaats] <= 24 )
                         {
-                            $("#lol" + plaats).css("border-color", "#b9f2ff", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("diamond");
                         }
                         else if(rank[plaats] == 25  )
                         {
-                            $("#lol" + plaats).css("border-color", "black", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("master");
                         }
                         else if(rank[plaats] == 26 )
                         {
-                            $("#lol" + plaats).css("border-color", "green", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("grandmaster");
                         }
                         else if(rank[plaats] == 27)
                         {
-                            $("#lol" + plaats).css("border-color", "red", );
+                            var element = document.getElementById("lol" + plaats);
+                            element.classList.add("challenger");
                         }
                         plaats++;
                     });
@@ -201,8 +211,6 @@
     </head>
     <body onload="init()">
         <object class="boven" name="menu" type="text/html" data="Menu.html"> </object>
-        <object class= "links" id="links" name="games" type="text/html" data="games.html"> </object>
-        <object class="rechts" id="rechts" name="chat" type="text/html" data="chat.html"> </object>
         <div id="test">
 
         </div>
@@ -271,11 +279,11 @@
                         echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
                         $k=0;
                         echo "<span class=\"lolnaam\">";
-                        print_r("naam = ".$_SESSION["SummonerName"][$i]);
+                        print_r("Summonernaam: ".$_SESSION["SummonerName"][$i]);
                         echo "</span>";
 
                         echo "<span class=\"regio\">";
-                        print_r("regio = ".$_SESSION["zone"][$i]);
+                        print_r("regio: ".$_SESSION["zone"][$i]);
                         echo "</span>";
                         
                         echo "<span class=\"rol1\">";
@@ -296,8 +304,7 @@
                     
                 }
                 ?>
-                <div  class="blokkenvanbinnen"></div>
-                <div class="blokkenvanbinnen"></div>                           
+                                       
             </div>
         </div>
 
