@@ -275,6 +275,17 @@ ul{
     border-color: red;
 }
 
+.subjectheaderlol{
+    text-align: center;
+    width: 50%;
+}
+
+.subjectheaderlol img{
+    width: 150px;
+    vertical-align: middle;
+}
+
+
 
 /* MULTIPAGE STYLES */ 
 div.pagecenterdiv{

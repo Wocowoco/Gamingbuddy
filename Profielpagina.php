@@ -21,19 +21,36 @@
             var z=0;
             var changeBio = false;
 
-            function myFunction() {
+            function lolfunctie() {
                 
 
-                var x = document.getElementById("drop").innerHTML;
+                var x = document.getElementById("droplol").innerHTML;
                 
                 if (z==0)
                 {
-                    document.getElementById("tonen").innerHTML = x;
+                    document.getElementById("tonenlol").innerHTML = x;
                     z=1;
                 }
                 else
                 {
-                    document.getElementById("tonen").innerHTML = "";
+                    document.getElementById("tonenlol").innerHTML = "";
+                    z=0;
+                }
+
+            }
+            function apexfunctie() {
+                
+
+                var x = document.getElementById("dropapex").innerHTML;
+                
+                if (z==0)
+                {
+                    document.getElementById("tonenapex").innerHTML = x;
+                    z=1;
+                }
+                else
+                {
+                    document.getElementById("tonenapex").innerHTML = "";
                     z=0;
                 }
 
@@ -258,13 +275,64 @@
         <div class="blokken">
         
             <div class="titel">
-            <img src="../pics/pijltje.png" alt="pijl" onclick="myFunction()" class="pijl" >
+            <img src="../pics/pijltje.png" alt="pijl" onclick="lolfunctie()" class="pijl" >
                 <ul class="top">
-                    <li class="subjectheader"> League of legends </li>
+                    <li class="subjectheaderlol"><img src="/pics/lollogo.png" alt="League of legends">  </li>
                 </ul>                                
             </div>
-            <div id="tonen" class="tonen"></div>
-            <div id="drop" class="dropdown"> 
+            <div id="tonenlol" class="tonen"></div>
+            <div id="droplol" class="dropdown"> 
+                <?php
+                $i=0;
+                
+                while(1)
+                {
+                    if ($i == $_SESSION['loldataAmount'])
+                    {
+                        break;
+                    }  
+                        
+                    else{         
+                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
+                        $k=0;
+                        echo "<span class=\"lolnaam\">";
+                        print_r("Summonernaam: ".$_SESSION["SummonerName"][$i]);
+                        echo "</span>";
+
+                        echo "<span class=\"regio\">";
+                        print_r("regio: ".$_SESSION["zone"][$i]);
+                        echo "</span>";
+                        
+                        echo "<span class=\"rol1\">";
+                        print_r("voorkeursrol = ".$_SESSION["role1"][$i]);
+                        echo "</span>";
+
+                        echo "<span class=\"rol2\">";
+                        print_r("tweederol = ".$_SESSION["role2"][$i]);
+                        echo "</span>";
+
+                        echo "<sanp class=\"rank\">";
+                        print_r("rank = ".$_SESSION["rankNaam"][$i]);
+                        echo "</span>";
+                        
+                        $i++;
+                        echo "</div>";
+                    }                   
+                    
+                }
+                ?>
+                                       
+            </div>
+        </div>
+        <div class="blokken">
+            <div class="titel">
+                <img src="../pics/pijltje.png" alt="pijl" onclick="apexfunctie()" class="pijl" >
+                <ul class="top">
+                    <li class="subjectheaderapex"> Apex Legends </li>
+                </ul>                                
+            </div>
+            <div id="tonenapex" class="tonen"></div>
+            <div id="dropapex" class="dropdown"> 
                 <?php
                 $i=0;
                 
