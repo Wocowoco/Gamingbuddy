@@ -31,8 +31,8 @@
     //Prepared statement
     $sql = "SELECT OriginName, PrefRole1, PrefRole2
     FROM gb_apexdata
-    INNER JOIN gb_apexrole AS rol1 ON gb_apexdata.PrefRole1 = rol1.Name
-    INNER JOIN gb_apexrole AS rol2 ON gb_apexdata.Prefrole2= rol2.Name
+    /*INNER JOIN gb_apexrole AS rol1 ON gb_apexdata.PrefRole1 = rol1.Name
+    INNER JOIN gb_apexrole AS rol2 ON gb_apexdata.Prefrole2= rol2.Name*/
     WHERE gb_apexdata.ApexID LIKE $id";
     
     $result = $conn->query($sql);
@@ -42,8 +42,8 @@
     {
             
         $apexSummonerName = $row["OriginName"];
-        $apexrole1 = $row["Prefrole1"];
-        $apexrole2 = $row["Prefrole2"];
+        $apexrole1 = $row["PrefRole1"];
+        $apexrole2 = $row["PrefRole2"];
 
         $_SESSION["apexnaam"][$number] = $apexSummonerName;
         $_SESSION["apexrol1"][$number] = $apexrole1;

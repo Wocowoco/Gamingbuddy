@@ -333,24 +333,18 @@
                         echo "<div class=\"blokkenvanbinnen\" id=\"apex".$i."\"> ";
                         $k=0;
                         echo "<span class=\"apexnaam\">";
-                        print_r("Summonernaam: ".$_SESSION["OriginName"][$i]);
+                        print_r("Summonernaam: ".$_SESSION["apexnaam"][$i]);
                         echo "</span>";
 
                         echo "<span class=\"regio\">";
-                        print_r("regio: ".$_SESSION["zone"][$i]);
+                        print_r("regio: ".$_SESSION["apexrol1"][$i]);
                         echo "</span>";
                         
                         echo "<span class=\"rol1\">";
-                        print_r("voorkeursrol = ".$_SESSION["role1"][$i]);
+                        print_r("voorkeursrol = ".$_SESSION["apexrol2"][$i]);
                         echo "</span>";
 
-                        echo "<span class=\"rol2\">";
-                        print_r("tweederol = ".$_SESSION["role2"][$i]);
-                        echo "</span>";
-
-                        echo "<sanp class=\"rank\">";
-                        print_r("rank = ".$_SESSION["rankNaam"][$i]);
-                        echo "</span>";
+                        
                         
                         $i++;
                         echo "</div>";
