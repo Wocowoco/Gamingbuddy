@@ -15,6 +15,7 @@
         $sql = "UPDATE gb_loldata
         SET  RankID = $nr
         WHERE AccountID=85";
+        /*$_SESSION['id'] */
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

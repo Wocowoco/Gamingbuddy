@@ -23,36 +23,14 @@
 
             function lolfunctie() {
                 
-
-                var x = document.getElementById("droplol").innerHTML;
+                $("#droplol").slideToggle("slow");
                 
-                if (z==0)
-                {
-                    document.getElementById("tonenlol").innerHTML = x;
-                    z=1;
-                }
-                else
-                {
-                    document.getElementById("tonenlol").innerHTML = "";
-                    z=0;
-                }
 
             }
             function apexfunctie() {
                 
 
-                var x = document.getElementById("dropapex").innerHTML;
-                
-                if (z==0)
-                {
-                    document.getElementById("tonenapex").innerHTML = x;
-                    z=1;
-                }
-                else
-                {
-                    document.getElementById("tonenapex").innerHTML = "";
-                    z=0;
-                }
+                $("#dropapex").slideToggle("slow");
 
             }
 
@@ -69,6 +47,9 @@
                     include 'php_profielaanpas.php';
                     getotherlolrank();
                     getotherlolacounts(); 
+                    //apexdata ophalen
+                    include 'php_getapexdata.php';
+                    getapexotheracounts();
                 }
                 //Show your own profile
                 else 
@@ -79,7 +60,10 @@
                     //aanpassen van de border van u eigen profiel zodat die overeenkomt met je rank
                     include 'php_profielaanpas.php';
                     getlolrank();
-                    getlolacounts(); 
+                    getlolacounts();
+                    //apexdata ophalen
+                    include 'php_getapexdata.php';
+                    
                 }
                 ?>
 
@@ -277,7 +261,7 @@
             <div class="titel">
             <img src="../pics/pijltje.png" alt="pijl" onclick="lolfunctie()" class="pijl" >
                 <ul class="top">
-                    <li class="subjectheaderlol"><img src="/pics/lollogo.png" alt="League of legends">  </li>
+                    <li class="subjectheaderlol"><img src="/pics/lollogo.png" alt="League of legends" onclick="lolfunctie()">  </li>
                 </ul>                                
             </div>
             <div id="tonenlol" class="tonen"></div>
@@ -333,21 +317,23 @@
             </div>
             <div id="tonenapex" class="tonen"></div>
             <div id="dropapex" class="dropdown"> 
+                
                 <?php
                 $i=0;
+                getapexacounts(); 
                 
                 while(1)
                 {
-                    if ($i == $_SESSION['loldataAmount'])
+                    if ($i == $_SESSION['apexDataAmount'])
                     {
                         break;
                     }  
                         
                     else{         
-                        echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
+                        echo "<div class=\"blokkenvanbinnen\" id=\"apex".$i."\"> ";
                         $k=0;
-                        echo "<span class=\"lolnaam\">";
-                        print_r("Summonernaam: ".$_SESSION["SummonerName"][$i]);
+                        echo "<span class=\"apexnaam\">";
+                        print_r("Summonernaam: ".$_SESSION["OriginName"][$i]);
                         echo "</span>";
 
                         echo "<span class=\"regio\">";
@@ -497,6 +483,9 @@
         unset($_SESSION['zelfUsername']);
         unset($_SESSION['loldataAmount']);
         unset($_SESSION['lol_RankID']);
+        unset($_SESSION["apexnaam"]);
+        unset($_SESSION["apexrol1"]);
+        unset($_SESSION["apexrol2"]);
         //print_r($_SESSION);
         
     ?>
