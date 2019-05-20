@@ -45,7 +45,7 @@
         . mysqli_connect_error());
     }
     else{
-        //Add LOL data to DB
+        //Edit LOL data to DB
         //Prepared statement
         $stmt = $conn->prepare("UPDATE gb_loldata 
         SET SummonerName = ?, RankID = ?, PrefRole1 = ?, PrefRole2 = ?, Zone = ?, Bio = ?
@@ -54,10 +54,13 @@
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
-        
+        $_SESSION["apiName"]= $username;
+        $_SESSION["apiZone"] = $region;
+        $_SESSION["apiID"] = $_SESSION["gameID"];
         //----------------------------
         //INCLUDE API CALL STUFF HERE
         //----------------------------
+        //$_SESSION["gameID"]
 
 
 

@@ -36,6 +36,7 @@
         . mysqli_connect_error());
     }
     else{
+
         //Add LOL data to DB
         //Prepared statement
         $stmt = $conn->prepare("INSERT INTO gb_loldata (accountID, SummonerName, RankID, PrefRole1, PrefRole2, Zone, Bio)
@@ -44,6 +45,30 @@
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
+        //Prepared statement
+        //Get the username
+        $stmt = $conn->prepare("SELECT SummonerName, lolID, Zone
+        FROM gb_loldata
+        ORDER BY LoLID desc
+        LIMIT 1");
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if ($result->num_rows > 0) 
+        {
+            while($row = $result->fetch_assoc()) 
+            {
+                $summonername = $row["SummonerName"];
+                $lolID = $row["lolID"];
+                $zone = $row["Zone"];
+        
+                $_SESSION["apiName"]= $summonername;
+                $_SESSION["apiZone"] = $zone;
+                $_SESSION["apiID"] = $lolID;
+    
+                $number++;
+            }
+        }
+    
         //----------------------------
         //INCLUDE API CALL STUFF HERE
         //----------------------------
@@ -55,9 +80,17 @@
 
 
 
+
+
+
+
+
+
+
+        unset($_SESSION["apiName"]);
+        unset($_SESSION["apiZone"]);
+        unset($_SESSION["apiID"]);
         header("Location: accountoptions.php#gamesdiv");
         exit; 
     }
-    ?>
-</body>
-</html>
+?>
