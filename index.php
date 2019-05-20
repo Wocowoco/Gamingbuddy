@@ -147,6 +147,7 @@ session_start();
                 //-----------------
                 //IF LOGGED IN
                 //-----------------
+                /*
                 else{
                     //Voeg de 3 balken toe
                     document.getElementById("test").innerHTML += "<object class=\"boven\"  name=\"menu\" type=\"text/html\" data=\"Menu.html\"> </object><object class= \"links\"  name=\"games\" type=\"text/html\" data=\"games.html\"> </object><object class=\"rechts\"  name=\"chat\" type=\"text/html\" data=\"chat.html\"> </object>";
@@ -213,7 +214,7 @@ session_start();
                     form.appendChild(item);
                 }
             }
-
+            */
             function getError(){
                 <?php
 
@@ -237,11 +238,6 @@ session_start();
                     document.getElementById("loginconfirm").innerHTML = getError();
                 }
             }
-
-            function logout()
-            {      
-                <?php
-                ?>             
             }
         </script>
     </head>

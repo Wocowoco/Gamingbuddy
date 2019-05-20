@@ -46,7 +46,6 @@ session_start();
         } 
         else {
             $_SESSION["Error"] = $error;
-
         }
 
         $stmt->close();

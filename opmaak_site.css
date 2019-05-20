@@ -207,7 +207,7 @@ ul{
 }
 
 
-.lolnaam{
+.gameusername{
    
     display: block;
     margin: auto;
@@ -216,35 +216,13 @@ ul{
     font-size: 25px;
 }
 
-.regio{
+.gameinfo{
     
     display: block;
     margin: auto;
     width: 80%;
     text-align: center;
 }
-
-.rol1{
-    display: block;
-    margin: auto;
-    width: 80%;
-    text-align: center;
-}
-
-.rol2{
-    display: block;
-    margin: auto;
-    width: 80%;
-    text-align: center;
-}
-
-.rank{
-    display: block;
-    margin: auto;
-    width: 80%;
-    text-align: center;
-}
-
 
 .iron{
     border-color: #cbcdcd;
@@ -479,7 +457,7 @@ div.formparagraph{
 
 .resultsdiv{
     max-width: 1320px;
-    min-width: 500px;
+    min-width: 900px;
 
     margin-top: 5px;
     margin-bottom: 5px;

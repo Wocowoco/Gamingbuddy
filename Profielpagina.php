@@ -49,8 +49,9 @@
                     getotherlolacounts(); 
                     //apexdata ophalen
                     include 'php_getapexdata.php';
-                    getapexotheracounts();
+                    getapexacounts();
                 }
+            
                 //Show your own profile
                 else 
                 {
@@ -63,8 +64,28 @@
                     getlolacounts();
                     //apexdata ophalen
                     include 'php_getapexdata.php';
+                    getapexacounts();
                     
                 }
+
+
+                                
+                //Only show loldiv is there is a game
+                if(!isset($_SESSION['loldataAmount']))
+                {
+                    echo 'document.getElementById("loldiv").setAttribute("hidden","");';
+                }
+                else if($_SESSION['loldataAmount'] == 0)
+                {
+                    echo 'document.getElementById("loldiv").setAttribute("hidden","");';
+                }
+                
+                //Only show apexdiv if there is a game
+                if(!isset($_SESSION['ApexDataAmount']))
+                {
+                    echo 'document.getElementById("apexdiv").setAttribute("hidden","");';
+                }
+
                 ?>
 
                 
@@ -213,7 +234,6 @@
     <body onload="init()">
         <object class="boven" name="menu" type="text/html" data="Menu.html"> </object>
         <div id="test">
-
         </div>
    
     <div class="wvg" id="wvg">
@@ -256,7 +276,7 @@
 
 
         
-        <div class="blokken">
+        <div class="blokken" id="loldiv">
         
             <div class="titel">
             <img src="../pics/pijltje.png" alt="pijl" onclick="lolfunctie()" class="pijl" >
@@ -279,24 +299,24 @@
                     else{         
                         echo "<div class=\"blokkenvanbinnen\" id=\"lol".$i."\"> ";
                         $k=0;
-                        echo "<span class=\"lolnaam\">";
+                        echo "<span class=\"gameusername\">";
                         print_r("Summonernaam: ".$_SESSION["SummonerName"][$i]);
                         echo "</span>";
 
-                        echo "<span class=\"regio\">";
-                        print_r("regio: ".$_SESSION["zone"][$i]);
+                        echo "<span class=\"gameinfo\">";
+                        print_r("Regio: ".$_SESSION["zone"][$i]);
                         echo "</span>";
                         
-                        echo "<span class=\"rol1\">";
-                        print_r("voorkeursrol = ".$_SESSION["role1"][$i]);
+                        echo "<span class=\"gameinfo\">";
+                        print_r("Voorkeursrol: ".$_SESSION["role1"][$i]);
                         echo "</span>";
 
-                        echo "<span class=\"rol2\">";
-                        print_r("tweederol = ".$_SESSION["role2"][$i]);
+                        echo "<span class=\"gameinfo\">";
+                        print_r("Tweede rol: ".$_SESSION["role2"][$i]);
                         echo "</span>";
 
-                        echo "<sanp class=\"rank\">";
-                        print_r("rank = ".$_SESSION["rankNaam"][$i]);
+                        echo "<sanp class=\"gameinfo\">";
+                        print_r("Rank: ".$_SESSION["rankNaam"][$i]);
                         echo "</span>";
                         
                         $i++;
@@ -304,11 +324,23 @@
                     }                   
                     
                 }
+
+
+                //UNSETTING PHP SESSION VARIABLES
+                unset($_SESSION['SummonerName']);
+                unset($_SESSION['zone']);
+                unset($_SESSION['role1']);
+                unset($_SESSION['role2']);
+                unset($_SESSION['rankNaam']);
+                unset($_SESSION['loldataAmount']);
+
                 ?>
                                        
             </div>
         </div>
-        <div class="blokken">
+
+
+        <div class="blokken" id="apexdiv">
             <div class="titel">
                 <img src="../pics/pijltje.png" alt="pijl" onclick="apexfunctie()" class="pijl" >
                 <ul class="top">
@@ -320,11 +352,9 @@
                 
                 <?php
                 $i=0;
-                getapexacounts(); 
-                
                 while(1)
                 {
-                    if ($i == $_SESSION['apexDataAmount'])
+                    if ($i == $_SESSION['ApexDataAmount'])
                     {
                         break;
                     }  
@@ -332,16 +362,16 @@
                     else{         
                         echo "<div class=\"blokkenvanbinnen\" id=\"apex".$i."\"> ";
                         $k=0;
-                        echo "<span class=\"apexnaam\">";
-                        print_r("Summonernaam: ".$_SESSION["apexnaam"][$i]);
+                        echo "<span class=\"gameusername\">";
+                        print_r("Origin naam: ".$_SESSION["ApexName"][$i]);
                         echo "</span>";
 
-                        echo "<span class=\"regio\">";
-                        print_r("regio: ".$_SESSION["apexrol1"][$i]);
+                        echo "<span class=\"gameinfo\">";
+                        print_r("Voorkeurs Legend: ".$_SESSION["ApexLegend1"][$i]);
                         echo "</span>";
                         
-                        echo "<span class=\"rol1\">";
-                        print_r("voorkeursrol = ".$_SESSION["apexrol2"][$i]);
+                        echo "<span class=\"gameinfo\">";
+                        print_r("Tweede Legend: ".$_SESSION["ApexLegend2"][$i]);
                         echo "</span>";
 
                         
@@ -351,6 +381,12 @@
                     }                   
                     
                 }
+
+                //UNSETTING PHP SESSION VARIABLES
+                unset($_SESSION['ApexName']);
+                unset($_SESSION['ApexLegend1']);
+                unset($_SESSION['ApexLegend2']);
+                unset($_SESSION['ApexDataAmount']);
                 ?>
                                        
             </div>
@@ -459,6 +495,7 @@
         ?>
     </div>
     <div class="buttoncenterdiv">
+
     <?php
         //------------------------------------------------------------------//
         //                                DELETE THIS                       //
@@ -466,21 +503,6 @@
         echo "<b>NIET UNSETTE VARIABELEN, ZIE ONDERAAN CODE        -Wouter</b><br><br>";
         // Dit zijn variabelen die gij nergens unset na gebruik, dus doe ik het ff op het einde van uw PHP  -Wouter
         print_r($_SESSION);
-
-        unset($_SESSION["SummonerName"]);
-        unset($_SESSION["zone"]);
-        unset($_SESSION["role1"]);
-        unset($_SESSION["role2"]);
-        unset($_SESSION["rankNaam"]);
-        unset($_SESSION["rankNr"]);
-        unset($_SESSION['loldata']);
-        unset($_SESSION['zelfUsername']);
-        unset($_SESSION['loldataAmount']);
-        unset($_SESSION['lol_RankID']);
-        unset($_SESSION["apexnaam"]);
-        unset($_SESSION["apexrol1"]);
-        unset($_SESSION["apexrol2"]);
-        //print_r($_SESSION);
         
     ?>
     </div>
