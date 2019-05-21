@@ -58,7 +58,7 @@ object{
  .dropdown {
     display: none;
     position: relative;
-    background-color:  rgb(220, 220, 220);
+    background-color:  #66B9BF;
     min-width: 160px;
     overflow: auto;
     z-index: 1;
@@ -136,7 +136,7 @@ object{
     border: 3px;
     border-style: solid;
     border-color: black;
-    background-color: rgb(220, 220, 220);
+    background-color: #66B9BF;
     padding: 4px;
 
     position: relative;
@@ -154,7 +154,7 @@ object{
     border: 7px;
     border-style: groove;
     border-color: black;
-    background-color: rgb(220, 220, 220);
+    background-color: #07889B;
     padding: 4px;
 
     position: relative;
@@ -260,6 +260,12 @@ ul{
 .subjectheaderlol img{
     width: 150px;
     vertical-align: middle;
+}
+
+
+.gebruikerbio{
+    text-align: center;
+    font-family: Trebuchet MS;
 }
 
 

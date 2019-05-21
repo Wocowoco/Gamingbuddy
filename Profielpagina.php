@@ -253,14 +253,16 @@
                 }
             ?>
             </h1>
-            <p id="userbio">
+            <p id="userbio" class="gebruikerbio">
                 <?php
                     //Check if there's a bio, and if it's not empty
                     if (isset($_SESSION['user_bio']))
                     {
                         if($_SESSION['user_bio'] != "")
                         {
+                            
                             echo nl2br($_SESSION['user_bio']);
+                            
                         }
                     }
                     else
@@ -393,7 +395,16 @@
                         print_r("Tweede Legend: ".$_SESSION["ApexLegend2"][$i]);
                         echo "</span>";
 
-                        
+                        if($_SESSION["APEXBIO"][$i] != "")
+                        {
+                            echo "<div class=\"gameinfo\">";
+                            print_r("beachrijving: ".$_SESSION["APEXBIO"][$i]);
+                            echo "</div>";
+                        }
+                        else
+                        {
+                            
+                        }
                         
                         $i++;
                         echo "</div>";

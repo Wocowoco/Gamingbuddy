@@ -972,8 +972,6 @@
     </head>
     <body onload="init();">   
         <object class="boven"  name="menu" type="text/html" data="Menu.html"> </object>
-        <object class= "links"  name="games" type="text/html" data="games.html"> </object>
-        <object class="rechts"  name="chat" type="text/html" data="chat.html"> </object> 
         <div class="wvg">
             <div class="pagecenterdiv">
                 <div class="pagecenterinnerdiv">

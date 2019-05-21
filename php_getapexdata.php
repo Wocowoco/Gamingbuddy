@@ -51,10 +51,12 @@
             $apexname = $row["OriginName"];
             $apexrole1 = $row["legend1"];
             $apexrole2 = $row["legend2"];
+            $apexBio = $row["Bio"];
     
             $_SESSION["ApexName"][$number] = $apexname;
             $_SESSION["ApexLegend1"][$number] = $apexrole1;
             $_SESSION["ApexLegend2"][$number] = $apexrole2;
+            $_SESSION["APEXBIO"][$number] = $apexBio;
 
             $number++;
      }
