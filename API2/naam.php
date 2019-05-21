@@ -24,7 +24,7 @@ function getnaam(){
     {
         $sql = "SELECT SummonerName
         FROM gb_loldata
-        WHERE LoLID = '85'";
+        WHERE LoLID = '72'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {       // zorgt dat ge 1 lijn hebt

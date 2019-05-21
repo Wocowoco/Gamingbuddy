@@ -62,24 +62,32 @@
         "summoner.php",
         { endpoint: $k },
         function(data, status) {
-          if (status.trim() == "success") {
-            data = JSON.parse(data);
-            var spelerid = data.id;
-            var profile = createCardWithImage(
-              "",
-              data.id,
-              "summonerlevel: " + data.summonerLevel
-            );
-            
-           $tier = "https://" + regio[0] + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + spelerid
-           rankcall($tier);
-           $("#content").append(profile);
-          } 
-          
-          else {
-            alert('Something went wrong, please try again in a minute')
+          if (data.includes("Warning"))
+          {
+            databankaanpas("0");
           }
+          else{
+            if (status.trim() == "success") {
+              data = JSON.parse(data);
+              var spelerid = data.id;
+              var profile = createCardWithImage(
+                "",
+                data.id,
+                "summonerlevel: " + data.summonerLevel
+              );
+              
+            $tier = "https://" + regio[0] + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + spelerid
+            rankcall($tier);
+            $("#content").append(profile);
+            } 
+            
+            else {
+              alert('Something went wrong, please try again in a minute');
+              document.getElementById("demo").innerHTML = "fout";
+              
 
+            }
+          }
 
         }
       );      
@@ -95,6 +103,11 @@
                 if (status.trim() == "success") {
                   info = info.replace('[','');
                   info = info.replace(']','');
+
+                  if(info == ""){
+                    databankaanpas("0");
+                  }
+
                   info = JSON.parse(info);
                   var helerank = info.tier;
                   helerank += info.rank; 
@@ -106,6 +119,7 @@
 
                 else{
                   alert('Something went wrong, please try again in a minute')
+                  databankaanpas(0);
                 }
 
               }
