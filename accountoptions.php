@@ -47,8 +47,8 @@
                             echo 'innertable.innerHTML += "<tr><td><img src=../pics/positive.png alt=positief></td>';
                         }
                         echo '<td>'.$_SESSION["reviewdata"][$i][1].'</td>';
-                        echo '<td><form action=php_otherprofile.php method=POST><input type=submit value=Bewerken><input type=text name=otherID value='.$_SESSION["reviewdata"][$i][3].' hidden> <input type=text name=review value=1 hidden></td>';
-                        echo '<td><form id=delreview'.$itot.' action=php_deletereview.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDeleteReview(\"'.$_SESSION["reviewdata"][$i][1].'\",\"'.$itot.'\");\'></input><input type=text name=toID value='.$_SESSION['reviewdata'][$i][3].' hidden></input></form></td></tr>";';
+                        echo '<td><form action=php_otherprofile.php method=POST><input type=submit value=Bewerken><input type=text name=otherID value='.$_SESSION["reviewdata"][$i][3].' hidden> <input type=text name=review value=1 hidden></form></td>';
+                        echo '<td><form id=delreview'.$itot.' action=php_deletereview.php method=POST><input type=button value=Verwijderen class=redErrorText onclick=\'verifyDeleteReview(\"'.$_SESSION["reviewdata"][$i][1].'\",\"'.$itot.'\");\'><input type=text name=toID value='.$_SESSION['reviewdata'][$i][3].' hidden></input></form></td>";';
                         $itot+= 1;
                     }
                 }

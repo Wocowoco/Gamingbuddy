@@ -177,7 +177,7 @@
 
         $number = 0;
         //Prepared statement
-        $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2
+        $stmt = $conn->prepare("SELECT SummonerName, Zone, lolrank.Name AS rankName, lolrank.rankID AS rankNr, lolrole1.Name AS role1, lolrole2.Name AS role2, Level
         FROM gb_loldata AS loldat
         INNER JOIN gb_lolrank AS lolrank ON loldat.RankID = lolrank.rankID
         INNER JOIN gb_lolRole AS lolrole1 ON loldat.PrefRole1 = lolrole1.roleID
@@ -197,6 +197,7 @@
             $lolRole1 = $row["role1"];
             $lolRole2 = $row["role2"];
             $rankname = $row["rankName"];
+            $lolLevel = $row["Level"];
             
             $_SESSION["SummonerName"][$number] = $lolSummonerName;
             $_SESSION["zone"][$number] = $lolZone;
@@ -204,6 +205,7 @@
             $_SESSION["role1"][$number] = $lolRole1;
             $_SESSION["role2"][$number] = $lolRole2;
             $_SESSION["rankNaam"][$number] = $rankname;
+            $_SESSION["Level"][$number] = $lolLevel;
 
             
             $number++;
