@@ -319,6 +319,10 @@
                         print_r("Rank: ".$_SESSION["rankNaam"][$i]);
                         echo "</span>";
                         
+                        echo "<sanp class=\"gameinfo\">";
+                        print_r("Rank: ".$_SESSION["Level"][$i]);
+                        echo "</span>";
+
                         $i++;
                         echo "</div>";
                     }                   
@@ -328,7 +332,7 @@
 
                 //UNSETTING PHP SESSION VARIABLES
                 unset($_SESSION['SummonerName']);
-                unset($_SESSION['zone']);
+                //unset($_SESSION['zone']);
                 unset($_SESSION['role1']);
                 unset($_SESSION['role2']);
                 unset($_SESSION['rankNaam']);

@@ -6,14 +6,7 @@
         header("Location: index.php");
         exit;  
     }
-?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-<body>
-    <?php
 
     if(isset($_SESSION["id"]))
     {
@@ -75,13 +68,9 @@
 
 
 
-        unset($_SESSION["apiName"]);
-        unset($_SESSION["apiZone"]);
-        unset($_SESSION["apiID"]);
+        
 
-        header("Location: accountoptions.php#gamesdiv");
+        header("Location: API.php");
         exit; 
     }
     ?>
-</body>
-</html>

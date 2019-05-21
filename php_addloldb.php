@@ -87,10 +87,8 @@
 
 
 
-        unset($_SESSION["apiName"]);
-        unset($_SESSION["apiZone"]);
-        unset($_SESSION["apiID"]);
-        header("Location: accountoptions.php#gamesdiv");
+       
+        header("Location: API.php");
         exit; 
     }
 ?>

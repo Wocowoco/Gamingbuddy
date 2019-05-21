@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -12,9 +12,11 @@
             die("Connection failed: " . $conn->connect_error);
         } 
         $nr = $_GET['ranknr'];
-        $sql = "UPDATE gb_loldata
+        $id = $_SESSION['apiID'];
+
+        $sql = "UPDATE gb_loldata 
         SET  RankID = $nr
-        WHERE LoLID=72";
+        WHERE LoLID=$id";
         /*$_SESSION['id'] */
 
         if ($conn->query($sql) === TRUE) {
@@ -24,5 +26,12 @@
         }
 
         $conn->close();
+        unset($_SESSION["apiName"]);
+        unset($_SESSION["apiZone"]);
+        unset($_SESSION["apiID"]);
+        //header("Location: accountoptions.php#gamesdiv");
+        
+        //exit;
+
     
 ?>
