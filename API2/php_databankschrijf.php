@@ -14,7 +14,7 @@
         $nr = $_GET['ranknr'];
         $sql = "UPDATE gb_loldata
         SET  RankID = $nr
-        WHERE AccountID=85";
+        WHERE LoLID=72";
         /*$_SESSION['id'] */
 
         if ($conn->query($sql) === TRUE) {

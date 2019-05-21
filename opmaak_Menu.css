@@ -13,7 +13,7 @@ body{
     display: block;
     width: 100%;
     border: none;
-    background-color: green;
+    background-color: #804515;
    
 }
 .zijkantL{
@@ -35,17 +35,37 @@ body{
     right:0;
     background-color: red; 
     padding-top: 60px; /* Place content 60px from the top */
+    
 }
 
   .horizontaal{
     display: inline-block;
     white-space: nowrap; 
     width: 10%;
+    min-width: 100px;
     overflow: hidden;
     text-overflow: clip; 
+    
 }
 div{
     margin:30px;
     padding: 0px;
     border: 0px;
+}
+
+.tekstvak{
+    background-color: #804515;
+    vertical-align: center;
+   
+}
+
+.knop {
+    background-color: #d36000;
+    border: none;
+    color: red;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    font-family: Verdana;
 }
