@@ -315,13 +315,17 @@
                         print_r("Tweede rol: ".$_SESSION["role2"][$i]);
                         echo "</span>";
 
-                        echo "<sanp class=\"gameinfo\">";
+                        echo "<span class=\"gameinfo\">";
                         print_r("Rank: ".$_SESSION["rankNaam"][$i]);
                         echo "</span>";
                         
-                        echo "<sanp class=\"gameinfo\">";
+                        echo "<span class=\"gameinfo\">";
                         print_r("Level: ".$_SESSION["Level"][$i]);
                         echo "</span>";
+
+                        echo "<div class=\"gameinfo\">";
+                        print_r("Beschrijving: ".$_SESSION["Bio"][$i]);
+                        echo "</div>";
 
                         $i++;
                         echo "</div>";
