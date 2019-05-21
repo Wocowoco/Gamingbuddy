@@ -323,9 +323,17 @@
                         print_r("Level: ".$_SESSION["Level"][$i]);
                         echo "</span>";
 
-                        echo "<div class=\"gameinfo\">";
-                        print_r("Beschrijving: ".$_SESSION["Bio"][$i]);
-                        echo "</div>";
+
+                        if($_SESSION["Bio"][$i] != "")
+                        {
+                            echo "<div class=\"gameinfo\">";
+                            print_r("Beschrijving: ".$_SESSION["Bio"][$i] . "test");
+                            echo "</div>";
+                        }
+                        else
+                        {
+                            
+                        }
 
                         $i++;
                         echo "</div>";
@@ -342,6 +350,7 @@
                 unset($_SESSION['rankNaam']);
                 unset($_SESSION['loldataAmount']);
                 unset($_SESSION["Level"]);
+                unset($_SESSION["Bio"]);
 
                 ?>
                                        
@@ -378,6 +387,7 @@
                         echo "<span class=\"gameinfo\">";
                         print_r("Voorkeurs Legend: ".$_SESSION["ApexLegend1"][$i]);
                         echo "</span>";
+                        
                         
                         echo "<span class=\"gameinfo\">";
                         print_r("Tweede Legend: ".$_SESSION["ApexLegend2"][$i]);
