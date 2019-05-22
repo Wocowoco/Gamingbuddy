@@ -59,7 +59,7 @@ object{
  .dropdown {
     display: none;
     position: relative;
-    background-color:  #66B9BF;
+    background-color:  #D4DBDB;
     min-width: 160px;
     overflow: auto;
     z-index: 1;
