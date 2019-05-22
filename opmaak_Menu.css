@@ -13,7 +13,7 @@ body{
     display: block;
     width: 100%;
     border: none;
-    background-color: #E37222;
+    background-color: #2C6DA7;
    
 }
 
@@ -30,7 +30,7 @@ body{
 
 
 .tekstvak{
-    background-color: #E37222;
+    background-color: #2C6DA7;
     vertical-align: baseline;
     position: absolute;
     top: 40px;
@@ -40,7 +40,7 @@ body{
 }
 
 .knop {
-    background-color: #FC4A1A;
+    background-color: #65A094;
     border: none;
     color: red;
     padding: 15px;

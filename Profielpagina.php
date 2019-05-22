@@ -364,8 +364,8 @@
             <div class="titel">
                 <img src="../pics/pijltje.png" alt="pijl" onclick="apexfunctie()" class="pijl" >
                 <ul class="top">
-                    <li class="subjectheaderapex"> Apex Legends </li>
-                </ul>                                
+                    <li class="subjectheaderlol"><img src="/pics/apexlogo.png" alt="Apex Legends" onclick="apexfunctie()">  </li>
+                </ul>                               
             </div>
             <div id="tonenapex" class="tonen"></div>
             <div id="dropapex" class="dropdown"> 
