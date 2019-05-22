@@ -4,6 +4,11 @@
         <meta charset="utf8" />
         <title>Menu</title>
         <link href="opmaak_Menu.css" rel="stylesheet" />
+        <script>
+            function zoeken(){
+                document.getElementById("zoek").submit();
+            }
+        </script>
     </head>
     <body>
         <img src="pics/lollogo.png" alt="gamingbuddy" class="afbeelding">
@@ -11,29 +16,31 @@
             <ul>
                 <li class="horizontaal">
                     <a href="php_otherprofile.php" target="_top">
-                        <p class="knop profiel">profiel</p>
+                        <p class="knop">profiel</p>
                     </a>
                 </li>
                 <li class="horizontaal tekstvak">  
-                    <form action="php_search.php" target="_top" method="POST">
-                        <input type="text" id="name" name="name">
+                    <form id="zoek" action="php_search.php" target="_top" method="POST">
+                        <input type="text" id="name" name="name" placeholder="search">
                         <select id="game" name="game" hidden>
                             <option value="none">none</option>
                         </select>
+                        <img src="pics/vergrootglas.png" class="vergrootglas" onclick="zoeken()">
                     </form>
-                
+                </li>
                 
                 <li class="horizontaal">
                     <a a href="accountoptions.php" target="_top">
-                        <p class="knop instelling">Instellingen</p>
+                        <p class="knop">Instellingen</p>
                     </a>
                 </li>
                 <li class="horizontaal">
                     <a a href="php_logout.php" target="_top">
-                        <p class="knop uitlog">Uitloggen</p>
+                        <p class="knop uitloggen">Uitloggen</p>
                     </a>
                 </li>
             <ul>
         </div> 
+        
     </body>
 </html>

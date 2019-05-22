@@ -232,9 +232,8 @@
         </script>
     </head>
     <body onload="init()">
-        <object class="boven" name="menu" type="text/html" data="Menu.html"> </object>
-        <div id="test">
-        </div>
+        <object class="boven" name="menu" type="text/html" data="Menu.html" > </object>
+        
    
     <div class="wvg" id="wvg">
         <div class="blokken">
@@ -329,7 +328,7 @@
                         if($_SESSION["Bio"][$i] != "")
                         {
                             echo "<div class=\"gameinfo\">";
-                            print_r("Beschrijving: ".$_SESSION["Bio"][$i] . "test");
+                            print_r("Beschrijving: ".$_SESSION["Bio"][$i] );
                             echo "</div>";
                         }
                         else

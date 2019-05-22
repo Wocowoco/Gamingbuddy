@@ -22,19 +22,23 @@ body{
     display: inline-block;
     white-space: nowrap; 
     max-width: 24%;
-    min-width: 100px;
-    overflow: hidden;
+    
+    
     text-overflow: clip; 
     
 }
 
 
 .tekstvak{
-    background-color: #2C6DA7;
+    background-color: #65A094;
     vertical-align: baseline;
-    position: absolute;
-    top: 40px;
-    left: 250px;
+    margin: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    
+    border-radius: 10px;
+    
     
    
 }
@@ -42,50 +46,48 @@ body{
 .knop {
     background-color: #65A094;
     border: none;
-    color: red;
     padding: 15px;
     text-align: center;
     display: inline-block;
     font-size: 20px;
     font-family: Verdana;
-    margin: 10px;
+    margin: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
     
 }
 
 
 div.pagecenterdiv{
-    max-width: 900px;
-    min-width: 900px;
+    max-width: 80%;
+    min-width: 80%;
 
     
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 200px;
+    margin-right: 200px;
 
-   
+    text-align: center;
     
     
 
     position: relative;
+    
      
 }
 
-.uitlog{
-    position: absolute;
-    right: 0px;
-}
 
-.instelling{
-    position: absolute;
-    right: 200px;
-}
-
-.profiel{
-    position: absolute;
-}
 
 .afbeelding{
     position :absolute;
     width: 100px;
     top: 10px;
     left: 50px;
+}
+
+
+
+.vergrootglas{
+    height: 20px;
+    vertical-align: middle;
 }
