@@ -523,17 +523,5 @@
             unset($_SESSION['positiveReviewPercent']);
         ?>
     </div>
-    <div class="buttoncenterdiv">
-
-    <?php
-        //------------------------------------------------------------------//
-        //                                DELETE THIS                       //
-        //------------------------------------------------------------------//
-        echo "<b>NIET UNSETTE VARIABELEN, ZIE ONDERAAN CODE        -Wouter</b><br><br>";
-        // Dit zijn variabelen die gij nergens unset na gebruik, dus doe ik het ff op het einde van uw PHP  -Wouter
-        print_r($_SESSION);
-        
-    ?>
-    </div>
     </body>
 </html>

@@ -81,8 +81,9 @@ div.pagecenterdiv{
 .afbeelding{
     position :absolute;
     width: 100px;
-    top: 10px;
+    top: 3px;
     left: 50px;
+    width: 70px;
 }
 
 
@@ -90,4 +91,10 @@ div.pagecenterdiv{
 .vergrootglas{
     height: 20px;
     vertical-align: middle;
+}
+
+
+.nomarkup{
+    text-decoration: none;
+    color: rgb(89, 91, 110);
 }
