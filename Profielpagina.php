@@ -397,7 +397,7 @@
                         if($_SESSION["APEXBIO"][$i] != "")
                         {
                             echo "<div class=\"gameinfo\">";
-                            print_r("beachrijving: ".$_SESSION["APEXBIO"][$i]);
+                            print_r("Beschrijving: ".$_SESSION["APEXBIO"][$i]);
                             echo "</div>";
                         }
                         else
@@ -416,6 +416,7 @@
                 unset($_SESSION['ApexLegend1']);
                 unset($_SESSION['ApexLegend2']);
                 unset($_SESSION['ApexDataAmount']);
+                unset($_SESSION['APEXBIO']);
                 ?>
                                        
             </div>
