@@ -4,7 +4,7 @@
     
 
     if (isset($_GET['endpoint'])) {
-        $apiKey = "RGAPI-4562f1b6-9afa-45c5-9ff6-c836ab126d4e";
+        $apiKey = "RGAPI-4d653966-76d8-4865-b7b5-a2d3a203a183";
         $callUrl = $_GET['endpoint'] . "?api_key=" . $apiKey;
         echo file_get_contents($callUrl);
 
